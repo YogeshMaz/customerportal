@@ -1,0 +1,138 @@
+<div id="navbar-wrapper">
+            <nav class="navbar navbar-inverse p-0">
+               <div class="w-100">
+                  <div class="navbar-header w-100 row" style="align-items: center;">
+                     <div class="row">
+                        <div class="col-2 col-md-2">
+                           <div class="sidebar-brand d-flex">
+                              <img src="images/logomm.jpg" class="h-auto" style="width:35px;">    <strong class="d-none d-sm-block p-2">Machine Maze</strong>                               
+                              <div class="text-end px-4 fw-bold position-relative d-lg-none d-md-block"> <span class="position-absolute fs-6" style="top:-50px;right: -10px">X</span> </div>
+                           </div>
+                        </div>
+                        <div class="text-center col-10 col-md-10 d-flex">
+                           <h3 class="text-center fw-bold small m-auto"><a class="active text-decoration-none" href="#Page:Seller_DB_copy?super_admin_email=blr@360degreeglobal.com">CUSTOMER PORTAL</a></h3>
+                            
+                            <ul class="navbar-nav my-2 my-lg-0 mypro">
+                                <li class="nav-item mt-1 m-0 px-2">  
+                                    <!-- <?php //if($Org_Logo != "" && $Org_Logo != null){
+                                            //$Org_Logo_FilePath = explode('?', $Org_Logo);
+                                            //$Org_Logo_s = "https://creatorapp.zohopublic.in/file/arun.ramu_machinemaze/customer-invoice/Customers/" . $userPId . "/Customer_Logo/image-download/3B2NyuxjO4GOZmVwWunBsjNF7sfautP0W58FFg5hrmaquff9G1wTsvh7PXPWVWpbjppSY59xAjOFsTvrtbkjRtnpnkfeNDPtuFbr?" . $Org_Logo_FilePath[1];
+                                          //}
+                                        ?> -->
+                                        <!-- <img src="<?php //echo $Org_Logo_s; ?>" style="background: #fff;"> -->
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <strong><?php echo htmlspecialchars($_SESSION['name']); ?></strong> 
+                                                <span class="ss"><?php echo $orgName ?></span>
+                                            </a>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <li><a class="dropdown-item text-secondary py-2" href="#" id="showProfile"><i class="fa fa-user-circle"></i> View Profile</a></li>
+                                                <li>
+                                                    <a class="dropdown-item py-1" href="#">
+                                                        <form action="logout.php" method="post" class="m-0">
+                                                            <button type="submit" name="action" class="btn border-0 bg-transparent text-secondary p-0 my-1" value="logout"><i class="fas fa-sign-out-alt "></i> Logout </button>
+                                                        </form>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                </li>
+                            </ul>
+
+                            <div class="text-end mt-3">
+                               
+                            </div>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </nav>
+        </div>
+    
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid justify-content-end">
+
+            <input type="checkbox" id="toggle" class="d-none">
+            <label for="toggle" class="navbar-toggler border-0" tabindex="1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">       <span class="navbar-toggler-icon"></span>     </label>            
+            
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll">
+
+
+                    <li class="nav-item">
+                        <a class="nav-link"  id="showdashboard" > 
+                            <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span> 
+                        </a> 
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="yourrfq" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                            <i class="fas fa-tasks"></i> 
+                            <span>Your RFQ's</span>
+                        </a>                           
+                        <ul class="dropdown-menu">
+                            <li> <a class="dropdown-item"  id="uploadRfq"><i class="fa fa-upload"></i>Upload RFQ</a>      </li>
+                            <li> <a class="dropdown-item"  id="showrfqlist"><i class="fa fa-list"></i> RFQ List</a>      </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="yourpro" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                            <i class="fas fa-industry"></i>
+                            <span>Your Projects</span>
+                        </a>                              
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item"  id="showProDash">
+                                    <i class="fas fa-tachometer-alt"></i> <span>Project Dashboard</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="order_mng" role="button" data-bs-toggle="dropdown" aria-expanded="false">  
+                            <i class="fas fa-money-bill-alt"></i><span> Order Management </span>
+                        </a>                              
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item"  id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
+                          <li><a class="dropdown-item"  id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
+                          <li><a class="dropdown-item"  id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
+                          <?php if($email == 'ramasamy@saravanaenergy.com') { ?>
+                            <li><a class="dropdown-item"  id="showpf"><i class="fas fa-coins"></i> Partner Financials</a></li>
+                            <li><a class="dropdown-item"  id="showcost"><i class="fas fa-dollar-sign"></i>Costing</a></li>
+                          <?php } ?>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="dt" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+                            <i class="fas fa-chart-bar"></i>  
+                            <span>Analytics</span>
+                        </a>                              
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" id="showdt"><i class="fa fa-book"></i> Delivery Trends</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link"  id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>          
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link"  id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
+                    </li>
+                    <li class="nav-item d-none" >
+                        <a class="nav-link d-block"  id="showqc"> <i class="fas fa-check-square"></i> <span>Quality Control</span></a>          
+                    </li>
+
+                    <li class="nav-item" >
+                        <a class="nav-link d-block"  id="showtest"> <i class="fas fa-check-square"></i> <span>Test Form Data</span></a>          
+                    </li>
+
+                </ul>
+               
+
+              </div>
+            </div>
+        </nav>
