@@ -44,7 +44,7 @@
             <div class="loginSec">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <h4>Login</h4>
+                        <h4>Loginc</h4>
                         <!-- Display alert if URL parameter "error" is set to "invalid" -->
                         <?php
                         if (isset($_GET['error']) && $_GET['error'] === 'invalid') {
