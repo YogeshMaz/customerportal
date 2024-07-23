@@ -24,6 +24,7 @@
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <strong><?php echo htmlspecialchars($_SESSION['name']); ?></strong> 
                                                 <span class="ss"><?php echo $orgName ?></span>
+                                                <i class="fa fa-user-circle d-md-none d-lg-none h5"></i>
                                             </a>
 
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
