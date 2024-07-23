@@ -42,6 +42,8 @@
 
           <div class="row mb-3 dswidgets">
 
+          <?php if ($deliveredUnitEA != null || $deliveredUnitKg != null || $deliveredUnitMts != null) { ?>
+
             <div class="col-xl-4 col-md-3 mb-2">
               <a id="delivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
@@ -73,6 +75,10 @@
               </a>
             </div>
 
+          <?php } ?>
+
+          <?php if ($notYetdeliveredUnitEA != null || $notYetdeliveredUnitKg != null || $notYetdeliveredUnitMts != null) { ?>
+
             <div class="col-xl-4 col-md-3 mb-2">
               <a id="notdelivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
@@ -103,6 +109,10 @@
                   </div>
               </a>
             </div>
+          
+          <?php } ?>
+
+          <?php if ($acc_rate != null ) { ?>
 
             <div class="col-xl-4 col-md-3 mb-2">
               <a href="#Page:Seller_DB_copy?pagetype=view_po&amp;super_admin_email=blr@360degreeglobal.com">
@@ -123,6 +133,8 @@
                   </div>
               </a>
             </div>
+
+          <?php } ?>
 
           </div>
 
