@@ -689,12 +689,12 @@ li a.nav-link {
 .icnCircle {
     border: 0px solid #ccc;
     border-radius: 10px;
-    background: #fff0;
+    background: #d4e5ff;
     height: 55px;
     width: 55px;
     text-align: center;
-    padding: 14px 12px;
-    margin-right: 15px;
+    padding: 12px 13px;
+    margin-right: 10px;
 }
 
 .navbar .container-fluid {

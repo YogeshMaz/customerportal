@@ -86,7 +86,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                                       </div> -->
                           </div>
                           <div class="col-auto icnCircle">
-                            <i class="fas fa-receipt fa-2x text-primary"></i>
+                            <i class="fas fa-file h3 fa-2x text-primary"></i>
                           </div>
                         </div>
                       </div>
@@ -98,13 +98,17 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                       <div class="card-body bg-light">
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Production Projects</div>
-                            <div class="h5 mb-0 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Production_Projects'] ?? 0; ?></div>
+                            <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary">Production Projects</div>
+
+                            <div class="h4 mb-0 fw-bold justify-content-around d-flex text-dark">
+                              <span><?php echo $summaryDetails['data'][0]['Production_Projects'] ?? 0; ?> <br> <span class="fs14">EMS</span></span>
+                              <span>0 <br> <span class="fs14">PC&amp;A</span></span>
+                            </div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                         <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 
                                         <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>                        </div> -->
                           </div>
-                          <div class="col-auto icnCircle"> <i class="fas fa-handshake fa-2x text-success"></i> </div>
+                          <div class="col-auto icnCircle"> <i class="fas fa-handshake h3 fa-2x text-success"></i> </div>
                         </div>
                       </div>
                     </div>
@@ -115,14 +119,17 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                       <div class="card-body bg-light">
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
-                            <div class="text-xs fw-bold text-uppercase mb-1 text-secondary"> Open Projects</div>
-                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Open_Projects'] ?? 0; ?></div>
+                            <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary"> Open Projects</div>
+                            <div class="h4 mb-0 fw-bold justify-content-around d-flex text-dark">
+                              <span><?php echo $summaryDetails['data'][0]['Open_Projects'] ?? 0; ?> <br> <span class="fs14">EMS</span></span>
+                              <span>0 <br> <span class="fs14">PC&amp;A</span></span>
+                            </div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
-                                        <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>                        
-                                      </div> -->
+                              <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>                        
+                            </div> -->
                           </div>
                           <div class="col-auto icnCircle">
-                            <i class="fas fa-circle-notch fa-2x text-danger"></i>
+                            <i class="fas fa-circle h3 fa-2x  text-danger"></i>
                           </div>
                         </div>
                       </div>
@@ -135,13 +142,17 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Onhold Projects</div>
-                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Onhold_Projects'] ?? 0; ?></div>
+                            <div class="h4 mb-0 fw-bold justify-content-around d-flex text-dark">
+                              <span><?php echo $summaryDetails['data'][0]['Onhold_Projects'] ?? 0; ?> <br> <span class="fs14">EMS</span></span>
+                              <span>0 <br> <span class="fs14">PC&amp;A</span></span>
+                            </div>
+                            <div class="h4 mb-0 mr-3 fw-bold text-dark"></div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                         <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>
                                       </div> -->
                           </div>
                           <div class="col-auto icnCircle">
-                            <i class="fas fa-star fa-2x text-info"></i>
+                            <i class="fas fa-star h3 fa-2x text-info"></i>
                           </div>
                         </div>
                       </div>
@@ -154,13 +165,16 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Cancelled Projects</div>
-                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Cancelled_Projects'] ?? 0; ?></div>
+                            <div class="h4 mb-0 fw-bold justify-content-around d-flex text-dark">
+                              <span><?php echo $summaryDetails['data'][0]['Cancelled_Projects'] ?? 0; ?> <br> <span class="fs14">EMS</span></span>
+                              <span>0 <br> <span class="fs14">PC&amp;A</span></span>
+                            </div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
-                                      <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>
-                                    </div> -->
+                              <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>
+                            </div> -->
                           </div>
                           <div class="col-auto icnCircle ">
-                            <i class="fas fa-star fa-2x text-info"></i>
+                            <i class="fas fa-star h3 fa-2x text-info"></i>
                           </div>
                         </div>
                       </div>
