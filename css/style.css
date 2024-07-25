@@ -366,6 +366,10 @@ nav-text {
     font-size: 14px;
 }
 
+.fs12 {
+    font-size: 12px;
+}
+
 
 /* #navbar-wrapper .navbar a:hover { */
 
@@ -690,10 +694,10 @@ li a.nav-link {
     border: 0px solid #ccc;
     border-radius: 10px;
     background: #d4e5ff;
-    height: 55px;
-    width: 55px;
+    height: 52px;
+    width: 52px;
     text-align: center;
-    padding: 12px 13px;
+    padding: 13px 13px;
     margin-right: 10px;
 }
 
