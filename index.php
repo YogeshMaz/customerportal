@@ -22,6 +22,7 @@
     <div id="wrapper">
 
         <div id="navbar-wrapper">
+            
             <nav class="navbar navbar-inverse p-0">
                 <div class="w-100">
                     <div class="navbar-header w-100 row" style="align-items: center;">
