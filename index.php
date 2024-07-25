@@ -45,7 +45,7 @@
             <div class="loginSec">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <h4>Login test</h4>
+                        <h4>Login</h4>
                         
                         <!-- Display alert if URL parameter "error" is set to "invalid" -->
                         <?php
