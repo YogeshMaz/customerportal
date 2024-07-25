@@ -279,25 +279,19 @@ if (isset($_GET['ID'])) {
 
                                                         <tr>
                                                             <?php if ($detail['Production_Allocation_to_M_F_Partner'] != "" && $detail['Production_Allocation_to_M_F_Partner'] != null) { ?>
-                                                                <td><?php echo $detail['Production_Allocation_to_M_F_Partner']['zc_display_value']; ?></td>
+                                                                <td><?php echo $detail['Production_Allocation_to_M_F_Partner']['zc_display_value'];
+                                                                    $category = "PC&A"; ?></td>
                                                             <?php } elseif ($detail['Allocate_to_EMS_PArtner'] != "" && $detail['Allocate_to_EMS_PArtner'] != null) {
                                                             ?>
-                                                                <td><?php echo $detail['Allocate_to_EMS_PArtner']['zc_display_value']; ?></td>
+                                                                <td><?php echo $detail['Allocate_to_EMS_PArtner']['zc_display_value']; 
+                                                                    $category = "EMS"; ?></td>
                                                             <?php } elseif ($detail['Production_Allocation_to_Fabrication_Vendor'] != "" && $detail['Production_Allocation_to_Fabrication_Vendor'] != null) {
                                                             ?>
-                                                                <td><?php echo $detail['Production_Allocation_to_Fabrication_Vendor']['zc_display_value']; ?></td>
+                                                                <td><?php echo $detail['Production_Allocation_to_Fabrication_Vendor']['zc_display_value']; 
+                                                                    $category = "EMS"; ?></td>
                                                             <?php } else {
                                                             } ?>
-                                                            <?php if ($proj_dashboard_title_data['data']['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner'] != "" && $proj_dashboard_title_data['data']['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner'] != null) { ?>
-                                                                <th>PC&A</th>
-                                                            <?php } elseif ($proj_dashboard_title_data['data']['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner'] != "" && $proj_dashboard_title_data['data']['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner'] != null) {
-                                                            ?>
-                                                                <th>EMS</th>
-                                                            <?php } elseif ($proj_dashboard_title_data['data']['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor'] != "" && $proj_dashboard_title_data['data']['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor'] != null) {
-                                                            ?>
-                                                                <th>Fabrication</th>
-                                                            <?php } else {
-                                                            } ?>
+                                                            <td><?php echo $category ?></td>
                                                             <td><?php echo $detail['Cost_Per_Unit_INR_Landed'] ?? "-"; ?></td>
                                                             <td><?php echo $detail['RFQ_Reference_Number']['RFQ_Reference_Number'] ?? "-"; ?></td>
                                                             <td><?php echo $detail['Quantity_Year'] ?? "-"; ?></td>

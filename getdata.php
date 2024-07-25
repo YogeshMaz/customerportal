@@ -75,7 +75,95 @@ function fetchDataOfUsers($reportname, $appname)
 
     $response = curl_exec($curl);
     curl_close($curl);
+    // echo json_encode($response);
+    return $response;
+}
 
+function createRecord($email, $reportname, $appname)
+{
+    $access_token = getAccessToken();
+    if (!$access_token) {
+        echo "Failed to get access token.";
+        exit;
+    }
+
+    $jsonData = json_encode([
+        "data" => [
+            "To_check" => "true",
+            "Customer_Email" => $email,
+            "trigger" => [
+                "form_workflow"
+            ]
+        ]
+    ]);
+
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://creator.zoho.in/api/v2.1/arun.ramu_machinemaze/" . urlencode($appname) . "/form/" . $reportname,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => $jsonData,
+        CURLOPT_HTTPHEADER => array(
+            "Authorization: Zoho-oauthtoken $access_token",
+            'Content-Type: application/json',
+            'Cookie: ZCNEWLIVEUI=true; _zcsr_tmp=150bdda3-8d38-4656-85ee-c1e269e2aff7; zalb_f8176abf63=1920247976c316b14a7c52e70618ba1f; zccpn=150bdda3-8d38-4656-85ee-c1e269e2aff7'
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    // echo $response;
+    return $response;
+}
+
+function updateRecord($email, $reportname, $appname)
+{
+    $access_token = getAccessToken();
+    if (!$access_token) {
+        echo "Failed to get access token.";
+        exit;
+    }
+
+    $jsonData = '{
+        "criteria": "(Customer_Email.contains(\"' . addslashes($email) . '\"))",
+        "data": {
+            "To_check": "true",
+            "Customer_Email": "' . addslashes($email) . '",
+            "trigger": [
+                "form_workflow"
+            ]
+        }
+    }';
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://creator.zoho.in/api/v2.1/arun.ramu_machinemaze/' . urlencode($appname) . "/report/" . $reportname,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'PATCH',
+        CURLOPT_POSTFIELDS => $jsonData,
+        CURLOPT_HTTPHEADER => array(
+            "Authorization: Zoho-oauthtoken $access_token",
+            'Content-Type: application/json',
+            'Cookie: ZCNEWLIVEUI=true; _zcsr_tmp=150bdda3-8d38-4656-85ee-c1e269e2aff7; zalb_f8176abf63=1920247976c316b14a7c52e70618ba1f; zccpn=150bdda3-8d38-4656-85ee-c1e269e2aff7'
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    // echo $response;
     return $response;
 }
 
@@ -92,6 +180,33 @@ function simulateLogin($email, $inputPassword, $users)
         }
     }
     return false;
+}
+
+function getSummaryDetails(){
+    $_SESSION['action_required'] = "";
+     // Fetch User Summary
+     $userSummary = fetchDataOfUsers('summary_dashboard_customer_portal_Report', 'machinemaze-project-management');
+     $userSummaryData = json_decode($userSummary, true);
+     if ($userSummaryData) {
+         $actionRequired = false;
+         $_SESSION['loggedin'] = true;
+         if ($userSummaryData['code'] == 3000) {
+             foreach ($userSummaryData['data'] as $eachSummaryUserData) {
+                 if ($eachSummaryUserData['Customer_Email'] == $_SESSION['email']) {
+                     $actionRequired = true;
+                     break;
+                 }
+             }
+             if ($actionRequired == true) {
+                 $_SESSION['action_required'] = "update";
+             } else {
+                 $_SESSION['action_required'] = "create";
+             }
+         } else {
+             $_SESSION['action_required'] = "no record";
+         }
+     }
+     return $_SESSION['action_required'];
 }
 
 // Check if form is submitted 
@@ -124,6 +239,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['logo'] =  isset($resUserDetailedData['Customer_Logo']) ? $resUserDetailedData['Customer_Logo'] : null;
             $_SESSION['id'] =  isset($resUserDetailedData['ID']) ? $resUserDetailedData['ID'] : null;
             $_SESSION['Give_Access_To'] = isset($resUserDetailedData['Give_Access_To1']) ? $resUserDetailedData['Give_Access_To1'] : null;
+
+            getSummaryDetails();
 
             header("Location: mf_dashboard.php");
             exit();
@@ -285,7 +402,7 @@ function fetchDataFromZohoCreatorByID($ID, $reportName, $applicationName)
 $ContactNo = "";
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-
+    // echo "action required : " . json_encode($_SESSION['action_required']);
     $email = $_SESSION['email'];
     $name = $_SESSION['name'];
     $orgName = $_SESSION['orgname'];
@@ -294,6 +411,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     $Org_Logo = isset($_SESSION['logo']) ? $_SESSION['logo'] : 'No Logo';
     $userPId = isset($_SESSION['id']) ? $_SESSION['id'] : 'No ID';
     $giveAccesTo = json_encode($_SESSION['Give_Access_To']);
+
+    // date_default_timezone_set('Asia/Kolkata');
+    // $currentTime = date('H:i:s');
+    // echo "Current time : " . $currentTime;
 
     /** Summary title validations - start */
     if (strpos($giveAccesTo, "M&F Summary") !== false) {
@@ -317,182 +438,246 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
     /** Summary title validations - end */
 
-    /** rfq list fetch data - start */
-    $res = fetchDataFromZohoCreator('Customer_Upload_RFQ', 'rfq-management', $email, "Customer_Email", 1000);
-    $resData = json_decode($res, true);
-    $rfq_count = getCountFromResponse($res);
-    if ($resData["code"] == 9220) {
-        $resData = "";
+    /** Create record under the zoho report */
+    $summaryData = "NoData";
+    if ($_SESSION['action_required'] == "create") {
+        $summaryData = createRecord($email, "summary_dashboard_customer_portal", "machinemaze-project-management");
+    } elseif ($_SESSION['action_required'] == "update") {
+        $summaryData = updateRecord($email, "summary_dashboard_customer_portal_Report", "machinemaze-project-management");
     } else {
-        // 
+        $summaryData = "NoData";
     }
-    // echo json_encode($resData); 
-    /** rfq list fetch data - end */
 
-
+    $summaryResponse = fetchDataFromZohoCreator('summary_dashboard_customer_portal_Report', 'machinemaze-project-management', $email, "Customer_Email", 200);
+    $summaryDetails = json_decode($summaryResponse, true);
+    // echo "summaryData var " . json_encode($summaryData);
+    // echo "summary details " . json_encode($summaryDetails);
 
     // $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $cancelledpro_dash_res_count + $holdpro_dash_res_count;
 
-    /** price approval fetch data - start */
-    $pa_res = fetchDataFromZohoCreator('Price_Approval_from_Customers_Report', 'machinemaze-project-management', $email, "Customer_Email", 1000);
-    $pa_res_data = json_decode($pa_res, true);
-    $pa_res_count = getCountFromResponse($pa_res);
-    /** price approval fetch data  - end */
 
 
     /** partner financial fetch data - start */
-    $partner_f_res = fetchDataFromZohoCreator('All_Invoices', 'purchase-application', $email, "Customer_Organisation", 1000);
-    $partner_f_res_data = json_decode($partner_f_res, true);
-    $partner_f_res_count = getCountFromResponse($partner_f_res);
+    // $partner_f_res = fetchDataFromZohoCreator('All_Invoices', 'purchase-application', $email, "Customer_Organisation", 1000);
+    // $partner_f_res_data = json_decode($partner_f_res, true);
+    // $partner_f_res_count = getCountFromResponse($partner_f_res);
     /** partner financial fetch data - end */
 
 
 
     /** Project Dashboard - start */
-    $project_id_res = fetchDataFromZohoCreator('All_Machine_Maze_Project_Trackings', 'machinemaze-project-management', $email, "Customer_Email", 1000);
-    $project_id_data = json_decode($project_id_res, true);
+    // $project_id_res = fetchDataFromZohoCreator('All_Machine_Maze_Project_Trackings', 'machinemaze-project-management', $email, "Customer_Email", 1000);
+    // $project_id_data = json_decode($project_id_res, true);
 
-    $proj_ids = [];
-    $mfPartnerId = $fabPartnerId = [];
-    $emsPartnerId = [];
-    $rfPartner = [];
-    if ($project_id_data['code'] == 3000) {
-        foreach ($project_id_data['data'] as $eachRecProjId) {
-            $proj_ids[] = $eachRecProjId["ID"];
-            if ($eachRecProjId["Project_Execution_Detail"] != null && $eachRecProjId["Project_Execution_Detail"] != "") {
-                foreach ($eachRecProjId["Project_Execution_Detail"] as $eachProjExeRec) {
-                    if (count($eachProjExeRec['Production_Allocation_to_M_F_Partner']) > 0) {
-                        $mfPartnerId[] = $eachProjExeRec['Production_Allocation_to_M_F_Partner']['ID'] ?? 0;
-                    }
-                    if (count($eachProjExeRec['Allocate_to_EMS_PArtner']) > 0) {
-                        $emsPartnerId[] = $eachProjExeRec['Allocate_to_EMS_PArtner']['ID'] ?? 0;
-                    }
-                    if (count($eachProjExeRec['Production_Allocation_to_Fabrication_Vendor']) > 0) {
-                        $fabPartnerId[] = $eachProjExeRec['Production_Allocation_to_Fabrication_Vendor']['ID'] ?? 0;
-                    }
-                }
-            }
-            // $emsPartnerId[] = $eachRecProjId["Project_Execution_Detail"][0]['Allocate_to_EMS_PArtner']['ID'] ?? 0;
-            // $rfPartner[] = $eachRecProjId["Project_Execution_Detail"][0]["Production_Allocation_to_Raw_Material"][0]["ID"];
-        }
-    } else {
-        $project_id_data = "";
-    }
+    // $proj_ids = [];
+    // $mfPartnerId = $fabPartnerId = [];
+    // $emsPartnerId = [];
+    // $rfPartner = [];
+    // if ($project_id_data['code'] == 3000) {
+    //     foreach ($project_id_data['data'] as $eachRecProjId) {
+    //         $proj_ids[] = $eachRecProjId["ID"];
+    //         if ($eachRecProjId["Project_Execution_Detail"] != null && $eachRecProjId["Project_Execution_Detail"] != "") {
+    //             foreach ($eachRecProjId["Project_Execution_Detail"] as $eachProjExeRec) {
+    //                 if (count($eachProjExeRec['Production_Allocation_to_M_F_Partner']) > 0) {
+    //                     $mfPartnerId[] = $eachProjExeRec['Production_Allocation_to_M_F_Partner']['ID'] ?? 0;
+    //                 }
+    //                 if (count($eachProjExeRec['Allocate_to_EMS_PArtner']) > 0) {
+    //                     $emsPartnerId[] = $eachProjExeRec['Allocate_to_EMS_PArtner']['ID'] ?? 0;
+    //                 }
+    //                 if (count($eachProjExeRec['Production_Allocation_to_Fabrication_Vendor']) > 0) {
+    //                     $fabPartnerId[] = $eachProjExeRec['Production_Allocation_to_Fabrication_Vendor']['ID'] ?? 0;
+    //                 }
+    //             }
+    //         }
+    //         // $emsPartnerId[] = $eachRecProjId["Project_Execution_Detail"][0]['Allocate_to_EMS_PArtner']['ID'] ?? 0;
+    //         // $rfPartner[] = $eachRecProjId["Project_Execution_Detail"][0]["Production_Allocation_to_Raw_Material"][0]["ID"];
+    //     }
+    // } else {
+    //     $project_id_data = "";
+    // }
 
-    $mfPartnerId_Unique = array_unique($mfPartnerId);
-    $emsPartnerId_Unique = array_unique($emsPartnerId);
-    $fabPartnerId_Unique = array_unique($fabPartnerId);
-    // echo json_encode($mfPartnerId_Unique);
-    $project_ids_count = getCountFromResponse($project_id_res);
+    // $mfPartnerId_Unique = array_unique($mfPartnerId);
+    // $emsPartnerId_Unique = array_unique($emsPartnerId);
+    // $fabPartnerId_Unique = array_unique($fabPartnerId);
+    // // echo json_encode($mfPartnerId_Unique);
+    // $project_ids_count = getCountFromResponse($project_id_res);
 
 
     /** Delivery Schedule Fetch Data - start */
-    $ds_res = fetchDataFromZohoCreator('Overall_Delivery_Schedule_Records', 'machinemaze-project-management', $email, "Machine_Maze_Project_Tracking_ID.Customer_Email", 1000);
-    $ds_res_data = json_decode($ds_res, true);
-    $ds_res_count = getCountFromResponse($ds_res);
-    //echo json_encode($ds_res_data);
-    $deliveredUnitEA = $notYetdeliveredUnitEA = "";
-    $deliveredUnitKg = $notYetdeliveredUnitKg = "";
-    $deliveredUnitMts = $notYetdeliveredUnitMts = "";
-    $unitDeliveredCountEA = $unitNotDeliveredCountEA = 0;
-    $unitDeliveredCountKg = $unitNotDeliveredCountKg = 0;
-    $unitDeliveredCountMts = $unitNotDeliveredCountMts = 0;
+    // $ds_res = fetchDataFromZohoCreator('Overall_Delivery_Schedule_Records', 'machinemaze-project-management', $email, "Machine_Maze_Project_Tracking_ID.Customer_Email", 1000);
+    // $ds_res_data = json_decode($ds_res, true);
+    // $ds_res_count = getCountFromResponse($ds_res);
+    // //echo json_encode($ds_res_data);
+    // $deliveredUnitEA = $notYetdeliveredUnitEA = "";
+    // $deliveredUnitKg = $notYetdeliveredUnitKg = "";
+    // $deliveredUnitMts = $notYetdeliveredUnitMts = "";
+    // $unitDeliveredCountEA = $unitNotDeliveredCountEA = 0;
+    // $unitDeliveredCountKg = $unitNotDeliveredCountKg = 0;
+    // $unitDeliveredCountMts = $unitNotDeliveredCountMts = 0;
 
-    $acceptance = 0;
-    $acceptanceCnt = 0;
-    $acc_rate = $formatted_acc_rate  = 0;
-    $deliveredRes = $notYetDeliveredRes = array();
-    if ($ds_res_data['code'] == 3000) {
-        foreach ($ds_res_data['data'] as $eachDsRec) {
-            if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Delivered") {
-                if (isset($eachDsRec['Unit'])) {
-                    if (strpos($eachDsRec['Unit'], 'EA') !== false) {
-                        $deliveredUnitEA = $eachDsRec['Unit'];
-                        $unitDeliveredCountEA += ($eachDsRec['Qty'] ?? 0);
-                    }
-                }
+    // $acceptance = 0;
+    // $acceptanceCnt = 0;
+    // $acc_rate = $formatted_acc_rate  = 0;
+    // $deliveredRes = $notYetDeliveredRes = array();
+    // if ($ds_res_data['code'] == 3000) {
+    //     foreach ($ds_res_data['data'] as $eachDsRec) {
+    //         if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Delivered") {
+    //             // if (isset($eachDsRec['Unit'])) {
+    //             //     if (strpos($eachDsRec['Unit'], 'EA') !== false) {
+    //             //         $deliveredUnitEA = $eachDsRec['Unit'];
+    //             //         $unitDeliveredCountEA += ($eachDsRec['Qty'] ?? 0);
+    //             //     }
+    //             // }
 
-                if (isset($eachDsRec['Unit'])) {
-                    if (strpos($eachDsRec['Unit'], 'kg') !== false) {
-                        $deliveredUnitKg = $eachDsRec['Unit'];
-                        $unitDeliveredCountKg += ($eachDsRec['Qty'] ?? 0);
-                    }
-                }
+    //             // if (isset($eachDsRec['Unit'])) {
+    //             //     if (strpos($eachDsRec['Unit'], 'kg') !== false) {
+    //             //         $deliveredUnitKg = $eachDsRec['Unit'];
+    //             //         $unitDeliveredCountKg += ($eachDsRec['Qty'] ?? 0);
+    //             //     }
+    //             // }
 
-                if (isset($eachDsRec['Unit'])) {
-                    if (strpos($eachDsRec['Unit'], 'Mts') !== false) {
-                        $deliveredUnitMts = $eachDsRec['Unit'];
-                        $unitDeliveredCountMts += ($eachDsRec['Qty'] ?? 0);
-                    }
-                }
-
-
-                if ($eachDsRec["Customer__Acceptance_Rate"] !== null && $eachDsRec["Customer__Acceptance_Rate"] > 0) {
-                    $acceptance += $eachDsRec["Customer__Acceptance_Rate"];
-                    $acceptanceCnt++;
-                    //acceptance rate
-                    if ($acceptanceCnt != 0 && $acceptance != 0) {
-                        $acc_rate = round(($acceptance / $acceptanceCnt) * 100, 2);
-                    } else {
-                        $acc_rate = 0;
-                    }
-                }
-                $deliveredRes["data"][] = $eachDsRec;
-            } else if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Not Yet Delivered") {
-                if (isset($eachDsRec['Unit'])) {
-                    if (strpos($eachDsRec['Unit'], 'EA') !== false) {
-                        $notYetdeliveredUnitEA = $eachDsRec['Unit'];
-                        $unitNotDeliveredCountEA += ($eachDsRec['Qty'] ?? 0);
-                    }
-                }
-                if (isset($eachDsRec['Unit'])) {
-                    if (strpos($eachDsRec['Unit'], 'kg') !== false) {
-                        $notYetdeliveredUnitKg = $eachDsRec['Unit'];
-                        $unitNotDeliveredCountKg += ($eachDsRec['Qty'] ?? 0);
-                    }
-                }
-                if (isset($eachDsRec['Unit'])) {
-                    if (strpos($eachDsRec['Unit'], 'Mts') !== false) {
-                        $notYetdeliveredUnitMts = $eachDsRec['Unit'];
-                        $unitNotDeliveredCountMts += ($eachDsRec['Qty'] ?? 0);
-                    }
-                }
+    //             // if (isset($eachDsRec['Unit'])) {
+    //             //     if (strpos($eachDsRec['Unit'], 'Mts') !== false) {
+    //             //         $deliveredUnitMts = $eachDsRec['Unit'];
+    //             //         $unitDeliveredCountMts += ($eachDsRec['Qty'] ?? 0);
+    //             //     }
+    //             // }
 
 
-                $notYetDeliveredRes["data"][] = $eachDsRec;
+    //             // if ($eachDsRec["Customer__Acceptance_Rate"] !== null && $eachDsRec["Customer__Acceptance_Rate"] > 0) {
+    //             //     $acceptance += $eachDsRec["Customer__Acceptance_Rate"];
+    //             //     $acceptanceCnt++;
+    //             //     //acceptance rate
+    //             //     if ($acceptanceCnt != 0 && $acceptance != 0) {
+    //             //         $acc_rate = round(($acceptance / $acceptanceCnt) * 100, 2);
+    //             //     } else {
+    //             //         $acc_rate = 0;
+    //             //     }
+    //             // }
+    //             $deliveredRes["data"][] = $eachDsRec;
+    //         } else if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Not Yet Delivered") {
+    //             // if (isset($eachDsRec['Unit'])) {
+    //             //     if (strpos($eachDsRec['Unit'], 'EA') !== false) {
+    //             //         $notYetdeliveredUnitEA = $eachDsRec['Unit'];
+    //             //         $unitNotDeliveredCountEA += ($eachDsRec['Qty'] ?? 0);
+    //             //     }
+    //             // }
+    //             // if (isset($eachDsRec['Unit'])) {
+    //             //     if (strpos($eachDsRec['Unit'], 'kg') !== false) {
+    //             //         $notYetdeliveredUnitKg = $eachDsRec['Unit'];
+    //             //         $unitNotDeliveredCountKg += ($eachDsRec['Qty'] ?? 0);
+    //             //     }
+    //             // }
+    //             // if (isset($eachDsRec['Unit'])) {
+    //             //     if (strpos($eachDsRec['Unit'], 'Mts') !== false) {
+    //             //         $notYetdeliveredUnitMts = $eachDsRec['Unit'];
+    //             //         $unitNotDeliveredCountMts += ($eachDsRec['Qty'] ?? 0);
+    //             //     }
+    //             // }
+
+
+    //             $notYetDeliveredRes["data"][] = $eachDsRec;
+    //         }
+    //     }
+    // }
+    /** Delivery Schedule Fetch Data - end */
+
+};
+
+/** Your Partner Fetch Data - start */
+function getYourPartnerData()
+{
+    $your_partner_res = array();
+    $summaryResponse = fetchDataFromZohoCreator('summary_dashboard_customer_portal_Report', 'machinemaze-project-management', $_SESSION['email'], "Customer_Email", 200);
+    $summaryDetails = json_decode($summaryResponse, true);
+    $partner_category = array();
+    $Partner_PCndA_IDs = (array)$summaryDetails['data'][0]['Partner_PCndA_IDs'];
+    $Partner_Fabrication_IDs = (array)$summaryDetails['data'][0]['Partner_Fabrication_IDs'];
+    $Partner_EMS_IDs = (array)$summaryDetails['data'][0]['Partner_EMS_IDs'];
+
+    // echo json_encode($Partner_PCndA_IDs);
+    // echo json_encode($Partner_Fabrication_IDs);
+
+    $uniquePCndA = array_unique($Partner_PCndA_IDs);
+    $uniqueFabrication = array_unique($Partner_Fabrication_IDs);
+    $uniqueEMS = array_unique($Partner_EMS_IDs);
+
+    $uniquePCndA = [];
+    foreach ($Partner_PCndA_IDs as $string) {
+        $uniquePCndA = array_merge($uniquePCndA, explode(",", $string));
+    }
+    $uniquePCndA = array_unique($uniquePCndA);
+
+    $uniqueFabrication = [];
+    foreach ($Partner_Fabrication_IDs as $string) {
+        $uniqueFabrication = array_merge($uniqueFabrication, explode(",", $string));
+    }
+    $uniqueFabrication = array_unique($uniqueFabrication);
+
+    $uniqueEMS = [];
+    foreach ($Partner_EMS_IDs as $string) {
+        $uniqueEMS = array_merge($uniqueEMS, explode(",", $string));
+    }
+    $uniqueEMS = array_unique($uniqueEMS);
+
+    // echo json_encode($uniqueEMS);
+
+    if (count($uniquePCndA) > 0) {
+        $partner_category[] = "Manufacturing Partner";
+        foreach($uniquePCndA as $recMFID){
+            if($recMFID != ""){
+                $your_partner_res['data']['Manufacturing_Partner'][] = fetchDataFromZohoCreatorByID($recMFID, 'MF_Partner_Report_For_Customer_Portal', 'request-for-quote');
             }
         }
     }
-    /** Delivery Schedule Fetch Data - end */
-
-    /** Your Partner Fetch Data - start */
-    $partner_category = array();
-    if (count($mfPartnerId_Unique) > 0) {
-        $partner_category[] = "Manufacturing Partner";
-        $your_partner_res[] = fetchDataFromZohoCreatorCriteria('MF_Partner_Report_For_Customer_Portal', 'request-for-quote', $mfPartnerId_Unique, "ID", 1000);
-    }
-    if (count($fabPartnerId_Unique) > 0) {
+    if (count($uniqueFabrication) > 0) {
         $partner_category[] = "Fabrication Partner";
-        $your_partner_res[] = fetchDataFromZohoCreatorCriteria('Fabrication_Partner_Report_For_Portal', 'request-for-quote', $fabPartnerId_Unique, "ID", 1000);
-    }
-    if (count($emsPartnerId_Unique) > 0) {
-        $partner_category[] = "EMS Partner";
-        $your_partner_res[] = fetchDataFromZohoCreatorCriteria('EMS_Partner_Report_For_Portal', 'request-for-quote', $emsPartnerId_Unique, "ID", 1000);
-    }
-
-    if (isset($your_partner_res)) {
-        $your_partner_json = json_encode($your_partner_res);
-        $your_partner_data = json_decode($your_partner_json, true);
-        if (isset($your_partner_data[0]['data']) && is_array($your_partner_data[0]['data']) && !empty($your_partner_data[0]['data'])) {
-            $partnerCount = count($your_partner_data[0]['data']);
-        } else {
-            $partnerCount = 0;
+        foreach($uniqueFabrication as $recFABID){
+            if($recFABID != ""){
+                $your_partner_res['data']['Fabrication_Partner'][] = fetchDataFromZohoCreatorByID($recFABID, 'Fabrication_Partner_Report_For_Portal', 'request-for-quote');
+            }
         }
     }
+    if (count($uniqueEMS) > 0) {
+        $partner_category[] = "EMS Partner";
+        foreach($uniqueEMS as $recEMSID){
+            if($recEMSID != ""){
+                $your_partner_res['data']['EMS_Partner'][] = fetchDataFromZohoCreatorByID($recEMSID, 'EMS_Partner_Report_For_Portal', 'request-for-quote');
+            }
+        }
+    }
+
+    // if (isset($your_partner_res)) {
+    //     $your_partner_json = json_encode($your_partner_res);
+    //     $your_partner_data = json_decode($your_partner_json, true);
+    //     if (isset($your_partner_data[0]['data']) && is_array($your_partner_data[0]['data']) && !empty($your_partner_data[0]['data'])) {
+    //         $partnerCount = count($your_partner_data[0]['data']);
+    //     } else {
+    //         $partnerCount = 0;
+    //     }
+    // }
     // echo json_encode($your_partner_res);
-    $your_partner_data_count = $partnerCount ?? 0;
-    /** Your Partner Fetch Data - end */
-};
+    // $your_partner_data_count = $partnerCount ?? 0;
+
+    return $your_partner_res;
+}
+/** Your Partner Fetch Data - end */
+
+/** rfq list fetch data - start */
+function getRFQData()
+{
+    $res = fetchDataFromZohoCreator('Customer_Upload_RFQ', 'rfq-management', $_SESSION['email'], "Customer_Email", 1000);
+    $resData = json_decode($res, true);
+    // $rfq_count = getCountFromResponse($res);
+    if ($resData["code"] == 9220) {
+        $resData = "";
+    } else {
+        // 
+    }
+    // echo json_encode($resData);
+    return $resData;
+}
+/** rfq list fetch data - end */
 
 /** open project fetch data - start */
 function getOpenProjects()
@@ -567,6 +752,25 @@ function getinvoiceData()
     return $invoice_res_data;
 }
 /** invoice fetch data  - end */
+
+// /** price approval fetch data - start */
+// function priceApprovalData(){
+//     $pa_res = fetchDataFromZohoCreator('Price_Approval_from_Customers_Report', 'machinemaze-project-management', $_SESSION['email'], "Customer_Email", 1000);
+//     $pa_res_data = json_decode($pa_res, true);
+//     // $pa_res_count = getCountFromResponse($pa_res);
+//     return $pa_res_data;
+// }
+// /** price approval fetch data  - end */
+
+
+// /** partner financial fetch data - start */
+// function partnerFinancial(){
+//     $partner_f_res = fetchDataFromZohoCreator('All_Invoices', 'purchase-application', $_SESSION['email'], "Customer_Organisation", 1000);
+//     $partner_f_res_data = json_decode($partner_f_res, true);
+//     // $partner_f_res_count = getCountFromResponse($partner_f_res);
+//     return $partner_f_res_data;
+// }
+// /** partner financial fetch data - end */
 
 /** Quality Control Fecth Data - start */
 function getQualityControl()

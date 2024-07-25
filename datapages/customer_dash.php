@@ -60,9 +60,6 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
             <h2 class="text-dark mb-2"> <?php echo $summaryTitle ?> </h2>
           </div>
           <!-- <h2 class="text-dark mb-2 ">Manufacturing Dashboard</h2> -->
-          <div class="col-md-6">
-            <h4 class="text-dark text-end mb-2">Project management</h4>
-          </div>
 
         </div>
 
@@ -80,7 +77,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         <div class="row align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Total Projects</div>
-                            <div class="h4 mb-0 fw-bold text-dark"><?php echo $total_project_count ?></div>
+                            <div class="h4 mb-0 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Total_Projects'] ?? 0; ?></div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                         <span class="text-dark mr-2"> <i class="fa fa-arrow-up"></i> <b> 0 </b>  </span> <span> Records Since last month</span>   
                                       </div> -->
@@ -99,7 +96,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Production Projects</div>
-                            <div class="h5 mb-0 fw-bold text-dark"><?php echo $completepro_dash_res_count ?></div>
+                            <div class="h5 mb-0 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Production_Projects'] ?? 0; ?></div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                         <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 
                                         <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>                        </div> -->
@@ -116,7 +113,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary"> Open Projects</div>
-                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $project_dash_res_count ?></div>
+                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Open_Projects'] ?? 0; ?></div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                         <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>                        
                                       </div> -->
@@ -135,7 +132,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Onhold Projects</div>
-                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $holdpro_dash_res_count ?></div>
+                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Onhold_Projects'] ?? 0; ?></div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                         <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>
                                       </div> -->
@@ -154,7 +151,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         <div class="row no-gutters align-items-center">
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Cancelled Projects</div>
-                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $cancelledpro_dash_res_count ?></div>
+                            <div class="h4 mb-0 mr-3 fw-bold text-dark"><?php echo $summaryDetails['data'][0]['Cancelled_Projects'] ?? 0; ?></div>
                             <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                       <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>
                                     </div> -->
@@ -176,7 +173,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 
                 <div class="row">
 
-                <?php if ($deliveredUnitEA != null || $deliveredUnitKg != null || $deliveredUnitMts != null) { ?>
+                <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
                   <div class="col-xl-6 col-md-6 mb-2">
                     <div class="card shadow h-100 border-top border-4 border-primary">
                       <div class="card-body bg-light">
@@ -184,18 +181,18 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                           <div class="col p-1">
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Units Delivered</div>
                             <div class="h5 mb-0 mr-3 fw-bold text-dark">
-                              <?php if (strpos($deliveredUnitEA, 'EA') !== false) { ?>
-                                <span class="pd_br1"><?php echo $unitDeliveredCountEA ?? "-" ?> <small><?php echo $deliveredUnitEA ?? "-" ?></small></span>
+                              <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) { ?>
+                                <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small><?php echo "EA" ?></small></span>
                               <?php
                               }
-                              if (strpos($deliveredUnitKg, 'kg') !== false) {
+                              if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) {
                               ?>
-                                <span class="pd_br1 pd_lft1"><?php echo $unitDeliveredCountKg ?? "-" ?> <small><?php echo $deliveredUnitKg ?? "-" ?></small></span>
+                                <span class="pd_br1 pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small><?php echo "kg" ?></small></span>
                               <?php
                               }
-                              if (strpos($deliveredUnitMts, 'Mts') !== false) {
+                              if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) {
                               ?>
-                                <span class="pd_lft1"><?php echo $unitDeliveredCountMts ?? "-" ?> <small><?php echo $deliveredUnitMts ?? "-" ?></small></span>
+                                <span class="pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small><?php echo "Mts" ?></small></span>
                               <?php
                               }
                               ?>
@@ -214,7 +211,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                     // 
                   } ?>
 
-                  <?php if ($notYetdeliveredUnitEA != null || $notYetdeliveredUnitKg != null || $notYetdeliveredUnitMts != null) { ?>
+                  <?php if ($summaryDetails['data'][0]['Units_in_production_EA'] != 0 || $summaryDetails['data'][0]['Units_in_production_KG'] != 0 || $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) { ?>
                     <div class="col-xl-6 col-md-6 mb-2">
                       <div class="card shadow h-100 border-top border-4 border-primary">
                         <div class="card-body bg-light">
@@ -223,19 +220,19 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                               <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Units in production</div>
                               <div class="h5 mb-0 mr-3 fw-bold text-dark">
                                 <?php
-                                if (strpos($notYetdeliveredUnitEA, 'EA') !== false) {
+                                if (isset($summaryDetails['data'][0]['Units_in_production_EA'])) {
                                 ?>
-                                  <span class="pd_br1"><?php echo $unitNotDeliveredCountEA ?? "-" ?> <small><?php echo $notYetdeliveredUnitEA ?? "-" ?></small></span>
+                                  <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] ?? "-" ?> <small><?php echo "EA" ?></small></span>
                                 <?php
                                 }
-                                if (strpos($notYetdeliveredUnitKg, 'kg') !== false) {
+                                if (isset($summaryDetails['data'][0]['Units_in_production_KG']) && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) {
                                 ?>
-                                  <span class="pd_br1 pd_lft1"><?php echo $unitNotDeliveredCountKg ?? "-" ?> <small><?php echo $notYetdeliveredUnitKg ?? "-" ?></small></span>
+                                  <span class="pd_br1 pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] ?? "-" ?> <small><?php echo "kg" ?></small></span>
                                 <?php
                                 }
-                                if (strpos($notYetdeliveredUnitMts, 'Mts') !== false) {
+                                if (isset($summaryDetails['data'][0]['Units_in_production_MTS']) && $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) {
                                 ?>
-                                  <span class="pd_lft1"><?php echo $unitNotDeliveredCountMts ?? "-" ?> <small><?php echo $notYetdeliveredUnitMts ?? "-" ?></small></span>
+                                  <span class="pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS'] ?? "-" ?> <small><?php echo "Mts" ?></small></span>
                                 <?php
                                 }
                                 ?>
@@ -290,61 +287,71 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 </div>
 
 <?php
-$partnerCollection = []; // Initialize an empty array to store partner data
+// $partnerCollection = []; // Initialize an empty array to store partner data
 
-$colors = ['red', 'green', 'blue']; // Array of colors
+// $colors = ['red', 'green', 'blue']; // Array of colors
 
-if (isset($your_partner_data)) {
-  foreach ($your_partner_data as $eachRecordCheck) {
-    if (isset($eachRecordCheck) && isset($eachRecordCheck['data'][0]['data'][0]) && count($eachRecordCheck['data'][0]['data'][0]) > 0) {
-      foreach ($eachRecordCheck['data'] as $record) {
-        $location = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['district_city'];
-        $locationContent = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['zc_display_value'];
-        $latitude = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['latitude'] ?? null;
-        $longitude = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['longitude'] ?? null;
+//   // $your_partner_data = getYourPartnerData();
+//   // $mfCount = $fabCount = $emsCount = 0;
+//   // if(isset($your_partner_data['data']['Manufacturing_Partner'])){
+//   //   $mfCount = count($your_partner_data['data']['Manufacturing_Partner']);
+//   // } if(isset($your_partner_data['data']['Fabrication_Partner'])){
+//   //   $fabCount = count($your_partner_data['data']['Fabrication_Partner']);
+//   // } if(isset($your_partner_data['data']['EMS_Partner'])){
+//   //   $emsCount = count($your_partner_data['data']['EMS_Partner']);
+//   // }
 
-        /** Check for specific keys in the data and set partner category - start */
-        if (array_key_exists('GST_Registration_No', $record['data'][0])) {
-          $color = $colors[1];
-          $partnerCategory = 'Fabrication Partner';
-          $partnerName = $record['data'][0]['Name_Of_Organisation'] ?? "-";
-        } elseif (array_key_exists('Area_of_Specialisation_in_Manufacturing', $record['data'][0])) {
-          $color = $colors[0];
-          $partnerCategory = 'Manufacturing Partner';
-          $partnerName = $record['data'][0]['Name_of_the_Organisation'] ?? "-";
-        } elseif (array_key_exists('Are_the_statutory_norms_for_labour_engagement_followed', $record['data'][0])) {
-          $color = $colors[2];
-          $partnerCategory = 'EMS Partner';
-          $partnerName = $record['data'][0]['Name_of_the_Organisation'] ?? "-";
-        }
-        /** Check for specific keys in the data and set partner category - end */
+// if (isset($your_partner_data)) {
+//   foreach ($your_partner_data as $eachRecordCheck) {
+//     if (isset($eachRecordCheck) && isset($eachRecordCheck['data'][0]['data'][0]) && count($eachRecordCheck['data'][0]['data'][0]) > 0) {
+//       foreach ($eachRecordCheck['data'] as $record) {
+//         $location = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['district_city'];
+//         $locationContent = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['zc_display_value'];
+//         $latitude = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['latitude'] ?? null;
+//         $longitude = $record['data'][0]['Address_Registered_Office_of_the_Organisation']['longitude'] ?? null;
 
-        if ($latitude !== null && $longitude !== null) {
-          // Determine color based on index (use modulo to cycle through colors)
-          // $color = $colors[count($partnerCollection) % count($colors)];
+//         /** Check for specific keys in the data and set partner category - start */
+//         if (array_key_exists('GST_Registration_No', $record['data'][0])) {
+//           $color = $colors[1];
+//           $partnerCategory = 'Fabrication Partner';
+//           $partnerName = $record['data'][0]['Name_Of_Organisation'] ?? "-";
+//         } elseif (array_key_exists('Area_of_Specialisation_in_Manufacturing', $record['data'][0])) {
+//           $color = $colors[0];
+//           $partnerCategory = 'Manufacturing Partner';
+//           $partnerName = $record['data'][0]['Name_of_the_Organisation'] ?? "-";
+//         } elseif (array_key_exists('Are_the_statutory_norms_for_labour_engagement_followed', $record['data'][0])) {
+//           $color = $colors[2];
+//           $partnerCategory = 'EMS Partner';
+//           $partnerName = $record['data'][0]['Name_of_the_Organisation'] ?? "-";
+//         }
+//         /** Check for specific keys in the data and set partner category - end */
 
-          /** Add partner data to collection */
-          $partnerCollection[] = [
-            'location' => $location,
-            'latitude' => $latitude,
-            'longitude' => $longitude,
-            'partner_name' => $partnerName,
-            'partner_category' => $partnerCategory,
-            'color' => $color,
-            'location_content' => $locationContent
-          ];
-        }
-      }
-    }
-  }
-}
+//         if ($latitude !== null && $longitude !== null) {
+//           // Determine color based on index (use modulo to cycle through colors)
+//           // $color = $colors[count($partnerCollection) % count($colors)];
+
+//           /** Add partner data to collection */
+//           $partnerCollection[] = [
+//             'location' => $location,
+//             'latitude' => $latitude,
+//             'longitude' => $longitude,
+//             'partner_name' => $partnerName,
+//             'partner_category' => $partnerCategory,
+//             'color' => $color,
+//             'location_content' => $locationContent
+//           ];
+//         }
+//       }
+//     }
+//   }
+// }
 ?>
 
 <script>
   new DataTable('#map_table');
 </script>
 
-<script>
+<!-- <script>
   // Initialize and add the map
   function initMap() {
     var map;
@@ -449,4 +456,4 @@ if (isset($your_partner_data)) {
   //     infoWindowContent[position.toString()] += '</tbody>';
   //     infoWindowContent[position.toString()] += '</table>';
   //     infoWindowContent[position.toString()] += '</div>';
-</script>
+</script> -->
