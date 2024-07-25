@@ -176,39 +176,39 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 
                 <div class="row">
 
-                <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
-                  <div class="col-xl-6 col-md-6 mb-2">
-                    <div class="card shadow h-100 border-top border-4 border-primary">
-                      <div class="card-body bg-light">
-                        <div class="row no-gutters align-items-center">
-                          <div class="col p-1">
-                            <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Units Delivered</div>
-                            <div class="h5 mb-0 mr-3 fw-bold text-dark">
-                              <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) { ?>
-                                <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small><?php echo "EA" ?></small></span>
-                              <?php
-                              }
-                              if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) {
-                              ?>
-                                <span class="pd_br1 pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small><?php echo "kg" ?></small></span>
-                              <?php
-                              }
-                              if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) {
-                              ?>
-                                <span class="pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small><?php echo "Mts" ?></small></span>
-                              <?php
-                              }
-                              ?>
-                            </div>
+                  <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
+                    <div class="col-xl-6 col-md-6 mb-2">
+                      <div class="card shadow h-100 border-top border-4 border-primary">
+                        <div class="card-body bg-light">
+                          <div class="row no-gutters align-items-center">
+                            <div class="col p-1">
+                              <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Units Delivered</div>
+                              <div class="h5 mb-0 mr-3 fw-bold text-dark">
+                                <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) { ?>
+                                  <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small><?php echo "EA" ?></small></span>
+                                <?php
+                                }
+                                if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) {
+                                ?>
+                                  <span class="pd_br1 pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small><?php echo "kg" ?></small></span>
+                                <?php
+                                }
+                                if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) {
+                                ?>
+                                  <span class="pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small><?php echo "Mts" ?></small></span>
+                                <?php
+                                }
+                                ?>
+                              </div>
 
-                            <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
+                              <!-- <div class="mt-2 mb-0 text-secondary text-xs">                          
                                       <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span> <span>Since last month</span>                        
                                     </div> -->
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
                   <?php
                   } else {
                     // 
@@ -228,7 +228,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                                   <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] ?? "-" ?> <small><?php echo "EA" ?></small></span>
                                 <?php
                                 }
-                                if (isset($summaryDetails['data'][0]['Units_in_production_KG']) && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) {
+                                if($summaryDetails['data'][0]['Units_in_production_EA'] && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) {
                                 ?>
                                   <span class="pd_br1 pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] ?? "-" ?> <small><?php echo "kg" ?></small></span>
                                 <?php
@@ -290,19 +290,103 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 </div>
 
 <?php
-// $partnerCollection = []; // Initialize an empty array to store partner data
+$partnerCollection = []; // Initialize an empty array to store partner data
 
 // $colors = ['red', 'green', 'blue']; // Array of colors
 
-//   // $your_partner_data = getYourPartnerData();
-//   // $mfCount = $fabCount = $emsCount = 0;
-//   // if(isset($your_partner_data['data']['Manufacturing_Partner'])){
-//   //   $mfCount = count($your_partner_data['data']['Manufacturing_Partner']);
-//   // } if(isset($your_partner_data['data']['Fabrication_Partner'])){
-//   //   $fabCount = count($your_partner_data['data']['Fabrication_Partner']);
-//   // } if(isset($your_partner_data['data']['EMS_Partner'])){
-//   //   $emsCount = count($your_partner_data['data']['EMS_Partner']);
-//   // }
+// $your_partner_data = getYourPartnerData();
+// // $mfCount = $fabCount = $emsCount = 0;
+// // if(isset($your_partner_data['data']['Manufacturing_Partner'])){
+// //   $mfCount = count($your_partner_data['data']['Manufacturing_Partner']);
+// // } if(isset($your_partner_data['data']['Fabrication_Partner'])){
+// //   $fabCount = count($your_partner_data['data']['Fabrication_Partner']);
+// // } if(isset($your_partner_data['data']['EMS_Partner'])){
+// //   $emsCount = count($your_partner_data['data']['EMS_Partner']);
+// // }
+// // echo "want ", json_encode($your_partner_data['data']['Manufacturing_Partner']);
+// if (isset($your_partner_data)) {
+//   if (isset($your_partner_data['data']['Manufacturing_Partner'])) {
+//     $manufacturingPartner = $your_partner_data;
+//     // echo "yes " . json_encode($your_partner_data['data']['Manufacturing_Partner']);
+//     // echo " - " . json_encode($manufacturingPartner);
+//     foreach ($manufacturingPartner['data']['Manufacturing_Partner'] as $eachMfPartners) {
+//       $eachMfPartnersDecoded = json_decode($eachMfPartners);
+//       foreach ($eachMfPartnersDecoded['data'] as $record) {
+//         // echo " * " . json_encode($eachMfPartners);
+//         $location = $record['Address_Registered_Office_of_the_Organisation']['district_city'];
+//         $locationContent = $record['Address_Registered_Office_of_the_Organisation']['zc_display_value'];
+//         $latitude = $record['Address_Registered_Office_of_the_Organisation']['latitude'] ?? null;
+//         $longitude = $record['Address_Registered_Office_of_the_Organisation']['longitude'] ?? null;
+//         $color = $colors[0];
+//         $partnerCategory = 'PC&A Partner';
+//         $partnerName = $record['Name_of_the_Organisation'] ?? "-";
+//       }
+//     }
+//     if ($latitude !== null && $longitude !== null) {
+//       /** Add partner data to collection */
+//       $partnerCollection[] = [
+//         'location' => $location,
+//         'latitude' => $latitude,
+//         'longitude' => $longitude,
+//         'partner_name' => $partnerName,
+//         'partner_category' => $partnerCategory,
+//         'color' => $color,
+//         'location_content' => $locationContent
+//       ];
+//     }
+//   }
+//   if (isset($your_partner_data['data']['Fabrication_Partner'])) {
+//     foreach ($your_partner_data['data']['Fabrication_Partner'] as $eachMfPartners) {
+//       $location = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['district_city'];
+//       $locationContent = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['zc_display_value'];
+//       $latitude = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['latitude'] ?? null;
+//       $longitude = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['longitude'] ?? null;
+//       $color = $colors[1];
+//       $partnerCategory = 'Fabrication Partner';
+//       $partnerName = $record['data'][0]['Name_Of_Organisation'] ?? "-";
+//     }
+//     if ($latitude !== null && $longitude !== null) {
+//       /** Add partner data to collection */
+//       $partnerCollection[] = [
+//         'location' => $location,
+//         'latitude' => $latitude,
+//         'longitude' => $longitude,
+//         'partner_name' => $partnerName,
+//         'partner_category' => $partnerCategory,
+//         'color' => $color,
+//         'location_content' => $locationContent
+//       ];
+//     }
+//   }
+//   if (isset($your_partner_data['data']['EMS_Partner'])) {
+//     foreach ($your_partner_data['data']['EMS_Partner'] as $eachMfPartners) {
+//       $location = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['district_city'];
+//       $locationContent = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['zc_display_value'];
+//       $latitude = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['latitude'] ?? null;
+//       $longitude = $eachMfPartners['data'][0]['Address_Registered_Office_of_the_Organisation']['longitude'] ?? null;
+//       $color = $colors[2];
+//       $partnerCategory = 'EMS Partner';
+//       $partnerName = $record['data'][0]['Name_of_the_Organisation'] ?? "-";
+//     }
+//     if ($latitude !== null && $longitude !== null) {
+//       /** Add partner data to collection */
+//       $partnerCollection[] = [
+//         'location' => $location,
+//         'latitude' => $latitude,
+//         'longitude' => $longitude,
+//         'partner_name' => $partnerName,
+//         'partner_category' => $partnerCategory,
+//         'color' => $color,
+//         'location_content' => $locationContent
+//       ];
+//     }
+//   }
+//   echo "Partner Collection " . json_encode($partnerCollection);
+// } else{
+//   //No partner Data
+// }
+
+
 
 // if (isset($your_partner_data)) {
 //   foreach ($your_partner_data as $eachRecordCheck) {

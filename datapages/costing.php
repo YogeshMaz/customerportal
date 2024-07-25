@@ -1,7 +1,7 @@
 <div id="costSec" style="display: none;">
             <!------------PO Sec------------->
             <?php $costing_res_data = getCostingData();
-            if (isset($costing_res_data['data']) && count($costing_res_data['data']) > 0){  ?>
+            if (isset($costing_res_data['data']) && $costing_res_data['code'] === 3000){  ?>
             <div style="width:100%;" class="container-fluid">
               <div class="col-md-12 col-sm-8">
                 <div class="card mb-4 mt-2 tablecard">

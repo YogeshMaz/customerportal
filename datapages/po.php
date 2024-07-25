@@ -1,6 +1,6 @@
 <div id="poSec" style="display: none;">
   <?php $po_res_data = getPoData();
-  if (isset($po_res_data['data']) && count($po_res_data['data']) > 0) {  ?>
+  if (isset($po_res_data['data']) && $po_res_data['code'] === 3000) {  ?>
   <!------------PO Sec------------->
   <div style="width:100%;" class="container-fluid">
     <div class="col-md-12 col-sm-8">

@@ -22,6 +22,7 @@
 </style>
 
 <div id="dsSec" style="display: none;">
+  <?php $deliveryData = getDeliveryScheduleData(); ?>
   <!------------Delivery Schedule Sec ------------->
   <div style="width:100%;" class="">
     <div class="col-md-12 col-sm-8">
@@ -33,7 +34,7 @@
               <h5 class="my-1 fw-bold text-primary">Delivery Schedule</h5>
             </div>
             <div class="col-md-6 d-flex justify-content-end">
-              <b>Total Records : <span><?php echo $ds_res_count ?></span></b>
+              <b>Total Records : <span><?php echo count($deliveryData['not_yet_delivered']['data']) + count($deliveryData['delivered']['data']) ?></span></b>
             </div>
           </div>
         </div>
@@ -42,7 +43,7 @@
 
           <div class="row mb-3 dswidgets">
 
-          <?php if ($deliveredUnitEA != null || $deliveredUnitKg != null || $deliveredUnitMts != null) { ?>
+          <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
 
             <div class="col-xl-4 col-md-3 mb-2">
               <a id="delivered">
@@ -52,14 +53,14 @@
                           <div class="col mr-2">
                               <div class="text-xs fw-bold text-uppercase mb-1 text-light"> Units Delivered</div>
                                 <div class="h5 mb-0 fw-bold text-light">
-                                  <?php if(strpos($deliveredUnitEA, 'EA') !== false): ?>
-                                    <span class="pd_br"><?php echo $unitDeliveredCountEA ?? "-" ?> <?php echo $deliveredUnitEA ?? "-" ?></span>
+                                <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) : ?>
+                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] . " EA " ?? "-" ?></span>
                                   <?php endif ?>
-                                  <?php if(strpos($deliveredUnitKg, 'kg') !== false): ?>
-                                    <span class="pd_br pd_lft"><?php echo $unitDeliveredCountKg ?? "-" ?> <?php echo $deliveredUnitKg ?? "-" ?></span>
+                                  <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) : ?>
+                                    <span class="pd_br pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] . " kg " ?? "-" ?></span>
                                   <?php endif ?>
-                                  <?php if(strpos($deliveredUnitMts, 'Mts') !== false): ?>
-                                    <span class="pd_lft"><?php echo $unitDeliveredCountMts ?? "-" ?> <?php echo $deliveredUnitMts ?? "-" ?></span>
+                                  <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) : ?>
+                                    <span class="pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] . " Mts " ?? "-" ?></span>
                                   <?php endif ?>
                                 </div>
                                 <div class="mt-2 mb-0 text-dark text-xs">                          
@@ -77,7 +78,7 @@
 
           <?php } ?>
 
-          <?php if ($notYetdeliveredUnitEA != null || $notYetdeliveredUnitKg != null || $notYetdeliveredUnitMts != null) { ?>
+          <?php if ($summaryDetails['data'][0]['Units_in_production_EA'] != 0 || $summaryDetails['data'][0]['Units_in_production_KG'] != 0 || $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) { ?>
 
             <div class="col-xl-4 col-md-3 mb-2">
               <a id="notdelivered">
@@ -87,14 +88,14 @@
                           <div class="col mr-2">
                               <div class="text-xs fw-bold text-uppercase mb-1 text-light"> Units under Production</div>
                               <div class="h5 mb-0 fw-bold text-light">
-                                <?php if(strpos($notYetdeliveredUnitEA, 'EA') !== false): ?>
-                                  <span class="pd_br"><?php echo $unitNotDeliveredCountEA ?? "-" ?> <?php echo $notYetdeliveredUnitEA ?? "-" ?></span>
+                                <?php if(isset($summaryDetails['data'][0]['Units_in_production_EA']) && $summaryDetails['data'][0]['Units_in_production_EA'] != 0) : ?>
+                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] . " EA " ?? "-" ?></span>
                                 <?php endif ?>
-                                <?php if(strpos($notYetdeliveredUnitKg, 'kg') !== false): ?>
-                                  <span class="pd_br pd_lft"><?php echo $unitNotDeliveredCountKg ?? "-" ?> <?php echo $notYetdeliveredUnitKg ?? "-" ?></span>
+                                <?php  if(isset($summaryDetails['data'][0]['Units_in_production_KG']) && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) : ?>
+                                  <span class="pd_br pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] . " kg " ?? "-" ?></span>
                                 <?php endif ?>
-                                <?php if(strpos($notYetdeliveredUnitMts, 'Mts') !== false): ?>
-                                  <span class="pd_lft"><?php echo $unitNotDeliveredCountMts ?? "-" ?> <?php echo $notYetdeliveredUnitMts ?? "-" ?></span>
+                                <?php if (isset($summaryDetails['data'][0]['Units_in_production_MTS']) && $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) : ?>
+                                  <span class="pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS'] . " Mts " ?? "-" ?></span>
                                 <?php endif ?>
                               </div>
                               <div class="mt-2 mb-0 text-dark text-xs">                      
@@ -112,17 +113,16 @@
           
           <?php } ?>
 
-          <?php if ($acc_rate != null ) { ?>
+          <?php if ($summaryDetails['data'][0]['Avg_Acceptance_Rate'] != null && $summaryDetails['data'][0]['Avg_Acceptance_Rate'] != 0) { ?>
 
             <div class="col-xl-4 col-md-3 mb-2">
-              <a href="#Page:Seller_DB_copy?pagetype=view_po&amp;super_admin_email=blr@360degreeglobal.com">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
                         <div class="row no-gutters align-items-center w-100">
                           <div class="col mr-2">
                               <div class="text-xs fw-bold text-uppercase mb-1 text-light"> Avg.Rate of Acceptance
                               </div>
-                              <div class="h5 mb-0 fw-bold text-light"><?php echo $acc_rate ?> %</div>
+                              <div class="h5 mb-0 fw-bold text-light"><?php echo $summaryDetails['data'][0]['Avg_Acceptance_Rate'] ?> %</div>
                               <div class="mt-2 mb-0 text-dark text-xs">                     <!--     <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>         -->               </div>
                           </div>
                           <div class="col-auto icnCircle">                        
@@ -131,7 +131,6 @@
                         </div>
                     </div>
                   </div>
-              </a>
             </div>
 
           <?php } ?>
@@ -140,7 +139,7 @@
 
           <div class="card-body pt-1">
             <div class="table table-responsive">
-            <?php if ((isset($notYetDeliveredRes['data']) && count($notYetDeliveredRes['data']) > 0) || (isset($deliveredRes['data']) && count($deliveredRes['data']) > 0)) { ?>
+            <?php if ((isset($deliveryData['not_yet_delivered']['data']) && count($deliveryData['not_yet_delivered']['data']) > 0) || (isset($deliveryData['not_yet_delivered']['data']) && count($deliveryData['not_yet_delivered']['data']) > 0)) { ?>
               <table style="width:100%" class="table table-striped" id="d_sch_combined">
                 <thead class="table-primary">
                   <tr>
@@ -168,8 +167,8 @@
                     <td colspan="16"><strong>Not Delivered</strong></td>
                   </tr>
                   <?php
-                  if (isset($notYetDeliveredRes['data']) && count($notYetDeliveredRes['data']) > 0) {
-                    foreach ($notYetDeliveredRes['data'] as $record) {
+                  if (isset($deliveryData['not_yet_delivered']['data']) && count($deliveryData['not_yet_delivered']['data']) > 0) {
+                    foreach ($deliveryData['not_yet_delivered']['data'] as $record) {
                       if (isset($record)) { ?>
                         <tr>
                           <td></td>
@@ -222,11 +221,11 @@
 
                   <!-- Delivered Section -->
 
-                  <?php if (isset($deliveredRes['data']) && count($deliveredRes['data']) > 0) { ?>
+                  <?php if (isset($deliveryData['delivered']['data']) && count($deliveryData['delivered']['data']) > 0) { ?>
                     <tr class="table-secondary">
                       <td colspan="16"><strong>Delivered</strong></td>
                     </tr>
-                    <?php foreach ($deliveredRes['data'] as $record) { ?>
+                    <?php foreach ($deliveryData['delivered']['data'] as $record) { ?>
                       <tr>
                         <td></td>
                         <td><?php echo htmlspecialchars($record['Project_Number'] ?? "-"); ?></td>

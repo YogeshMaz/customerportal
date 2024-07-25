@@ -10,7 +10,7 @@
 <body>
     <div id="invoiceSec" style="display:none;">
       <?php $invoice_res_data = getinvoiceData();
-       if (isset($invoice_res_data['data']) && count($invoice_res_data['data']) > 0) { ?>
+       if (isset($invoice_res_data['data']) && $invoice_res_data['code'] === 3000) { ?>
         <div style="width:100%;" class="container-fluid">
             <div class="col-md-12 col-sm-8">
                 <div class="card mb-4 mt-2 tablecard">
