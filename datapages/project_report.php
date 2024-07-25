@@ -1,11 +1,26 @@
 <?php include '../header.php' ?>
 
 <style>
-    @media print {
-        body {
+       .no-break {
+            page-break-inside: avoid;
+        }
+
+        /* Force page breaks before/after elements */
+        .page-break {
+            page-break-before: always;
             page-break-after: always;
-            font-size: 7pt;
-            /* Example font size */
+        }
+
+    @media print {
+
+        .page-break-before {
+            page-break-before: always;
+        }
+        .page-break-after {
+            page-break-after: always;
+        }
+        .no-page-break {
+            page-break-inside: avoid;
         }
 
         .noPrint {
@@ -16,18 +31,21 @@
             min-width: max-content;
         }
 
-        @page {
-            size: auto;
-            margin: 0mm;
-            margin-top: 0;
-            margin-bottom: 0;
-            /* @top-center {
-				content: none; 
-			}
-			@bottom-center {
-				content: none; 
-			} */
-        }
+    }
+
+    @page {
+        margin: 10mm;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    body, .content {
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 
     .table.gdetails tbody tr td {
@@ -151,7 +169,7 @@ if (isset($_GET['ID'])) {
             ?>
             <div class="report" id="content-to-download">
 
-                <div class="row justify-content-center" style="" id="profileSec">
+                <div class="row justify-content-center no-break" style="" id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3">
                         <div class="d-flex justify-content-between">
                             <img src="../images/logomm.jpg" width="70px" class="mb-3">
@@ -254,7 +272,7 @@ if (isset($_GET['ID'])) {
                 </div>
 
                 <!-- section 2 Execution Details -->
-                <div class="row justify-content-center" style="" id="profileSec">
+                <div class="row justify-content-center no-break" style="" id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -309,7 +327,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center" style="" id="profileSec">
+                <div class="row justify-content-center no-break" style="" id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -393,7 +411,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center" style="" id="profileSec">
+                <div class="row justify-content-center no-break" style="" id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -452,7 +470,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center" style="" id="profileSec">
+                <div class="row justify-content-center no-break" style="" id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -513,7 +531,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center" style="" id="profileSec">
+                <div class="row justify-content-center no-break" style="" id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <p>For any details pls contact </p>
