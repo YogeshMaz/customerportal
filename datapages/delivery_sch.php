@@ -15,8 +15,12 @@
     /* Display only the first td element */
   }
   .pd_br{
-    padding-right:10px;
-    border-right:1px solid #fff;
+    padding-right: 5px;
+    border-right: 1px solid #fff;
+    padding-left: 5px;
+  }
+  span.pd_br:last-child {
+    border-right: 0px;
   }
   .pd_lft{ padding-left: 10px; }
 </style>
@@ -55,7 +59,7 @@
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
                         <div class="row align-items-center w-100">
                           <div class="col mr-2">
-                              <div class="text-xs fw-bold text-uppercase mb-1 text-light"> Units Delivered</div>
+                              <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units Delivered</div>
                                 <div class="h5 mb-0 fw-bold text-light">
                                 <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) : ?>
                                     <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] . " EA " ?? "-" ?></span>
@@ -71,8 +75,8 @@
                                   <!-- <span class="text-dark mr-2"> <i class="fa fa-arrow-up"></i> <b> 0 </b>  </span> <span> Records Since last month</span>   -->
                                 </div>
                           </div>
-                          <div class="col-auto icnCircle">                        
-                            <i class="fas fa-receipt fa-2x text-light"></i>                      
+                          <div class="col-auto icnCircle bg-transparent">                        
+                            <i class="fas fa-truck fa-2x text-light"></i>                      
                           </div>
                         </div>
                     </div>
@@ -90,7 +94,7 @@
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
                         <div class="row no-gutters align-items-center w-100">
                           <div class="col mr-2">
-                              <div class="text-xs fw-bold text-uppercase mb-1 text-light"> Units under Production</div>
+                              <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units under Production</div>
                               <div class="h5 mb-0 fw-bold text-light">
                                 <?php if(isset($summaryDetails['data'][0]['Units_in_production_EA']) && $summaryDetails['data'][0]['Units_in_production_EA'] != 0) : ?>
                                   <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] . " EA " ?? "-" ?></span>
@@ -106,8 +110,8 @@
                                   <!--   <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>  -->                      
                               </div>
                           </div>
-                          <div class="col-auto icnCircle">                        
-                            <i class="fas fa-handshake fa-2x text-light"></i>                      
+                          <div class="col-auto icnCircle bg-transparent">                        
+                            <i class="fas fa-cog fa-2x text-light"></i>                      
                           </div>
                         </div>
                     </div>
@@ -124,12 +128,12 @@
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
                         <div class="row no-gutters align-items-center w-100">
                           <div class="col mr-2">
-                              <div class="text-xs fw-bold text-uppercase mb-1 text-light"> Avg.Rate of Acceptance
+                              <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Avg.Rate of Acceptance
                               </div>
                               <div class="h5 mb-0 fw-bold text-light"><?php echo $summaryDetails['data'][0]['Avg_Acceptance_Rate'] ?> %</div>
                               <div class="mt-2 mb-0 text-dark text-xs">                     <!--     <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>         -->               </div>
                           </div>
-                          <div class="col-auto icnCircle">                        
+                          <div class="col-auto icnCircle bg-transparent">                        
                             <i class="fas fa-handshake fa-2x text-light"></i>                      
                           </div>
                         </div>
