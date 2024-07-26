@@ -31,7 +31,7 @@
   include '../footer.php';
   $deliveryData = getDeliveryScheduleData(); ?>
   <!------------Delivery Schedule Sec ------------->
-  <div style="width:100%;" class="">
+  <div style="width:100%;" class="container-fluid">
     <div class="col-md-12 col-sm-8">
       <div class="card mb-4 mt-2 tablecard">
 
@@ -46,9 +46,9 @@
           </div>
         </div>
 
-        <div class="card-body pt-1">
+        <div class="card-body pt-1 p-0">
 
-          <div class="row mb-3 dswidgets">
+          <div class="row mb-3 dswidgets px-3">
 
           <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
 
