@@ -1,29 +1,29 @@
 <div id="poSec">
-  <?php 
+  <?php
   include '../header.php';
   include '../nav.php';
   include '../footer.php';
   $po_res_data = getPoData();
   if (isset($po_res_data['data']) && $po_res_data['code'] === 3000) {  ?>
-  <!------------PO Sec------------->
-  <div style="width:100%;" class="container-fluid">
-    <div class="col-md-12 col-sm-8">
-      <div class="card mb-4 mt-2 tablecard">
+    <!------------PO Sec------------->
+    <div style="width:100%;" class="container-fluid">
+      <div class="col-md-12 col-sm-8">
+        <div class="card mb-4 mt-2 tablecard">
 
-        <div class="card-header pt-3">
-          <div class="row">
-            <div class="col-md-6">
-              <h5 class="my-1 fw-bold text-primary">PO List</h5>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end">
-              <b>Total Records : <span><?php echo count($po_res_data['data']) ?></span></b>
+          <div class="card-header pt-3">
+            <div class="row">
+              <div class="col-md-6">
+                <h5 class="my-1 fw-bold text-primary">PO List</h5>
+              </div>
+              <div class="col-md-6 d-flex justify-content-end">
+                <b>Total Records : <span><?php echo count($po_res_data['data']) ?></span></b>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="card-body pt-1">
+          <div class="card-body pt-1">
 
-          <div class="table table-responsive" id="">
+            <div class="table table-responsive" id="">
 
               <table style="width:100%" class="table table-striped" id="po_datatable">
                 <thead class="table-primary">
@@ -115,21 +115,21 @@
 
                       <td><?php echo htmlspecialchars($record['Sub_Total'] ?? "-"); ?></td>
                     </tr>
-                  <?php } ?>
-                <?php } else { ?>
-                  <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
-                <?php } ?>
 
                 </tbody>
               </table>
+            </div>
+
           </div>
 
         </div>
-
       </div>
     </div>
-  </div>
-  <!------------------------------------->
+  <?php } ?>
+<?php } else { ?>
+  <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
+<?php } ?>
+<!------------------------------------->
 </div>
 <script>
   $(document).ready(function() {

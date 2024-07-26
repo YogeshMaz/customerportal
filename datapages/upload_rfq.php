@@ -1,17 +1,27 @@
+<?php 
+include '../header.php';
+include '../nav.php';
+include '../footer.php';
+?>
 <style>
     .form-control {
         box-shadow: 0 .125rem .25rem 0 rgba(58, 59, 69, .2) !important;
         border-color: #c5e0f2;
     }
-    input.form-control, select.form-control {
-        height:40px;
+
+    input.form-control,
+    select.form-control {
+        height: 40px;
     }
-    .accordion-button:focus{
-        box-shadow:none;
+
+    .accordion-button:focus {
+        box-shadow: none;
     }
+
     canvas {
-      border: 1px solid black;
+        border: 1px solid black;
     }
+
     canvas#signature-canvas {
         width: 100%;
         border-radius: .375rem;
@@ -24,28 +34,30 @@
     } */
 
     .form-control:not(.is-required):not(:disabled):valid {
-      border-color: #ced4da !important;
-      padding-right: calc(1.5em + .75rem) !important;
-      background-image: none !important;
+        border-color: #ced4da !important;
+        padding-right: calc(1.5em + .75rem) !important;
+        background-image: none !important;
     }
 
-    .errortxt{ display:none; }
-
-    .form-select.is-invalid, .was-validated .form-select:invalid ~ .errortxt{
-        display:block;
+    .errortxt {
+        display: none;
     }
 
+    .form-select.is-invalid,
+    .was-validated .form-select:invalid~.errortxt {
+        display: block;
+    }
 </style>
-<div id="rfqSec" style="display: none;">
+<div id="rfqSec">
     <!------------Upload RFQ Sec------------->
     <div style="width:100%;" class="container-fluid">
         <div class="col-md-12 col-sm-8">
             <div class="card mb-4 mt-2 tablecard">
                 <div class="card-header pt-3 d-flex justify-content-between">
-                      <h5 class="my-1 fw-bold text-primary">Upload RFQ</h5>
+                    <h5 class="my-1 fw-bold text-primary">Create RFQ</h5>
                 </div>
                 <div class="card-body mt-2">
-                <!-- <iframe height='820px' width='100%' frameborder='0' allowTransparency='true' scrolling='auto' src='https://creatorapp.zohopublic.in/arun.ramu_machinemaze/rfq-management/form-embed/Manufacturing_RFQ_Form/z4mnRx79COuEUb73Mkj0bZ38W3MyZXd8O7r8rABYJOR1bVfWnrATEqvHgF4KFZwmwyJzqnbAPpJBjePGDbjTfX5DsZkZ6QR50k5Z'></iframe> -->
+                    <!-- <iframe height='820px' width='100%' frameborder='0' allowTransparency='true' scrolling='auto' src='https://creatorapp.zohopublic.in/arun.ramu_machinemaze/rfq-management/form-embed/Manufacturing_RFQ_Form/z4mnRx79COuEUb73Mkj0bZ38W3MyZXd8O7r8rABYJOR1bVfWnrATEqvHgF4KFZwmwyJzqnbAPpJBjePGDbjTfX5DsZkZ6QR50k5Z'></iframe> -->
                     <form action="" class="g-3 needs-validation" novalidate id="rfqForm">
 
                         <div class="accordion mb-3" id="">
@@ -64,18 +76,18 @@
                                                     <input type="text" class="form-control" id="rfqno" placeholder="Enter RfQ Number" name="rfqno" required>
                                                 </div>
                                             </div>
-  
+
                                             <div class="col-md-4">
                                                 <div class="mb-2">
                                                     <label for="rfqsdate" class="form-label">RFQ Start Date <span class="text-danger">*</span></label>
-                                                    <input type="text" id="demo-3_1" class="form-control form-control-sm"/>
+                                                    <input type="text" id="demo-3_1" class="form-control form-control-sm" />
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="mb-2">
                                                     <label for="rfqedate" class="form-label">RFQ End Date <span class="text-danger">*</span></label>
-                                                    <input type="text" id="demo-3_2" class="form-control form-control-sm"/>
+                                                    <input type="text" id="demo-3_2" class="form-control form-control-sm" />
                                                 </div>
                                             </div>
 
@@ -160,7 +172,7 @@
                                                 <div class="mb-3">
                                                     <label for="pnd" class="form-label">Part Number : Description</label>
                                                     <textarea class="form-control" rows="5" id="pnd" name="pnd"></textarea>
-                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="mb-3">
@@ -177,7 +189,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
 
@@ -256,9 +268,9 @@
                         <div class="accordion mb-3" id="">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <strong> Drawings/ Pictures/ Engineering Document <span class="text-danger">*</span></strong>
-                                </button>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <strong> Drawings/ Pictures/ Engineering Document <span class="text-danger">*</span></strong>
+                                    </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
@@ -286,7 +298,7 @@
                                 <span class="errortxt">Fields are Required</span>
                                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        
+
                                         <div class="row">
                                             <h5>Ship To Address <span class="text-danger">*</span></h5>
                                             <div class="col-md-4">
@@ -350,9 +362,9 @@
                         <div class="accordion mb-3" id="">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
-                                    <strong> Authorization </strong>
-                                </button>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                                        <strong> Authorization </strong>
+                                    </button>
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
@@ -364,14 +376,14 @@
                                                     <button id="clear-button" class="btn btn-danger mt-2">Clear Signature</button>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-md-4">
                                                 <div class="mb-3">
                                                     <label for="mailsend" class="form-label">Mail Send To</label>
                                                     <textarea class="form-control" id="mailsend" rows="3"></textarea>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-md-4">
                                                 <div class="mb-3">
                                                     <label for="cemail" class="form-label">Customer Email</label>
@@ -394,5 +406,3 @@
         </div>
     </div>
 </div>
-
-

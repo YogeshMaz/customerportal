@@ -1,4 +1,9 @@
-<div class="row justify-content-center profilebg" style="display:none;" id="profileSec">
+<?php 
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php';
+  ?>
+<div class="row justify-content-center profilebg" id="profileSec">
    <div class="col-xl-6 col-lg-12 col-md-9 p-4 mb-2">
 			  
 	<div class="card shadow profile_shadow border-none">
