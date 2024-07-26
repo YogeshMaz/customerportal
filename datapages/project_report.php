@@ -169,11 +169,7 @@ if (isset($_GET['ID'])) {
             ?>
             <div class="report" id="content-to-download">
 
-<<<<<<< HEAD
-                <div class="row justify-content-center no-break"  id="profileSec">
-=======
                 <div class="row justify-content-center no-break" id="profileSec">
->>>>>>> 9cfbe2c5dba76f57c9eee969554c98e7645d6811
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3">
                         <div class="d-flex justify-content-between">
                             <img src="../images/logomm.jpg" width="70px" class="mb-3">
@@ -653,6 +649,7 @@ if (isset($_GET['ID'])) {
 
     </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <script>
     $('.member-title').click(function(e) {
