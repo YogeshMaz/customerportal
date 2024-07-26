@@ -41,9 +41,71 @@ function getAccessToken()
             return null;
         }
     }
-
+    // $logoutsessionCheck = json_decode(@file_get_contents('logoutsession.json'), true);
+    // if (isset($_SESSION['modifytime']) || $logoutsessionCheck['expires_at'] == true) {
+    //     checkSessionTimeout($_SESSION['modifytime']);
+    //     echo " check logout session ";
+    // } else {
+    //     $expirationTime = "true";
+    //     $tokenData = [
+    //         'expires_at' => date("d-M-Y H:i:s", $expirationTime)
+    //     ];
+    
+    //     // Write the token data back to the JSON file
+    //     file_put_contents('logoutsession.json', json_encode($tokenData));
+    //         // Handle case where modifytime is not set
+    //         header("Location: index.php?error=session_expired");
+    //         exit();
+    //     }
     return $tokenData['access_token'];
 }
+
+// if (isset($_SESSION['modifytime'])) {
+//     checkSessionTimeout($_SESSION['modifytime']);
+//     echo " check logout session ";
+// } 
+// else {
+//     // Handle case where modifytime is not set
+//     header("Location: index.php?error=session_expired");
+//     exit();
+// }
+
+// function checkSessionTimeout($session_modified_time)
+// {
+//     // Set default timezone to IST
+//     date_default_timezone_set('Asia/Kolkata');
+
+//     // Read the token data from JSON file
+//     $tokenData = json_decode(@file_get_contents('logoutsession.json'), true);
+
+//     // Get current time and session modified time
+//     $currentTime = time();
+//     $modifyTime = strtotime($session_modified_time);
+
+//     // Set the expiration time (e.g., 5 minutes from the modified time)
+//     $expirationTime = $modifyTime + (1 * 60); // 5 minutes in seconds
+//     $tokenData = [
+//         'expires_at' => ($expirationTime)
+//     ];
+
+//     // Write the token data back to the JSON file
+//     file_put_contents('logoutsession.json', json_encode($tokenData));
+
+//     // Output the formatted times for debugging purposes
+//     // echo "currentTime: " . date("d-M-Y H:i:s", $currentTime) . "<br>";
+//     // echo "modifyTime: " . date("d-M-Y H:i:s", $modifyTime) . "<br>";
+//     // echo "expires_at: " . $tokenData['expires_at'] . "<br>";
+
+//     // Check if the token is expired or doesn't exist
+//     if (!$tokenData || $currentTime >= strtotime($tokenData['expires_at'])) {
+//         // Session has expired
+//         session_unset();
+//         session_destroy();
+//         header("Location: index.php?error=session_expired");
+//         exit();
+//     }
+// }
+
 
 //login code
 
@@ -450,6 +512,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
     $summaryResponse = fetchDataFromZohoCreator('summary_dashboard_customer_portal_Report', 'machinemaze-project-management', $email, "Customer_Email", 200);
     $summaryDetails = json_decode($summaryResponse, true);
+    if(isset($summaryDetails['data'][0]['Modified_Time'])){
+        $_SESSION['modifytime'] = $summaryDetails['data'][0]['Modified_Time'];
+    }
     // echo "summaryData var " . json_encode($summaryData);
     // echo "summary details " . json_encode($summaryDetails);
 
