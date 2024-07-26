@@ -233,7 +233,7 @@ if (isset($_GET['ID'])) {
                                                     <td>Customer Email</td>
                                                     <td><?php echo $proj_dashboard_title_data['data']['Customer_Email']; ?></td>
                                                 </tr>
-                                                <tr>
+                                                <tr> 
                                                     <td>Quantity Floated </td>
                                                     <td><?php echo $proj_dashboard_title_data['data']['Quantity_Floated']; ?></td>
                                                 </tr>
