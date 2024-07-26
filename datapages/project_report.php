@@ -169,7 +169,7 @@ if (isset($_GET['ID'])) {
             ?>
             <div class="report" id="content-to-download">
 
-                <div class="row justify-content-center no-break" style="" id="profileSec">
+                <div class="row justify-content-center no-break" id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3">
                         <div class="d-flex justify-content-between">
                             <img src="../images/logomm.jpg" width="70px" class="mb-3">
@@ -272,7 +272,7 @@ if (isset($_GET['ID'])) {
                 </div>
 
                 <!-- section 2 Execution Details -->
-                <div class="row justify-content-center no-break" style="" id="profileSec">
+                <div class="row justify-content-center no-break"  id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -341,7 +341,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center no-break" style="" id="profileSec">
+                <div class="row justify-content-center no-break"  id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -425,7 +425,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center no-break" style="" id="profileSec">
+                <div class="row justify-content-center no-break"  id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -484,7 +484,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center no-break" style="" id="profileSec">
+                <div class="row justify-content-center no-break"  id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <div class="card profile_shadow border-0">
@@ -545,7 +545,7 @@ if (isset($_GET['ID'])) {
                     </div>
                 </div>
 
-                <div class="row justify-content-center no-break" style="" id="profileSec">
+                <div class="row justify-content-center no-break"  id="profileSec">
                     <div class="col-xl-12 col-lg-12 col-md-12 p-3 ">
 
                         <p>For any details pls contact </p>
