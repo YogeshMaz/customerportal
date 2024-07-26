@@ -22,9 +22,12 @@
     color: #ffffff;
   }
 </style>
-<div id="mpSec" style="display: none;">
+<div id="mpSec">
   <!------------Manufacturing Partner Sec------------->
   <?php 
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php';
   $your_partner_data = getYourPartnerData();
   $mfCount = $fabCount = $emsCount = 0;
   if(isset($your_partner_data['data']['Manufacturing_Partner'])){

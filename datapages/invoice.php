@@ -1,15 +1,19 @@
 
-    <style>
-        .hidden {
-            display: none;
-        }
-        .hidecolumn .dropdown-toggle::after {
-         display: none;
-        }
-    </style>
+<style>
+    .hidden {
+        display: none;
+    }
+    .hidecolumn .dropdown-toggle::after {
+      display: none;
+    }
+</style>
 <body>
-    <div id="invoiceSec" style="display:none;">
-      <?php $invoice_res_data = getinvoiceData();
+    <div id="invoiceSec">
+      <?php
+        include '../header.php';
+        include '../nav.php';
+        include '../footer.php';
+       $invoice_res_data = getinvoiceData();
        if (isset($invoice_res_data['data']) && $invoice_res_data['code'] === 3000) { ?>
         <div style="width:100%;" class="container-fluid">
             <div class="col-md-12 col-sm-8">

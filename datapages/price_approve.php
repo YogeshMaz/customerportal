@@ -1,6 +1,10 @@
-<div id="paSec" style="display: none;">
+<div id="paSec">
   <!------------Price Approval Sec------------->
-  <?php $pa_res_data = priceApprovalData();
+  <?php 
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php';
+  $pa_res_data = priceApprovalData();
   if (isset($pa_res_data['data']) && $pa_res_data['code'] === 3000) { ?>
     <div style="width:100%;" class="container-fluid">
       <div class="col-md-12 col-sm-8">

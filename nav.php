@@ -5,7 +5,7 @@
                      <div class="row">
                         <div class="col-2 col-md-2">
                            <div class="sidebar-brand d-flex">
-                              <img src="images/logomm.jpg" class="h-auto" style="width:35px;">    <strong class="d-none d-sm-block p-2">Machine Maze</strong>                               
+                              <img src="https://creatorapp.zohopublic.in/file/arun.ramu_machinemaze/customer-invoice/All_Org_Data/88342000001640019/Image/image-download/YfvzyEv0WUzVU0MVTC9UWsXge5UYqTexbQFDVDxrwAAwYmstm6JZSOqpFNB310Bhpsgu1zQ2VdpaC7GPjBwAq8EaeUYWW40Y8tTE?filepath=1654833412043_MM.jpeg" class="h-auto" style="width:35px;">    <strong class="d-none d-sm-block p-2">Machine Maze</strong>                               
                               <div class="text-end px-4 fw-bold position-relative d-lg-none d-md-block"> <span class="position-absolute fs-6" style="top:-50px;right: -10px">X</span> </div>
                            </div>
                         </div>
@@ -64,7 +64,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link"  id="showdashboard" > 
+                        <a href="http://localhost/customerportal/mf_dashboard.php" class="nav-link"  id="showdashboard" > 
                             <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span> 
                         </a> 
                     </li>
@@ -75,7 +75,7 @@
                         </a>                           
                         <ul class="dropdown-menu">
                             <li> <a class="dropdown-item"  id="uploadRfq"><i class="fa fa-upload"></i>Upload RFQ</a>      </li>
-                            <li> <a class="dropdown-item"  id="showrfqlist"><i class="fa fa-list"></i> RFQ List</a>      </li>
+                            <li> <a href="http://localhost/customerportal/datapages/rfq_list.php" class="dropdown-item"  id="showrfqlist"><i class="fa fa-list"></i> RFQ List</a>      </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -85,7 +85,7 @@
                         </a>                              
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item"  id="showProDash">
+                                <a href="http://localhost/customerportal/datapages/project_dash.php" class="dropdown-item"  id="showProDash">
                                     <i class="fas fa-tachometer-alt"></i> <span>Project Dashboard</span>
                                 </a>
                             </li>
@@ -97,13 +97,10 @@
                             <i class="fas fa-money-bill-alt"></i><span> Order Management </span>
                         </a>                              
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item"  id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
-                          <li><a class="dropdown-item"  id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
-                          <li><a class="dropdown-item"  id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
-                          <?php if($email == 'ramasamy@saravanaenergy.com') { ?>
-                            <li><a class="dropdown-item"  id="showpf"><i class="fas fa-coins"></i> Partner Financials</a></li>
-                            <li><a class="dropdown-item"  id="showcost"><i class="fas fa-dollar-sign"></i>Costing</a></li>
-                          <?php } ?>
+                          <li><a href="http://localhost/customerportal/datapages/price_approve.php" class="dropdown-item"  id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
+                          <li><a href="http://localhost/customerportal/datapages/invoice.php" class="dropdown-item"  id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
+                          <li><a href="http://localhost/customerportal/datapages/po.php" class="dropdown-item"  id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
+
                         </ul>
                     </li>
 
@@ -113,22 +110,18 @@
                             <span>Analytics</span>
                         </a>                              
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" id="showdt"><i class="fa fa-book"></i> Delivery Trends</a></li>
+                            <li><a href="http://localhost/customerportal/datapages/delivery_t.php" class="dropdown-item" id="showdt"><i class="fa fa-book"></i> Delivery Trends</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link"  id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>          
+                        <a href="http://localhost/customerportal/datapages/your_prtnr.php" class="nav-link"  id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>          
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link"  id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
+                        <a href="http://localhost/customerportal/datapages/delivery_sch.php" class="nav-link"  id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
                     </li>
                     <li class="nav-item d-none" >
                         <a class="nav-link d-block"  id="showqc"> <i class="fas fa-check-square"></i> <span>Quality Control</span></a>          
-                    </li>
-
-                    <li class="nav-item" >
-                        <a class="nav-link d-block"  id="showtest"> <i class="fas fa-check-square"></i> <span>Test Form Data</span></a>          
                     </li>
 
                 </ul>

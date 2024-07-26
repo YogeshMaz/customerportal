@@ -21,8 +21,12 @@
   .pd_lft{ padding-left: 10px; }
 </style>
 
-<div id="dsSec" style="display: none;">
-  <?php $deliveryData = getDeliveryScheduleData(); ?>
+<div id="dsSec">
+  <?php 
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php';
+  $deliveryData = getDeliveryScheduleData(); ?>
   <!------------Delivery Schedule Sec ------------->
   <div style="width:100%;" class="">
     <div class="col-md-12 col-sm-8">

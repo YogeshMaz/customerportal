@@ -1,5 +1,10 @@
 
-<div id="dtrendsSec" style="display:none">
+<?php
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php';
+?>
+<div id="dtrendsSec">
 
     <div style="width:100%;" class="container-fluid">
         <div class="col-md-12 col-sm-8">

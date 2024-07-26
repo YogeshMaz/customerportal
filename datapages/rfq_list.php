@@ -1,6 +1,10 @@
-<div id="rfqlistsec" style="display: none;">
+<div id="rfqlistsec">
   <!------------Rfq List Sec------------->
-  <?php $resData = getRFQData();
+  <?php 
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php';
+  $resData = getRFQData();
   if (isset($resData) && $resData != "" && isset($resData['data']) && count($resData['data']) > 0) {  ?>
     <div style="width:100%;" class="">
       <div class="col-md-12 col-sm-8">

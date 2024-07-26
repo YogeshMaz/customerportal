@@ -1,4 +1,8 @@
-<div id="pro_dash" style="display: none;">
+<?php   
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php'; ?>
+<div id="pro_dash" >
     <?php
     $project_dash_res_data = getOpenProjects();
     $completepro_dash_res_data = getCompletedProjects();

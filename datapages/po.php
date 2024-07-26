@@ -1,5 +1,9 @@
-<div id="poSec" style="display: none;">
-  <?php $po_res_data = getPoData();
+<div id="poSec">
+  <?php 
+  include '../header.php';
+  include '../nav.php';
+  include '../footer.php';
+  $po_res_data = getPoData();
   if (isset($po_res_data['data']) && $po_res_data['code'] === 3000) {  ?>
   <!------------PO Sec------------->
   <div style="width:100%;" class="container-fluid">
