@@ -66,7 +66,7 @@
 
 
                     <li class="nav-item">
-                        <a href="http://localhost/customerportal/mf_dashboard.php" class="nav-link"  id="showdashboard" > 
+                        <a href="http://localhost/customerportal/mf_dashboard.php" class="nav-link sh"  id="showdashboard" > 
                             <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span> 
                         </a> 
                     </li>
@@ -76,8 +76,8 @@
                             <span>Your RFQ's</span>
                         </a>                           
                         <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item"  id="uploadRfq"><i class="fa fa-upload"></i>Upload RFQ</a>      </li>
-                            <li> <a href="http://localhost/customerportal/datapages/rfq_list.php" class="dropdown-item"  id="showrfqlist"><i class="fa fa-list"></i> RFQ List</a>      </li>
+                            <li> <a class="dropdown-item sh"  id="uploadRfq"><i class="fa fa-upload"></i>Upload RFQ</a>      </li>
+                            <li> <a href="http://localhost/customerportal/datapages/rfq_list.php" class="dropdown-item sh"  id="showrfqlist"><i class="fa fa-list"></i> RFQ List</a>      </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -87,7 +87,7 @@
                         </a>                              
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="http://localhost/customerportal/datapages/project_dash.php" class="dropdown-item"  id="showProDash">
+                                <a href="http://localhost/customerportal/datapages/project_dash.php" class="dropdown-item sh"  id="showProDash">
                                     <i class="fas fa-tachometer-alt"></i> <span>Project Dashboard</span>
                                 </a>
                             </li>
@@ -99,9 +99,9 @@
                             <i class="fas fa-money-bill-alt"></i><span> Order Management </span>
                         </a>                              
                         <ul class="dropdown-menu">
-                          <li><a href="http://localhost/customerportal/datapages/price_approve.php" class="dropdown-item"  id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
-                          <li><a href="http://localhost/customerportal/datapages/invoice.php" class="dropdown-item"  id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
-                          <li><a href="http://localhost/customerportal/datapages/po.php" class="dropdown-item"  id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
+                          <li><a href="http://localhost/customerportal/datapages/price_approve.php" class="dropdown-item sh"  id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
+                          <li><a href="http://localhost/customerportal/datapages/invoice.php" class="dropdown-item sh"  id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
+                          <li><a href="http://localhost/customerportal/datapages/po.php" class="dropdown-item sh"  id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
 
                         </ul>
                     </li>
@@ -112,15 +112,15 @@
                             <span>Analytics</span>
                         </a>                              
                         <ul class="dropdown-menu">
-                            <li><a href="http://localhost/customerportal/datapages/delivery_t.php" class="dropdown-item" id="showdt"><i class="fa fa-book"></i> Delivery Trends</a></li>
+                            <li><a href="http://localhost/customerportal/datapages/delivery_t.php" class="dropdown-item sh" id="showdt"><i class="fa fa-book"></i> Delivery Trends</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item ">
-                        <a href="http://localhost/customerportal/datapages/your_prtnr.php" class="nav-link"  id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>          
+                        <a href="http://localhost/customerportal/datapages/your_prtnr.php" class="nav-link sh"  id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>          
                     </li>
                     <li class="nav-item ">
-                        <a href="http://localhost/customerportal/datapages/delivery_sch.php" class="nav-link"  id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
+                        <a href="http://localhost/customerportal/datapages/delivery_sch.php" class="nav-link sh"  id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
                     </li>
                     <li class="nav-item d-none" >
                         <a class="nav-link d-block sh"  id="showqc"> <i class="fas fa-check-square"></i> <span>Quality Control</span></a>          
