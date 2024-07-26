@@ -42,7 +42,6 @@
     <div style="width:100%;" class="">
       <div class="col-md-12 col-sm-8">
         <div class="card mb-4 mt-2 tablecard">
-  $deliveryData = getDeliveryScheduleData(); ?>
   <!------------Delivery Schedule Sec ------------->
   <div style="width:100%;" class="container-fluid">
     <div class="col-md-12 col-sm-8">
