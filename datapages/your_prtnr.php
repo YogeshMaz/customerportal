@@ -70,27 +70,27 @@
                           </li>
                           <li>
                             <a class="dropdown-item" href="#">
-                              <label><input type="checkbox" class="toggleColumn_yp" data-column="1" checked>Partner Organization</label>
+                              <label><input type="checkbox" class="toggleColumn_yp" data-column="1" checked> Partner Organization</label>
                             </a>
                           </li>
                           <li>
                             <a class="dropdown-item" href="#">
-                              <label><input type="checkbox" class="toggleColumn_yp" data-column="2" checked>Partner Category</label>
+                              <label><input type="checkbox" class="toggleColumn_yp" data-column="2" checked> Partner Category</label>
                             </a>
                           </li>
                           <li>
                             <a class="dropdown-item" href="#">
-                              <label><input type="checkbox" class="toggleColumn_yp" data-column="3" checked>GST Number</label>
+                              <label><input type="checkbox" class="toggleColumn_yp" data-column="3" checked> GST Number</label>
                             </a>
                           </li>
                           <li>
                             <a class="dropdown-item" href="#">
-                              <label><input type="checkbox" class="toggleColumn_yp" data-column="4" checked>Area of specialization in Manufacturing</label>
+                              <label><input type="checkbox" class="toggleColumn_yp" data-column="4" checked> Area of specialization in Manufacturing</label>
                             </a>
                           </li>
                           <li>
                             <a class="dropdown-item" href="#">
-                              <label><input type="checkbox" class="toggleColumn_yp" data-column="5" checked>Location</label>
+                              <label><input type="checkbox" class="toggleColumn_yp" data-column="5" checked> Location</label>
                             </a>
                           </li>
                         </ul>

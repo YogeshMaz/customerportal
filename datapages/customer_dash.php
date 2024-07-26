@@ -52,6 +52,13 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
     font-size: 24px;
     padding-top: 2px;
   }
+  .pd_br1{
+    padding-right: 5px;
+    border-right: 1px solid #000;
+  }
+  span.pd_br1:last-child {
+    border-right: 0px;
+  }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvBZcW9MkLM0NMPG_lNqVbTyzEQQ6chUA&libraries=places&callback=initMap" defer></script>
 
@@ -206,17 +213,17 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                             <div class="text-xs fw-bold text-uppercase mb-1 text-secondary">Units Delivered</div>
                             <div class="h5 mb-0 mr-3 fw-bold text-dark">
                               <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) { ?>
-                                <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small><?php echo "EA" ?></small></span>
+                                <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
                               <?php
                               }
                               if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) {
                               ?>
-                                <span class="pd_br1 pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small><?php echo "kg" ?></small></span>
+                                <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
                               <?php
                               }
                               if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) {
                               ?>
-                                <span class="pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small><?php echo "Mts" ?></small></span>
+                                <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
                               <?php
                               }
                               ?>
@@ -246,17 +253,17 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                                 <?php
                                 if (isset($summaryDetails['data'][0]['Units_in_production_EA'])) {
                                 ?>
-                                  <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] ?? "-" ?> <small class="fs12"><?php echo "EA" ?></small></span>
+                                  <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
                                 <?php
                                 }
                                 if($summaryDetails['data'][0]['Units_in_production_EA'] && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) {
                                 ?>
-                                  <span class="pd_br1 pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] ?? "-" ?> <small class="fs12"><?php echo "kg" ?></small></span>
+                                  <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
                                 <?php
                                 }
                                 if (isset($summaryDetails['data'][0]['Units_in_production_MTS']) && $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) {
                                 ?>
-                                  <span class="pd_lft1"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS'] ?? "-" ?> <small class="fs12"><?php echo "Mts" ?></small></span>
+                                  <span class="pd_br1"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS'] ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
                                 <?php
                                 }
                                 ?>
