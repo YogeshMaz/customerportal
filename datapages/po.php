@@ -4,7 +4,8 @@
   include '../nav.php';
   include '../footer.php';
   $po_res_data = getPoData();
-  if (isset($po_res_data['data']) && $po_res_data['code'] === 3000) {  ?>
+  if (isset($po_res_data['data']) && $po_res_data['code'] === 3000) 
+  {  ?>
     <!------------PO Sec------------->
     <div style="width:100%;" class="container-fluid">
       <div class="col-md-12 col-sm-8">
@@ -115,7 +116,7 @@
 
                       <td><?php echo htmlspecialchars($record['Sub_Total'] ?? "-"); ?></td>
                     </tr>
-
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -125,7 +126,6 @@
         </div>
       </div>
     </div>
-  <?php } ?>
 <?php } else { ?>
   <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
 <?php } ?>
