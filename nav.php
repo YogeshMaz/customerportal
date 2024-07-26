@@ -10,7 +10,7 @@
                            </div>
                         </div>
                         <div class="text-center col-10 col-md-10 d-flex">
-                           <h3 class="text-center fw-bold small m-auto"><a class="active text-decoration-none" href="#Page:Seller_DB_copy?super_admin_email=blr@360degreeglobal.com">CUSTOMER PORTAL</a></h3>
+                           <h3 class="text-center fw-bold small m-auto  my-4"><a class="active text-decoration-none" href="#Page:Seller_DB_copy?super_admin_email=blr@360degreeglobal.com">CUSTOMER PORTAL</a></h3>
                             
                             <ul class="navbar-nav my-2 my-lg-0 mypro">
                                 <li class="nav-item mt-1 m-0 px-2">  
@@ -57,14 +57,20 @@
             <div class="container-fluid justify-content-end">
 
             <input type="checkbox" id="toggle" class="d-none">
-            <label for="toggle" class="navbar-toggler border-0" tabindex="1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">       <span class="navbar-toggler-icon"></span>     </label>            
+            <label for="toggle" class="navbar-toggler border-0" tabindex="1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">       
+                <span class="navbar-toggler-icon"></span>     
+            </label>            
             
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll">
 
 
                     <li class="nav-item">
+<<<<<<< Updated upstream
                         <a href="http://localhost/customerportal/mf_dashboard.php" class="nav-link"  id="showdashboard" > 
+=======
+                        <a class="nav-link sh"  id="showdashboard" > 
+>>>>>>> Stashed changes
                             <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span> 
                         </a> 
                     </li>
@@ -74,8 +80,13 @@
                             <span>Your RFQ's</span>
                         </a>                           
                         <ul class="dropdown-menu">
+<<<<<<< Updated upstream
                             <li> <a class="dropdown-item"  id="uploadRfq"><i class="fa fa-upload"></i>Upload RFQ</a>      </li>
                             <li> <a href="http://localhost/customerportal/datapages/rfq_list.php" class="dropdown-item"  id="showrfqlist"><i class="fa fa-list"></i> RFQ List</a>      </li>
+=======
+                            <li> <a class="dropdown-item sh"  id="uploadRfq"><i class="fa fa-upload"></i>Upload RFQ</a>      </li>
+                            <li> <a class="dropdown-item sh"  id="showrfqlist"><i class="fa fa-list"></i> RFQ List</a>      </li>
+>>>>>>> Stashed changes
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -85,7 +96,11 @@
                         </a>                              
                         <ul class="dropdown-menu">
                             <li>
+<<<<<<< Updated upstream
                                 <a href="http://localhost/customerportal/datapages/project_dash.php" class="dropdown-item"  id="showProDash">
+=======
+                                <a class="dropdown-item sh"  id="showProDash">
+>>>>>>> Stashed changes
                                     <i class="fas fa-tachometer-alt"></i> <span>Project Dashboard</span>
                                 </a>
                             </li>
@@ -97,10 +112,20 @@
                             <i class="fas fa-money-bill-alt"></i><span> Order Management </span>
                         </a>                              
                         <ul class="dropdown-menu">
+<<<<<<< Updated upstream
                           <li><a href="http://localhost/customerportal/datapages/price_approve.php" class="dropdown-item"  id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
                           <li><a href="http://localhost/customerportal/datapages/invoice.php" class="dropdown-item"  id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
                           <li><a href="http://localhost/customerportal/datapages/po.php" class="dropdown-item"  id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
 
+=======
+                          <li><a class="dropdown-item sh"  id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
+                          <li><a class="dropdown-item sh"  id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
+                          <li><a class="dropdown-item sh"  id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
+                          <?php if($email == 'ramasamy@saravanaenergy.com') { ?>
+                            <li><a class="dropdown-item sh"  id="showpf"><i class="fas fa-coins"></i> Partner Financials</a></li>
+                            <li><a class="dropdown-item sh"  id="showcost"><i class="fas fa-dollar-sign"></i>Costing</a></li>
+                          <?php } ?>
+>>>>>>> Stashed changes
                         </ul>
                     </li>
 
@@ -110,23 +135,56 @@
                             <span>Analytics</span>
                         </a>                              
                         <ul class="dropdown-menu">
+<<<<<<< Updated upstream
                             <li><a href="http://localhost/customerportal/datapages/delivery_t.php" class="dropdown-item" id="showdt"><i class="fa fa-book"></i> Delivery Trends</a></li>
+=======
+                            <li><a class="dropdown-item sh" id="showdt"><i class="fa fa-book"></i> Delivery Trends</a></li>
+>>>>>>> Stashed changes
                         </ul>
                     </li>
 
                     <li class="nav-item ">
+<<<<<<< Updated upstream
                         <a href="http://localhost/customerportal/datapages/your_prtnr.php" class="nav-link"  id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>          
                     </li>
                     <li class="nav-item ">
                         <a href="http://localhost/customerportal/datapages/delivery_sch.php" class="nav-link"  id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
+=======
+                        <a class="nav-link sh"  id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>          
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link sh"  id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
+>>>>>>> Stashed changes
                     </li>
                     <li class="nav-item d-none" >
-                        <a class="nav-link d-block"  id="showqc"> <i class="fas fa-check-square"></i> <span>Quality Control</span></a>          
+                        <a class="nav-link d-block sh"  id="showqc"> <i class="fas fa-check-square"></i> <span>Quality Control</span></a>          
                     </li>
 
+<<<<<<< Updated upstream
+=======
+                    <li class="nav-item" >
+                        <a class="nav-link d-block sh"  id="showtest"> <i class="fas fa-check-square"></i> <span>Test Form Data</span></a>          
+                    </li>
+
+>>>>>>> Stashed changes
                 </ul>
                
 
               </div>
             </div>
         </nav>
+<script>
+      $(document).ready(function() {
+            $('.sh').click(function() {
+                // Check if the navbar is expanded
+                if ($('#navbarScroll').hasClass('show')) {
+                    // Remove the 'show' class to collapse the navbar
+                    $('#navbarScroll').removeClass('show');
+                    $('#navbarScroll').css('display','none');
+                }
+            });
+            $('.navbar-toggler').click(function(){
+                $('#navbarScroll').removeAttr('style');
+            });
+        });
+</script>

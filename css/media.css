@@ -15,9 +15,12 @@
         display: none!important;
     }
     .navbar-nav.mypro .dropdown-menu {
-        left: -62px;
+        left: -86px;
     }
     .nav-pills span.badge {
         margin-bottom: 10px;
+    }
+    ul.navbar-nav.my-2.my-lg-0.mypro {
+        margin-right: -24px;
     }
 }

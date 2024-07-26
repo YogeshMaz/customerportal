@@ -67,9 +67,6 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
             <h2 class="text-dark mb-2"> <?php echo $summaryTitle ?> </h2>
           </div>
           <!-- <h2 class="text-dark mb-2 ">Manufacturing Dashboard</h2> -->
-          <div class="col-md-6">
-            <h4 class="text-dark text-end mb-2">Project management</h4>
-          </div>
 
         </div>
 
