@@ -277,50 +277,64 @@ if (isset($_GET['ID'])) {
 
                         <div class="card profile_shadow border-0">
                             <?php if (count($proj_dashboard_title_data['data']['Project_Execution_Detail']) > 0) : ?>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <h5 class="mb-2">Execution Details </h5>
+                            <div class="card-body">
+                                <div class="row">
+                                    <h5 class="mb-2">Execution Details </h5>
+                                    <div class="table">
+                                        <table class="table">
+                                            <thead class="table-primary">
+                                                <tr>
+                                                    <th>RFQ Reference Number </th>
+                                                    <th>Partner Organization</th>
+                                                    <th>Category</th>
+                                                    <th>Cost Per Unit (INR)- Landed </th>
+                                                    <th>Quantity/ Year</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $previousRFQNumber = null;
+                                                $rowCount = [];
+                                                foreach ($proj_dashboard_title_data['data']['Project_Execution_Detail'] as $detail) {
+                                                    $rfqNumber = $detail['RFQ_Reference_Number']['RFQ_Reference_Number'] ?? "-";
+                                                    if (!isset($rowCount[$rfqNumber])) {
+                                                        $rowCount[$rfqNumber] = 0;
+                                                    }
+                                                    $rowCount[$rfqNumber]++;
+                                                }
 
-                                        <div class="table">
-                                            <table class="table">
-                                                <thead class="table-primary">
+                                                foreach ($proj_dashboard_title_data['data']['Project_Execution_Detail'] as $detail) {
+                                                    $rfqNumber = $detail['RFQ_Reference_Number']['RFQ_Reference_Number'] ?? "-";
+                                                    ?>
                                                     <tr>
-                                                        <th>Partner Organization</th>
-                                                        <th>Category</th>
-                                                        <th>Cost Per Unit (INR)- Landed </th>
-                                                        <th>RFQ Reference Number </th>
-                                                        <th>Quantity/ Year</th>
+                                                        <?php if ($rfqNumber !== $previousRFQNumber) { ?>
+                                                            <td rowspan="<?php echo $rowCount[$rfqNumber]; ?>"><?php echo $rfqNumber; ?></td>
+                                                        <?php } ?>
+                                                        <?php if ($detail['Production_Allocation_to_M_F_Partner'] != "" && $detail['Production_Allocation_to_M_F_Partner'] != null) { ?>
+                                                            <td><?php echo $detail['Production_Allocation_to_M_F_Partner']['zc_display_value'];
+                                                                $category = "PC&A"; ?></td>
+                                                        <?php } elseif ($detail['Allocate_to_EMS_PArtner'] != "" && $detail['Allocate_to_EMS_PArtner'] != null) { ?>
+                                                            <td><?php echo $detail['Allocate_to_EMS_PArtner']['zc_display_value'];
+                                                                $category = "EMS"; ?></td>
+                                                        <?php } elseif ($detail['Production_Allocation_to_Fabrication_Vendor'] != "" && $detail['Production_Allocation_to_Fabrication_Vendor'] != null) { ?>
+                                                            <td><?php echo $detail['Production_Allocation_to_Fabrication_Vendor']['zc_display_value'];
+                                                                $category = "EMS"; ?></td>
+                                                        <?php } else {
+                                                        } ?>
+                                                        <td><?php echo $category ?></td>
+                                                        <td><?php echo $detail['Cost_Per_Unit_INR_Landed'] ?? "-"; ?></td>
+                                                        
+                                                        <td><?php echo $detail['Quantity_Year'] ?? "-"; ?></td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php foreach ($proj_dashboard_title_data['data']['Project_Execution_Detail'] as $detail) { ?>
-
-                                                        <tr>
-                                                            <?php if ($detail['Production_Allocation_to_M_F_Partner'] != "" && $detail['Production_Allocation_to_M_F_Partner'] != null) { ?>
-                                                                <td><?php echo $detail['Production_Allocation_to_M_F_Partner']['zc_display_value'];
-                                                                    $category = "PC&A"; ?></td>
-                                                            <?php } elseif ($detail['Allocate_to_EMS_PArtner'] != "" && $detail['Allocate_to_EMS_PArtner'] != null) {
-                                                            ?>
-                                                                <td><?php echo $detail['Allocate_to_EMS_PArtner']['zc_display_value']; 
-                                                                    $category = "EMS"; ?></td>
-                                                            <?php } elseif ($detail['Production_Allocation_to_Fabrication_Vendor'] != "" && $detail['Production_Allocation_to_Fabrication_Vendor'] != null) {
-                                                            ?>
-                                                                <td><?php echo $detail['Production_Allocation_to_Fabrication_Vendor']['zc_display_value']; 
-                                                                    $category = "EMS"; ?></td>
-                                                            <?php } else {
-                                                            } ?>
-                                                            <td><?php echo $category ?></td>
-                                                            <td><?php echo $detail['Cost_Per_Unit_INR_Landed'] ?? "-"; ?></td>
-                                                            <td><?php echo $detail['RFQ_Reference_Number']['RFQ_Reference_Number'] ?? "-"; ?></td>
-                                                            <td><?php echo $detail['Quantity_Year'] ?? "-"; ?></td>
-                                                        </tr>
-                                                    <?php } ?>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                    <?php
+                                                    $previousRFQNumber = $rfqNumber;
+                                                }
+                                                ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
+                            </div>
                             <?php endif ?>
                         </div>
 
