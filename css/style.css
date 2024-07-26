@@ -370,6 +370,10 @@ nav-text {
     font-size: 12px;
 }
 
+.fs13 {
+    font-size: 13px;
+}
+
 
 /* #navbar-wrapper .navbar a:hover { */
 
@@ -1107,6 +1111,11 @@ table.dataTable thead>tr>th:first-child {
     padding: 0;
     border: none;
     box-shadow: 0 0 5px 0 #ccc;
+}
+
+.btn.btn-primary.btn-sm.dropdown-toggle:after {
+    content: '';
+    position: absolute;
 }
 
 

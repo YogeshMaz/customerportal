@@ -17,7 +17,6 @@
   .pd_br{
     padding-right: 5px;
     border-right: 1px solid #fff;
-    padding-left: 5px;
   }
   span.pd_br:last-child {
     border-right: 0px;
@@ -62,13 +61,13 @@
                               <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units Delivered</div>
                                 <div class="h5 mb-0 fw-bold text-light">
                                 <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) : ?>
-                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] . " EA " ?? "-" ?></span>
+                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
                                   <?php endif ?>
                                   <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) : ?>
-                                    <span class="pd_br pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] . " kg " ?? "-" ?></span>
+                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
                                   <?php endif ?>
                                   <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) : ?>
-                                    <span class="pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] . " Mts " ?? "-" ?></span>
+                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
                                   <?php endif ?>
                                 </div>
                                 <div class="mt-2 mb-0 text-dark text-xs">                          
@@ -97,13 +96,13 @@
                               <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units under Production</div>
                               <div class="h5 mb-0 fw-bold text-light">
                                 <?php if(isset($summaryDetails['data'][0]['Units_in_production_EA']) && $summaryDetails['data'][0]['Units_in_production_EA'] != 0) : ?>
-                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] . " EA " ?? "-" ?></span>
+                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
                                 <?php endif ?>
                                 <?php  if(isset($summaryDetails['data'][0]['Units_in_production_KG']) && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) : ?>
-                                  <span class="pd_br pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] . " kg " ?? "-" ?></span>
+                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
                                 <?php endif ?>
                                 <?php if (isset($summaryDetails['data'][0]['Units_in_production_MTS']) && $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) : ?>
-                                  <span class="pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS'] . " Mts " ?? "-" ?></span>
+                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS']  ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
                                 <?php endif ?>
                               </div>
                               <div class="mt-2 mb-0 text-dark text-xs">                      

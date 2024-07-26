@@ -23,4 +23,9 @@
     ul.navbar-nav.my-2.my-lg-0.mypro {
         margin-right: -24px;
     }
+    .profilebg {
+        background-size: inherit;
+        height: auto;
+        width: initial;
+    }
 }
