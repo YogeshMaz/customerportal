@@ -17,7 +17,7 @@
                                     <!-- <?php //if($Org_Logo != "" && $Org_Logo != null){
                                             //$Org_Logo_FilePath = explode('?', $Org_Logo);
                                             //$Org_Logo_s = "https://creatorapp.zohopublic.in/file/arun.ramu_machinemaze/customer-invoice/Customers/" . $userPId . "/Customer_Logo/image-download/3B2NyuxjO4GOZmVwWunBsjNF7sfautP0W58FFg5hrmaquff9G1wTsvh7PXPWVWpbjppSY59xAjOFsTvrtbkjRtnpnkfeNDPtuFbr?" . $Org_Logo_FilePath[1];
-                                          //}
+                                          //} 
                                         ?> -->
                                         <!-- <img src="<?php //echo $Org_Logo_s; ?>" style="background: #fff;"> -->
                                         <div class="dropdown">
