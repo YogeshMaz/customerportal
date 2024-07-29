@@ -71,7 +71,7 @@
 
             <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
 
-            <div class="col-xl-4 col-md-3 mb-2">
+            <div class="col-xl-4 col-md-4 mb-2">
               <a id="delivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
@@ -106,7 +106,7 @@
 
             <?php if ($summaryDetails['data'][0]['Units_in_production_EA'] != 0 || $summaryDetails['data'][0]['Units_in_production_KG'] != 0 || $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) { ?>
 
-            <div class="col-xl-4 col-md-3 mb-2">
+            <div class="col-xl-4 col-md-4 mb-2">
               <a id="notdelivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
@@ -141,7 +141,7 @@
 
             <?php if ($summaryDetails['data'][0]['Avg_Acceptance_Rate'] != null && $summaryDetails['data'][0]['Avg_Acceptance_Rate'] != 0) { ?>
 
-            <div class="col-xl-4 col-md-3 mb-2">
+            <div class="col-xl-4 col-md-4 mb-2">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
                         <div class="row no-gutters align-items-center w-100">
