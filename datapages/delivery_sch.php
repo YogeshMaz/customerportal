@@ -1,3 +1,4 @@
+
 <style>
   .dswidgets .card-body {
     min-height: 90px;
@@ -35,17 +36,22 @@
   include '../nav.php';
   include '../footer.php';
   $deliveryData = getDeliveryScheduleData();
-  if ($deliveryData['not_yet_delivered']['data'] != null || $deliveryData['delivered']['data'] != null) 
-  {
+  if (isset($deliveryData['not_yet_delivered']['data']) && $deliveryData['not_yet_delivered']['data'] != null || isset($deliveryData['delivered']['data']) && $deliveryData['delivered']['data'] != null) {
+    $notYetDeliveredCount = 0;
+    $deliveredCount = 0;
+    if(isset($deliveryData['not_yet_delivered']['data']) && $deliveryData['not_yet_delivered']['data'] != null){
+      count($deliveryData['not_yet_delivered']['data']);
+    }
+    if(isset($deliveryData['delivered']['data']) && $deliveryData['delivered']['data'] != null){
+      count($deliveryData['delivered']['data']);
+    }
+    $totalDeliveryScheduleCount = $notYetDeliveredCount + $deliveredCount;
   ?>
+
     <!------------Delivery Schedule Sec ------------->
-    <div style="width:100%;" class="">
+    <div style="width:100%;" class="container-fluid">
       <div class="col-md-12 col-sm-8">
         <div class="card mb-4 mt-2 tablecard">
-  <!------------Delivery Schedule Sec ------------->
-  <div style="width:100%;" class="container-fluid">
-    <div class="col-md-12 col-sm-8">
-      <div class="card mb-4 mt-2 tablecard">
 
           <div class="card-header pt-3">
             <div class="row">
@@ -53,11 +59,8 @@
                 <h5 class="my-1 fw-bold text-primary">Delivery Schedule</h5>
               </div>
               <div class="col-md-6 d-flex justify-content-end">
-                <b>Total Records : <span><?php echo count($deliveryData['not_yet_delivered']['data']) + count($deliveryData['delivered']['data']) ?></span></b>
+                <b>Total Records : <span><?php echo $totalDeliveryScheduleCount ?></span></b>
               </div>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end">
-              <b>Total Records : <span><?php echo count($deliveryData['not_yet_delivered']['data']) + count($deliveryData['delivered']['data']) ?></span></b>
             </div>
           </div>
         </div>
@@ -66,197 +69,99 @@
 
           <div class="row mb-3 dswidgets px-3">
 
-          <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
+            <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
 
-            <div class="col-xl-4 col-md-3 mb-2">
-              <a id="delivered">
+              <div class="col-xl-4 col-md-4 mb-2">
+                <a id="delivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
-                        <div class="row align-items-center w-100">
-                          <div class="col mr-2">
-                              <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units Delivered</div>
-                                <div class="h5 mb-0 fw-bold text-light">
-                                <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) : ?>
-                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
-                                  <?php endif ?>
-                                  <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) : ?>
-                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
-                                  <?php endif ?>
-                                  <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) : ?>
-                                    <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
-                                  <?php endif ?>
-                                </div>
-                                <div class="mt-2 mb-0 text-dark text-xs">                          
-                                  <!-- <span class="text-dark mr-2"> <i class="fa fa-arrow-up"></i> <b> 0 </b>  </span> <span> Records Since last month</span>   -->
-                                </div>
+                      <div class="row align-items-center w-100">
+                        <div class="col mr-2">
+                          <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units Delivered</div>
+                          <div class="h5 mb-0 fw-bold text-light">
+                            <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) : ?>
+                              <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
+                            <?php endif ?>
+                            <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) : ?>
+                              <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
+                            <?php endif ?>
+                            <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) : ?>
+                              <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
+                            <?php endif ?>
                           </div>
-                          <div class="col-auto icnCircle bg-transparent">                        
-                            <i class="fas fa-truck fa-2x text-light"></i>                      
+                          <div class="mt-2 mb-0 text-dark text-xs">
+                            <!-- <span class="text-dark mr-2"> <i class="fa fa-arrow-up"></i> <b> 0 </b>  </span> <span> Records Since last month</span>   -->
                           </div>
                         </div>
-                    </div>
-                  </div>
-              </a>
-            </div>
-
-          <?php } ?>
-
-          <?php if ($summaryDetails['data'][0]['Units_in_production_EA'] != 0 || $summaryDetails['data'][0]['Units_in_production_KG'] != 0 || $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) { ?>
-
-            <div class="col-xl-4 col-md-3 mb-2">
-              <a id="notdelivered">
-                  <div class="card shadow h-100 border-top border-4 border-primary">
-                    <div class="card-body m-0 align-item-center justify-content-center d-flex">
-                        <div class="row no-gutters align-items-center w-100">
-                          <div class="col mr-2">
-                              <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units under Production</div>
-                              <div class="h5 mb-0 fw-bold text-light">
-                                <?php if(isset($summaryDetails['data'][0]['Units_in_production_EA']) && $summaryDetails['data'][0]['Units_in_production_EA'] != 0) : ?>
-                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
-                                <?php endif ?>
-                                <?php  if(isset($summaryDetails['data'][0]['Units_in_production_KG']) && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) : ?>
-                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
-                                <?php endif ?>
-                                <?php if (isset($summaryDetails['data'][0]['Units_in_production_MTS']) && $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) : ?>
-                                  <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS']  ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
-                                <?php endif ?>
-                              </div>
-                              <div class="mt-2 mb-0 text-dark text-xs">                      
-                                  <!--   <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>  -->                      
-                              </div>
-                          </div>
-                          <div class="col-auto icnCircle bg-transparent">                        
-                            <i class="fas fa-cog fa-2x text-light"></i>                      
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-              </a>
-            </div>
-          
-          <?php } ?>
-
-          <?php if ($summaryDetails['data'][0]['Avg_Acceptance_Rate'] != null && $summaryDetails['data'][0]['Avg_Acceptance_Rate'] != 0) { ?>
-
-            <div class="col-xl-4 col-md-3 mb-2">
-                  <div class="card shadow h-100 border-top border-4 border-primary">
-                    <div class="card-body m-0 align-item-center justify-content-center d-flex">
-                        <div class="row no-gutters align-items-center w-100">
-                          <div class="col mr-2">
-                              <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Avg.Rate of Acceptance
-                              </div>
-                              <div class="h5 mb-0 fw-bold text-light"><?php echo $summaryDetails['data'][0]['Avg_Acceptance_Rate'] ?> %</div>
-                              <div class="mt-2 mb-0 text-dark text-xs">                     <!--     <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>         -->               </div>
-                          </div>
-                          <div class="col-auto icnCircle bg-transparent">                        
-                            <i class="fas fa-handshake fa-2x text-light"></i>                      
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-            </div>
-
-          <?php } ?>
-
-          </div>
-
-          <div class="card-body pt-1">
-
-            <div class="row mb-3 dswidgets">
-
-              <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
-
-                <div class="col-xl-4 col-md-3 mb-2">
-                  <a id="delivered">
-                    <div class="card shadow h-100 border-top border-4 border-primary">
-                      <div class="card-body m-0 align-item-center justify-content-center d-flex">
-                        <div class="row align-items-center w-100">
-                          <div class="col mr-2">
-                            <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units Delivered</div>
-                            <div class="h5 mb-0 fw-bold text-light">
-                              <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_EA']) && $summaryDetails['data'][0]['Units_in_delivered_EA'] != 0) : ?>
-                                <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_delivered_EA'] . " EA " ?? "-" ?></span>
-                              <?php endif ?>
-                              <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_KG']) && $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0) : ?>
-                                <span class="pd_br pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_delivered_KG'] . " kg " ?? "-" ?></span>
-                              <?php endif ?>
-                              <?php if (isset($summaryDetails['data'][0]['Units_in_delivered_MTS']) && $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) : ?>
-                                <span class="pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_delivered_MTS'] . " Mts " ?? "-" ?></span>
-                              <?php endif ?>
-                            </div>
-                            <div class="mt-2 mb-0 text-dark text-xs">
-                              <!-- <span class="text-dark mr-2"> <i class="fa fa-arrow-up"></i> <b> 0 </b>  </span> <span> Records Since last month</span>   -->
-                            </div>
-                          </div>
-                          <div class="col-auto icnCircle bg-transparent">
-                            <i class="fas fa-truck fa-2x text-light"></i>
-                          </div>
+                        <div class="col-auto icnCircle bg-transparent">
+                          <i class="fas fa-truck fa-2x text-light"></i>
                         </div>
                       </div>
                     </div>
-                  </a>
-                </div>
+                  </div>
+                </a>
+              </div>
 
-              <?php } ?>
+            <?php } ?>
 
-              <?php if ($summaryDetails['data'][0]['Units_in_production_EA'] != 0 || $summaryDetails['data'][0]['Units_in_production_KG'] != 0 || $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) { ?>
+            <?php if ($summaryDetails['data'][0]['Units_in_production_EA'] != 0 || $summaryDetails['data'][0]['Units_in_production_KG'] != 0 || $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) { ?>
 
-                <div class="col-xl-4 col-md-3 mb-2">
-                  <a id="notdelivered">
-                    <div class="card shadow h-100 border-top border-4 border-primary">
-                      <div class="card-body m-0 align-item-center justify-content-center d-flex">
-                        <div class="row no-gutters align-items-center w-100">
-                          <div class="col mr-2">
-                            <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units under Production</div>
-                            <div class="h5 mb-0 fw-bold text-light">
-                              <?php if (isset($summaryDetails['data'][0]['Units_in_production_EA']) && $summaryDetails['data'][0]['Units_in_production_EA'] != 0) : ?>
-                                <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] . " EA " ?? "-" ?></span>
-                              <?php endif ?>
-                              <?php if (isset($summaryDetails['data'][0]['Units_in_production_KG']) && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) : ?>
-                                <span class="pd_br pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] . " kg " ?? "-" ?></span>
-                              <?php endif ?>
-                              <?php if (isset($summaryDetails['data'][0]['Units_in_production_MTS']) && $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) : ?>
-                                <span class="pd_lft"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS'] . " Mts " ?? "-" ?></span>
-                              <?php endif ?>
-                            </div>
-                            <div class="mt-2 mb-0 text-dark text-xs">
-                              <!--   <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>  -->
-                            </div>
-                          </div>
-                          <div class="col-auto icnCircle bg-transparent">
-                            <i class="fas fa-cog fa-2x text-light"></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-
-              <?php } ?>
-
-              <?php if ($summaryDetails['data'][0]['Avg_Acceptance_Rate'] != null && $summaryDetails['data'][0]['Avg_Acceptance_Rate'] != 0) { ?>
-
-                <div class="col-xl-4 col-md-3 mb-2">
+              <div class="col-xl-4 col-md-4 mb-2">
+                <a id="notdelivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
                       <div class="row no-gutters align-items-center w-100">
                         <div class="col mr-2">
-                          <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Avg.Rate of Acceptance
+                          <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Units under Production</div>
+                          <div class="h5 mb-0 fw-bold text-light">
+                            <?php if (isset($summaryDetails['data'][0]['Units_in_production_EA']) && $summaryDetails['data'][0]['Units_in_production_EA'] != 0) : ?>
+                              <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_EA'] ?? "-" ?> <small class="fs13"><?php echo "EA" ?></small></span>
+                            <?php endif ?>
+                            <?php if (isset($summaryDetails['data'][0]['Units_in_production_KG']) && $summaryDetails['data'][0]['Units_in_production_KG'] != 0) : ?>
+                              <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_KG'] ?? "-" ?> <small class="fs13"><?php echo "kg" ?></small></span>
+                            <?php endif ?>
+                            <?php if (isset($summaryDetails['data'][0]['Units_in_production_MTS']) && $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) : ?>
+                              <span class="pd_br"><?php echo $summaryDetails['data'][0]['Units_in_production_MTS']  ?? "-" ?> <small class="fs13"><?php echo "Mts" ?></small></span>
+                            <?php endif ?>
                           </div>
-                          <div class="h5 mb-0 fw-bold text-light"><?php echo $summaryDetails['data'][0]['Avg_Acceptance_Rate'] * 100 ?> %</div>
-                          <div class="mt-2 mb-0 text-dark text-xs"> <!--     <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>         --> </div>
+                          <div class="mt-2 mb-0 text-dark text-xs">
+                            <!--   <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>  -->
+                          </div>
                         </div>
                         <div class="col-auto icnCircle bg-transparent">
-                          <i class="fas fa-handshake fa-2x text-light"></i>
+                          <i class="fas fa-cog fa-2x text-light"></i>
                         </div>
                       </div>
                     </div>
                   </div>
+                </a>
+              </div>
+
+            <?php } ?>
+
+            <?php if ($summaryDetails['data'][0]['Avg_Acceptance_Rate'] != null && $summaryDetails['data'][0]['Avg_Acceptance_Rate'] != 0) { ?>
+
+              <div class="col-xl-4 col-md-4 mb-2">
+                <div class="card shadow h-100 border-top border-4 border-primary">
+                  <div class="card-body m-0 align-item-center justify-content-center d-flex">
+                    <div class="row no-gutters align-items-center w-100">
+                      <div class="col mr-2">
+                        <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Avg.Rate of Acceptance
+                        </div>
+                        <div class="h5 mb-0 fw-bold text-light"><?php echo $summaryDetails['data'][0]['Avg_Acceptance_Rate'] ?> %</div>
+                        <div class="mt-2 mb-0 text-dark text-xs"> <!--     <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>         --> </div>
+                      </div>
+                      <div class="col-auto icnCircle bg-transparent">
+                        <i class="fas fa-handshake fa-2x text-light"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
 
-              <?php } ?>
+            <?php } ?>
 
-            </div>
+          </div>
 
             <div class="card-body pt-1">
               <div class="table table-responsive">

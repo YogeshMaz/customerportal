@@ -12,13 +12,13 @@
         <div class="w-100">
             <div class="navbar-header w-100 row" style="align-items: center;">
                 <div class="row">
-                    <div class="col-2 col-md-2">
+                    <div class="col-2 col-md-4">
                         <div class="sidebar-brand d-flex">
                             <img src="https://creatorapp.zohopublic.in/file/arun.ramu_machinemaze/customer-invoice/All_Org_Data/88342000001640019/Image/image-download/YfvzyEv0WUzVU0MVTC9UWsXge5UYqTexbQFDVDxrwAAwYmstm6JZSOqpFNB310Bhpsgu1zQ2VdpaC7GPjBwAq8EaeUYWW40Y8tTE?filepath=1654833412043_MM.jpeg" class="h-auto" style="width:35px;"> <strong class="d-none d-sm-block p-2">Machine Maze</strong>
                             <div class="text-end px-4 fw-bold position-relative d-lg-none d-md-block"> <span class="position-absolute fs-6" style="top:-50px;right: -10px">X</span> </div>
                         </div>
                     </div>
-                    <div class="text-center col-10 col-md-10 d-flex">
+                    <div class="text-center col-10 col-md-8 d-flex">
                         <h3 class="text-center fw-bold small m-auto  my-4"><a class="active text-decoration-none" href="#Page:Seller_DB_copy?super_admin_email=blr@360degreeglobal.com">CUSTOMER PORTAL</a></h3>
 
                         <ul class="navbar-nav my-2 my-lg-0 mypro">
@@ -34,7 +34,7 @@
                                     <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                         <strong><?php echo htmlspecialchars($_SESSION['name']); ?></strong>
                                         <span class="ss"><?php echo $orgName ?></span>
-                                        <i class="fa fa-user-circle d-md-none d-lg-none h5"></i>
+                                        <i class="fa fa-user-circle d-lg-none h5"></i>
                                     </a>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
