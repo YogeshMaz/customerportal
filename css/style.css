@@ -594,14 +594,14 @@ aside .position-relative.p-2.bg-light.mb-2 {
     width: 100%;
 }
 
-.navbar-expand-lg .navbar-nav-scroll {
+
+/* .navbar-expand-lg .navbar-nav-scroll {
     overflow-x: auto;
     overflow-y: hidden;
-}
+} */
 
 li.nav-item.dropdown:hover .dropdown-menu {
     display: block;
-    position: fixed;
 }
 
 li.nav-item {
@@ -881,10 +881,11 @@ span.badge {
     display: none;
 }
 
-.navbar-expand-lg .navbar-nav-scroll {
+
+/* .navbar-expand-lg .navbar-nav-scroll {
     overflow-x: auto;
     overflow-y: hidden;
-}
+} */
 
 @media only screen and (max-width: 600px) {
     .navbar-expand-lg .navbar-nav-scroll {
