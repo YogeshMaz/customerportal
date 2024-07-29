@@ -196,7 +196,6 @@ function updateRecord($email, $reportname, $appname)
         "criteria": "(Customer_Email.contains(\"' . addslashes($email) . '\"))",
         "data": {
             "To_check": "true",
-            "Customer_Email": "' . addslashes($email) . '",
             "trigger": [
                 "form_workflow"
             ]
@@ -479,16 +478,23 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     // echo "Current time : " . $currentTime;
 
     /** Summary title validations - start */
+    
     if (strpos($giveAccesTo, "M&F Summary") !== false) {
-        $summaryTitleArray[] = "Manufacturing Summary";
-        $summaryTitleUnique = "Manufacturing Summary";
+        $summaryTitleArray[] = "PC&A Summary";
+        $summaryWidgetArray[] = "PC&A";
+        $summaryWidgetUnique = "PC&A";
+        $summaryTitleUnique = "PC&A Summary";
     }
     if (strpos($giveAccesTo, "Fabrication Summary") !== false) {
         $summaryTitleArray[] = "Fabrication Summary";
+        $summaryWidgetArray[] = "Fabrication";
+        $summaryWidgetUnique  = "Fabrication";
         $summaryTitleUnique = "Fabrication Summary";
     }
     if (strpos($giveAccesTo, "EMS Summary") !== false) {
         $summaryTitleArray[] = "EMS Summary";
+        $summaryWidgetArray[] = "EMS";
+        $summaryWidgetUnique  = "EMS";
         $summaryTitleUnique = "EMS Summary";
     }
 
@@ -497,6 +503,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     } else {
         $summaryTitle = $summaryTitleUnique;
     }
+
+    // if (count($summaryWidgetArray) > 1) {
+    //     $summaryWidget = "Summary";
+    // } else {
+    //     $summaryWidget = $summaryTitleUnique;
+    // }
 
     /** Summary title validations - end */
 
@@ -515,6 +527,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     if(isset($summaryDetails['data'][0]['Modified_Time'])){
         $_SESSION['modifytime'] = $summaryDetails['data'][0]['Modified_Time'];
     }
+
+    $Category = $summaryDetails['data'][0]['Category'];
     // echo "summaryData var " . json_encode($summaryData);
     // echo "summary details " . json_encode($summaryDetails);
 

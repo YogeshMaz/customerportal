@@ -22,7 +22,7 @@
     if(isset($holdpro_dash_res_data) && array_key_exists('data', $holdpro_dash_res_data)){
         $holdpro_dash_res_count = count($holdpro_dash_res_data['data']) ?? 0;
     }
-    $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $cancelledpro_dash_res_count + $holdpro_dash_res_count ?>
+    $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $cancelledpro_dash_res_count + $holdpro_dash_res_count; ?>
     <!------------Project dashboard Sec------------->
     <div style="width:100%;" class="">
         <div class="col-md-12 col-sm-8">
@@ -35,7 +35,7 @@
                         <h5 class="my-1 fw-bold text-primary">Project Dashboard</h5>
                     </div>
                     <div class="col-md-6 d-flex justify-content-end">
-                        <b>Total Records : <span><?php $total_project_count ?></span></b>
+                        <b>Total Records : <span><?php echo $total_project_count ?></span></b>
                     </div>
                 </div>  
                   

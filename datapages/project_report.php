@@ -1,4 +1,8 @@
-<?php include '../header.php' ?>
+<?php 
+ include '../header.php';
+ include '../nav.php';
+ include '../footer.php';
+?>
 
 <style>
        .no-break {

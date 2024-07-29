@@ -146,7 +146,7 @@
                             </table>
                             <?php } else { ?>
                             <tr>
-                                <td>No records found.</td>
+                            <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
                             </tr>
                             <?php } ?>
                         </div>

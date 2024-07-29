@@ -1,12 +1,3 @@
-<style>
-    /* Apply initial theme based on user's system preference */
-    @media (prefers-color-scheme: dark) {
-        body {
-            background-color: #ffffff;
-            color: #ffffff;
-        }
-    }
-</style>
 <div id="navbar-wrapper">
     <nav class="navbar navbar-inverse p-0">
         <div class="w-100">
