@@ -362,7 +362,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                   <div class="card-body bg-light pt-0 widgets_bg">
                     <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent d-flex justify-content-between">
                       <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
-                      <input id="map_table" type="text" placeholder="search partner here.." class="partnerLocationSearch form-control" style="width:250px;">
+                      <input id="map_table" type="text" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="width:250px;">
                     </div>
                     <br>
                     <div id="mapCanvas"></div>
