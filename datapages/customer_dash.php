@@ -64,6 +64,13 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
   span.pd_br1:last-child {
     border-right: 0px;
   }
+
+  .partnerLocationSearch{
+    width: 345px;
+    border-radius: 15px;
+    padding: 2px 2px 2px 15px;
+    /* border-bottom: 10px; */
+  }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvBZcW9MkLM0NMPG_lNqVbTyzEQQ6chUA&libraries=places&callback=initMap" defer></script>
 
@@ -97,7 +104,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary">Total Projects</div>
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
-                            <?php if (in_array('M&F Summary', $Category)) {
+                              <?php if (in_array('M&F Summary', $Category)) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Total_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
                               }
@@ -131,7 +138,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
                               <?php if (in_array('M&F Summary', $Category)) {
-                              ?> <span><?php echo $summaryDetails['data'][0]['Production_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A" ; ?></span></span>
+                              ?> <span><?php echo $summaryDetails['data'][0]['Production_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
                               }
                               if (in_array("Fabrication Summary", $Category)) {
@@ -192,7 +199,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary">Onhold Projects</div>
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
-                              <?php 
+                              <?php
                               if (in_array('M&F Summary', $Category)) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Onhold_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
@@ -356,6 +363,8 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                     <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent">
                       <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
                     </div>
+                    <center><input id="map_table" type="text" placeholder="search partner here.." class="partnerLocationSearch"></center>
+                    <br>
                     <div id="mapCanvas"></div>
                   </div>
                 </div>
@@ -516,13 +525,17 @@ $partnerCollection = []; // Initialize an empty array to store partner data
 //     }
 //   }
 // }
+$Partner_PCndA_Details = json_decode($Partner_PCndA_Details, true);
+foreach ($Partner_PCndA_Details['data'] as $eachMndFDetails) {
+  $partnerCollection[] = $eachMndFDetails;
+}
 ?>
 
 <script>
   new DataTable('#map_table');
 </script>
 
-<!-- <script>
+<script>
   // Initialize and add the map
   function initMap() {
     var map;
@@ -585,10 +598,15 @@ $partnerCollection = []; // Initialize an empty array to store partner data
       }
 
       infoWindowContent[position.toString()] += '<div class="info_content" id="map_table">' +
+        '<div id="results">' +
+        '<div class="results">' +
         '<h6 style="color: #0070ba;">' + collectionPartner[i].partner_name + '</h6>' +
         '<b>' + collectionPartner[i].partner_category + '</b>' +
         '<p>Location: ' + collectionPartner[i].location_content + '</p>' +
+        '</div>' +
+        '</div>' +
         '</div>';
+
 
       // Add click event listener to marker
       google.maps.event.addListener(marker, 'click', (function(marker, content) {
@@ -627,4 +645,27 @@ $partnerCollection = []; // Initialize an empty array to store partner data
   //     infoWindowContent[position.toString()] += '</tbody>';
   //     infoWindowContent[position.toString()] += '</table>';
   //     infoWindowContent[position.toString()] += '</div>';
-</script> -->
+  $("#map_table").keyup(function() {
+
+    // Retrieve the input field text and reset the count to zero
+    var filter = $(this).val(),
+      count = 0;
+
+    // Loop through the comment list
+    $('#results div').each(function() {
+
+
+      // If the list item does not contain the text phrase fade it out
+      if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+        $(this).hide(); // MY CHANGE
+
+        // Show the list item if the phrase matches and increase the count by 1
+      } else {
+        $(this).show(); // MY CHANGE
+        count++;
+      }
+
+    });
+
+  });
+</script>

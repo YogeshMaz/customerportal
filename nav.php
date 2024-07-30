@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <div class="text-center col-10 col-md-8 d-flex">
-                        <h3 class="text-center fw-bold small m-auto  my-4"><a class="active text-decoration-none" href="#Page:Seller_DB_copy?super_admin_email=blr@360degreeglobal.com">CUSTOMER PORTAL</a></h3>
+                        <h3 class="text-center fw-bold small m-auto  my-4"><a class="active text-decoration-none">CUSTOMER PORTAL</a></h3>
 
                         <ul class="navbar-nav my-2 my-lg-0 mypro">
                             <li class="nav-item mt-1 m-0 px-2">

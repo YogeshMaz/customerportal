@@ -529,6 +529,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     }
 
     $Category = $summaryDetails['data'][0]['Category'];
+    $Partner_PCndA_Details = $summaryDetails['data'][0]['Partner_PCndA_Details'];
+    
     // echo "summaryData var " . json_encode($summaryData);
     // echo "summary details " . json_encode($summaryDetails);
 
