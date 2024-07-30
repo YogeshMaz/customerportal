@@ -648,21 +648,6 @@ if(isset($Partner_EMS_Details['data'])){
     });
   }
 
-  // infoWindowContent[position.toString()] += '<div class="table-responsive">';
-  //     infoWindowContent[position.toString()] += '<table class="table table-striped">';
-  //     // Add table headers only if they haven't been added before
-  //     if (infoWindowContent[position.toString()].indexOf('<thead') === -1) {
-  //       infoWindowContent[position.toString()] += '<thead class="table-primary"><tr><th>Partner</th><th>Category</th><th>Location</th></tr></thead>';
-  //     }
-  //     infoWindowContent[position.toString()] += '<tbody>';
-  //     infoWindowContent[position.toString()] += '<tr>';
-  //     infoWindowContent[position.toString()] += '<td style="color: #0070ba;">' + collectionPartner[i].partner_name + '</td>';
-  //     infoWindowContent[position.toString()] += '<td>' + collectionPartner[i].partner_category + '</td>';
-  //     infoWindowContent[position.toString()] += '<td>' + collectionPartner[i].location_content + '</td>';
-  //     infoWindowContent[position.toString()] += '</tr>';
-  //     infoWindowContent[position.toString()] += '</tbody>';
-  //     infoWindowContent[position.toString()] += '</table>';
-  //     infoWindowContent[position.toString()] += '</div>';
   $("#map_table").keyup(function() {
 
     // Retrieve the input field text and reset the count to zero
