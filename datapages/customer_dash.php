@@ -66,7 +66,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
   }
 
   .partnerLocationSearch{
-    width: 345px;
+    width: 300px;
     border-radius: 15px;
     padding: 2px 2px 2px 15px;
     /* border-bottom: 10px; */
@@ -548,10 +548,6 @@ if(isset($Partner_EMS_Details['data'])){
 }
 
 ?>
-
-<script>
-  new DataTable('#map_table');
-</script>
 
 <script>
   // Initialize and add the map
