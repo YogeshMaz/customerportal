@@ -71,7 +71,7 @@
 
             <?php if ($summaryDetails['data'][0]['Units_in_delivered_EA'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_KG'] != 0 || $summaryDetails['data'][0]['Units_in_delivered_MTS'] != 0) { ?>
 
-            <div class="col-xl-4 col-md-3 mb-2">
+            <div class="col-xl-4 col-md-4 mb-2">
               <a id="delivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
@@ -106,7 +106,7 @@
 
             <?php if ($summaryDetails['data'][0]['Units_in_production_EA'] != 0 || $summaryDetails['data'][0]['Units_in_production_KG'] != 0 || $summaryDetails['data'][0]['Units_in_production_MTS'] != 0) { ?>
 
-            <div class="col-xl-4 col-md-3 mb-2">
+            <div class="col-xl-4 col-md-4 mb-2">
               <a id="notdelivered">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
@@ -141,14 +141,14 @@
 
             <?php if ($summaryDetails['data'][0]['Avg_Acceptance_Rate'] != null && $summaryDetails['data'][0]['Avg_Acceptance_Rate'] != 0) { ?>
 
-            <div class="col-xl-4 col-md-3 mb-2">
+            <div class="col-xl-4 col-md-4 mb-2">
                   <div class="card shadow h-100 border-top border-4 border-primary">
                     <div class="card-body m-0 align-item-center justify-content-center d-flex">
                         <div class="row no-gutters align-items-center w-100">
                           <div class="col mr-2">
                               <div class="text-xs fw-bold text-uppercase mb-2 text-light"> Avg.Rate of Acceptance
                               </div>
-                              <div class="h5 mb-0 fw-bold text-light"><?php echo $summaryDetails['data'][0]['Avg_Acceptance_Rate'] ?> %</div>
+                              <div class="h5 mb-0 fw-bold text-light"><?php echo $summaryDetails['data'][0]['Avg_Acceptance_Rate'] * 100 ?> %</div>
                               <div class="mt-2 mb-0 text-dark text-xs">                     <!--     <span class="text-dark mr-2"><i class="fas fa-arrow-up"></i> <b> ( ₹ 0 )</b> </span>  <span>Since last years</span>         -->               </div>
                           </div>
                           <div class="col-auto icnCircle bg-transparent">                        
