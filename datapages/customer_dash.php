@@ -91,9 +91,9 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 
         <div class="row mdrow1">
 
-          <div class="col-md-7">
+          <div class="col-lg-7 col-md-12">
 
-            <div class="card shadow h-100  border-primary mt-0">
+            <div class="card shadow h-100  border-primary mt-0 ">
               <div class="card-body bg-light widgets_bg py-4">
                 <div class="row">
 
@@ -262,7 +262,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
               </div>
             </div>
 
-            <div class="card shadow h-100 border-primary mt-4">
+            <div class="card shadow h-100 border-primary my-4">
               <div class="card-body bg-light widgets_bg">
 
                 <div class="row">
@@ -353,7 +353,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 
           </div>
 
-          <div class="col-md-5">
+          <div class="col-lg-5 col-md-12">
             <div class="row">
 
               <div class="col-xl-12 col-md-12 mb-2">
