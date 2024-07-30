@@ -1,29 +1,31 @@
-<?php   
-  include '../header.php';
-  include '../nav.php';
-  include '../footer.php';
-  ?>
+<?php
+include '../header.php';
+include '../nav.php';
+include '../footer.php';
+?>
 <div id="rfqlistsec">
   <!------------Rfq List Sec------------->
-  <?php 
+  <?php
   $resData = getRFQData();
   if (isset($resData) && $resData != "" && isset($resData['data']) && count($resData['data']) > 0) {  ?>
-    <div style="width:100%;" class="">
+    <div style="width:100%;" class="container-fluid">
       <div class="col-md-12 col-sm-8">
         <div class="card mb-4 mt-2 tablecard">
+
           <div class="card-header pt-3">
             <div class="row">
               <div class="col-md-6">
                 <h5 class="my-1 fw-bold text-primary">RFQ List</h5>
               </div>
               <div class="col-md-6 d-flex justify-content-end">
-                <b>Total Records : <span><?php echo count($resData['data']) ?></span></b>
+                <b>Total Records : <span><?php echo count($resData['data']) ?? 0 ?></span></b>
               </div>
             </div>
           </div>
 
 
           <div class="card-body pt-1">
+
             <div class="table table-responsive">
 
               <table style="width:100%" class="table table-striped" id="example">
@@ -105,16 +107,34 @@
               </table>
 
             </div>
-          </div>
+
+          <?php } else { ?>
+            
+            <div style="width:100%;" class="container-fluid">
+              <div class="col-md-12 col-sm-8">
+                <div class="card mb-4 mt-2 tablecard">
+
+                  <div class="card-header pt-3">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5 class="my-1 fw-bold text-primary">RFQ List</h5>
+                      </div>
+                      <div class="col-md-6 d-flex justify-content-end">
+                        <b>Total Records : <span>0</span></b>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body pt-1">
+                    <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
+                  <?php } ?>
+               </div>
+
         </div>
       </div>
     </div>
-  <?php } else { ?>
 
-    <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
 
-  <?php } ?>
-  <!------------------------------------->
+    <!------------------------------------->
 </div>
 
 <script>

@@ -24,7 +24,7 @@
     }
     $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $cancelledpro_dash_res_count + $holdpro_dash_res_count; ?>
     <!------------Project dashboard Sec------------->
-    <div style="width:100%;" class="">
+    <div style="width:100%;" class="container-fluid">
         <div class="col-md-12 col-sm-8">
         <div class="card mb-4 mt-2 tablecard">
 

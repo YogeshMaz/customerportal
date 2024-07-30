@@ -158,42 +158,96 @@
                     </div>
               </div>
 
-          <?php } ?>
+              <?php } ?>
 
-            </div>
+              <div class="table table-responsive">
+                <?php if ((isset($deliveryData['not_yet_delivered']['data']) && count($deliveryData['not_yet_delivered']['data']) > 0 || isset($deliveryData['delivered']['data']) && count($deliveryData['delivered']['data']) > 0)) { ?>
+                  <table style="width:100%" class="table table-striped" id="d_sch_combined">
+                    <thead class="table-primary">
+                      <tr>
+                        <th><?php include 'eye.php' ?></th>
+                        <th>Project No</th>
+                        <th>Customer PO</th>
+                        <th>Delivery Schedule Type</th>
+                        <th>Part Names</th>
+                        <th>Item Description / Item part No</th>
+                        <th>Quantity Shipped to Customer</th>
+                        <th>Customer Accepted Quantity</th>
+                        <th>Unit</th>
+                        <th>Planned Date of Delivery</th>
+                        <th>Actual Date of Delivery</th>
+                        <th>Quality Acceptance Rate Machinemaze</th>
+                        <th>Supply Quality Docs</th>
+                        <th>Shipping Document</th>
+                        <th>Tracking Number</th>
+                        <th>Delivery Address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Not Delivered Section -->
+                      <tr class="table-secondary">
+                        <td colspan="16"><strong>Not Delivered</strong></td>
+                      </tr>
+                      <?php
+                      if (isset($deliveryData['not_yet_delivered']['data']) && count($deliveryData['not_yet_delivered']['data']) > 0) {
+                        foreach ($deliveryData['not_yet_delivered']['data'] as $record) {
+                          if (isset($record)) { ?>
+                            <tr>
+                              <td></td>
+                              <td><?php echo htmlspecialchars($record['Project_Number'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Customer_PO1']['PO_Number'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Delivery_Schedule_Type'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Part_Names']['Part_Name'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Item_Description_Item_Part_No'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Qty'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars(isset($record['Customer_Accepted_Quantity']) && !empty($record['Customer_Accepted_Quantity']) ? $record['Customer_Accepted_Quantity'] : "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Unit'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Delivery_Date'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Actual_Date_of_Delivery'] ?? "-"); ?></td>
+                              <?php
+                              $Customer__Acceptance_Rate = 0;
+                              if ($record['Customer_Accepted_Quantity'] != "" && $record['Customer_Accepted_Quantity'] != null) {
+                                $Customer__Acceptance_Rate = $record['Customer_Accepted_Quantity'] / $record['Qty'] * 100;
+                                $Customer__Acceptance_Rate = round($Customer__Acceptance_Rate, 2);
+                              }
+                              ?>
+                              <td><?php echo htmlspecialchars($Customer__Acceptance_Rate ?? "-"); ?>%</td>
+                              <td>-</td>
+                              <?php
+                              $Shipping_Document = "";
+                              if ($record['Shipping_Document'] != "" && $record['Shipping_Document'] != null) {
+                                $Shipping_Document_FilePath = explode('?', $record["Shipping_Document"]);
+                                $Shipping_Document = "https://creatorapp.zohopublic.in/file/arun.ramu_machinemaze/machinemaze-project-management/Overall_Delivery_Schedule_Records/" . $record['ID'] . "/Shipping_Document/image-download/m29ONX2jbW3FUeK9NBqaFhjbxHvQJjWuGC9S5gbZW0MCpaAx9HXJWzDabBj5XuW1zps3f8d5Sk7Ty78dRxXXjS3GDDyKMe4wXtad?" . $Shipping_Document_FilePath[1];
+                              }
+                              if ($Shipping_Document != null && $Shipping_Document != "") {
+                              ?>
+                                <td>
+                                  <a href='<?php echo $Shipping_Document; ?>' download><img src='http://localhost/customerportal/images/filedlod.png' width='35px'></a>
+                                </td>
+                              <?php } else { ?>
+                                <td>-</td>
+                              <?php } ?>
+                              <td><?php echo htmlspecialchars($record['Tracking_Number'] ?? "-"); ?></td>
+                              <td><?php echo htmlspecialchars($record['Delivery_Address']['zc_display_value'] ?? "-"); ?></td>
+                            </tr>
+                        <?php }
+                        }
+                      } else { ?>
+                        <tr>
+                          <td colspan="16" class="text-center">
+                            <p>No Records Found!</p>
+                            <!-- <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;"> -->
+                          </td>
+                        </tr>
+                      <?php } ?>
 
-            <div class="table table-responsive">
-              <?php if ((isset($deliveryData['not_yet_delivered']['data']) && count($deliveryData['not_yet_delivered']['data']) > 0 || isset($deliveryData['delivered']['data']) && count($deliveryData['delivered']['data']) > 0)) { ?>
-                <table style="width:100%" class="table table-striped" id="d_sch_combined">
-                  <thead class="table-primary">
-                    <tr>
-                      <th><?php include 'eye.php' ?></th>
-                      <th>Project No</th>
-                      <th>Customer PO</th>
-                      <th>Delivery Schedule Type</th>
-                      <th>Part Names</th>
-                      <th>Item Description / Item part No</th>
-                      <th>Quantity Shipped to Customer</th>
-                      <th>Customer Accepted Quantity</th>
-                      <th>Unit</th>
-                      <th>Planned Date of Delivery</th>
-                      <th>Actual Date of Delivery</th>
-                      <th>Quality Acceptance Rate Machinemaze</th>
-                      <th>Supply Quality Docs</th>
-                      <th>Shipping Document</th>
-                      <th>Tracking Number</th>
-                      <th>Delivery Address</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <!-- Not Delivered Section -->
-                    <tr class="table-secondary">
-                      <td colspan="16"><strong>Not Delivered</strong></td>
-                    </tr>
-                    <?php
-                    if (isset($deliveryData['not_yet_delivered']['data']) && count($deliveryData['not_yet_delivered']['data']) > 0) {
-                      foreach ($deliveryData['not_yet_delivered']['data'] as $record) {
-                        if (isset($record)) { ?>
+                      <!-- Delivered Section -->
+
+                      <?php if (isset($deliveryData['delivered']['data']) && count($deliveryData['delivered']['data']) > 0) { ?>
+                        <tr class="table-secondary">
+                          <td colspan="16"><strong>Delivered</strong></td>
+                        </tr>
+                        <?php foreach ($deliveryData['delivered']['data'] as $record) { ?>
                           <tr>
                             <td></td>
                             <td><?php echo htmlspecialchars($record['Project_Number'] ?? "-"); ?></td>
@@ -223,85 +277,33 @@
                             }
                             if ($Shipping_Document != null && $Shipping_Document != "") {
                             ?>
-                              <td>
-                                <a href='<?php echo $Shipping_Document; ?>' download><img src='http://localhost/customerportal/images/filedlod.png' width='35px'></a>
-                              </td>
+                              <td class="text-center"><a href='<?php echo $Shipping_Document; ?>' download><img src='http://localhost/customerportal/images/filedlod.png' width='35px'></a></td>
                             <?php } else { ?>
                               <td>-</td>
                             <?php } ?>
                             <td><?php echo htmlspecialchars($record['Tracking_Number'] ?? "-"); ?></td>
                             <td><?php echo htmlspecialchars($record['Delivery_Address']['zc_display_value'] ?? "-"); ?></td>
                           </tr>
-                      <?php }
-                      }
-                    } else { ?>
-                      <tr>
-                        <td colspan="16" class="text-center">
-                          <p>No Records Found!</p>
-                          <!-- <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;"> -->
-                        </td>
-                      </tr>
-                    <?php } ?>
-
-                    <!-- Delivered Section -->
-
-                    <?php if (isset($deliveryData['delivered']['data']) && count($deliveryData['delivered']['data']) > 0) { ?>
-                      <tr class="table-secondary">
-                        <td colspan="16"><strong>Delivered</strong></td>
-                      </tr>
-                      <?php foreach ($deliveryData['delivered']['data'] as $record) { ?>
+                        <?php }
+                      } else { ?>
                         <tr>
-                          <td></td>
-                          <td><?php echo htmlspecialchars($record['Project_Number'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Customer_PO1']['PO_Number'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Delivery_Schedule_Type'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Part_Names']['Part_Name'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Item_Description_Item_Part_No'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Qty'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars(isset($record['Customer_Accepted_Quantity']) && !empty($record['Customer_Accepted_Quantity']) ? $record['Customer_Accepted_Quantity'] : "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Unit'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Delivery_Date'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Actual_Date_of_Delivery'] ?? "-"); ?></td>
-                          <?php
-                          $Customer__Acceptance_Rate = 0;
-                          if ($record['Customer_Accepted_Quantity'] != "" && $record['Customer_Accepted_Quantity'] != null) {
-                            $Customer__Acceptance_Rate = $record['Customer_Accepted_Quantity'] / $record['Qty'] * 100;
-                            $Customer__Acceptance_Rate = round($Customer__Acceptance_Rate, 2);
-                          }
-                          ?>
-                          <td><?php echo htmlspecialchars($Customer__Acceptance_Rate ?? "-"); ?>%</td>
-                          <td>-</td>
-                          <?php
-                          $Shipping_Document = "";
-                          if ($record['Shipping_Document'] != "" && $record['Shipping_Document'] != null) {
-                            $Shipping_Document_FilePath = explode('?', $record["Shipping_Document"]);
-                            $Shipping_Document = "https://creatorapp.zohopublic.in/file/arun.ramu_machinemaze/machinemaze-project-management/Overall_Delivery_Schedule_Records/" . $record['ID'] . "/Shipping_Document/image-download/m29ONX2jbW3FUeK9NBqaFhjbxHvQJjWuGC9S5gbZW0MCpaAx9HXJWzDabBj5XuW1zps3f8d5Sk7Ty78dRxXXjS3GDDyKMe4wXtad?" . $Shipping_Document_FilePath[1];
-                          }
-                          if ($Shipping_Document != null && $Shipping_Document != "") {
-                          ?>
-                            <td class="text-center"><a href='<?php echo $Shipping_Document; ?>' download><img src='http://localhost/customerportal/images/filedlod.png' width='35px'></a></td>
-                          <?php } else { ?>
-                            <td>-</td>
-                          <?php } ?>
-                          <td><?php echo htmlspecialchars($record['Tracking_Number'] ?? "-"); ?></td>
-                          <td><?php echo htmlspecialchars($record['Delivery_Address']['zc_display_value'] ?? "-"); ?></td>
+                          <td colspan="16" class="text-center">
+                            <p>No Records Found!</p>
+                            <!-- <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;"> -->
+                          </td>
                         </tr>
-                      <?php }
-                    } else { ?>
-                      <tr>
-                        <td colspan="16" class="text-center">
-                          <p>No Records Found!</p>
-                          <!-- <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;"> -->
-                        </td>
-                      </tr>
-                    <?php } ?>
-                  </tbody>
-                </table>
-                <?php 
-                } else{
-                    ?> <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;"> <?php
-                } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                  <?php 
+                  } else{
+                      ?> <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;"> <?php
+                  } ?>
+              </div>
+
             </div>
+
+           
 
           </div>
 

@@ -105,14 +105,32 @@
               </table>
             </div>
 
-          </div>
+            <?php } else { ?>
 
+            <div style="width:100%;" class="container-fluid">
+              <div class="col-md-12 col-sm-8">
+                <div class="card mb-4 mt-2 tablecard">
+                  <div class="card-header pt-3">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5 class="my-1 fw-bold text-primary">Price Approval</h5>
+                      </div>
+                      <div class="col-md-6 d-flex justify-content-end">
+                        <b>Total Records : <span>0</span></b>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="card-body pt-1">
+                    <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
+                  <?php } ?>
+
+                  </div>
         </div>
       </div>
     </div>
-  <?php } else { ?>
-    <img src="https://achieversacademyalwar.in/assets/images/no-record-found.png" class="mx-auto d-flex" style="mix-blend-mode: luminosity;">
-  <?php } ?>
+  
   <!------------------------------------->
 </div>
 
