@@ -525,10 +525,28 @@ $partnerCollection = []; // Initialize an empty array to store partner data
 //     }
 //   }
 // }
-$Partner_PCndA_Details = json_decode($Partner_PCndA_Details, true);
-foreach ($Partner_PCndA_Details['data'] as $eachMndFDetails) {
-  $partnerCollection[] = $eachMndFDetails;
+
+
+/** To collect the Manufacturing partner location data */
+if(isset($Partner_PCndA_Details['data'])){
+  foreach ($Partner_PCndA_Details['data'] as $eachMndFDetails) {
+    $partnerCollection[] = $eachMndFDetails;
+  }
 }
+
+/** To collect the Fabrication partner location data */
+if(isset($Partner_FAB_Details['data'])){
+  foreach ($Partner_FAB_Details['data'] as $eachFabDetails) {
+    $partnerCollection[] = $eachFabDetails;
+  }
+}
+/** To collect the EMS partner location data */
+if(isset($Partner_EMS_Details['data'])){
+  foreach ($Partner_EMS_Details['data'] as $eachEmsDetails) {
+    $partnerCollection[] = $eachEmsDetails;
+  }
+}
+
 ?>
 
 <script>

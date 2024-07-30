@@ -529,9 +529,22 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     }
 
     $Category = $summaryDetails['data'][0]['Category'];
-    $Partner_PCndA_Details = $summaryDetails['data'][0]['Partner_PCndA_Details'];
-    
-    // echo "summaryData var " . json_encode($summaryData);
+    if(isset($summaryDetails['data'][0]['Partner_PCndA_Details'])){
+        $Partner_PCndA_Details = $summaryDetails['data'][0]['Partner_PCndA_Details'];
+        $Partner_PCndA_Details = json_decode($Partner_PCndA_Details, true);
+    }
+    if(isset($summaryDetails['data'][0]['Partner_Fabrication_Details'])){
+        $Partner_Fabrication_Details = $summaryDetails['data'][0]['Partner_Fabrication_Details'];
+        $Partner_FAB_Details = json_decode($Partner_Fabrication_Details, true);
+    }
+    if(isset($summaryDetails['data'][0]['Partner_EMS_Details'])){
+        $Partner_EMS_Details = $summaryDetails['data'][0]['Partner_EMS_Details'];
+        $Partner_EMS_Details = json_decode($Partner_EMS_Details, true);
+    }
+
+    /** To convert index array to associative array */
+
+   // echo "summaryData var " . json_encode($summaryData);
     // echo "summary details " . json_encode($summaryDetails);
 
     // $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $cancelledpro_dash_res_count + $holdpro_dash_res_count;
