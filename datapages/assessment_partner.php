@@ -2,6 +2,7 @@
     @media print {
 	  body { 
 		page-break-after: always;
+		font-size: 12px;
 	  }
 	  .noPrint{
 		display:none;
@@ -118,7 +119,7 @@
 					echo "Template ID not found";
 				}
 			?>
-  <div class="noPrint" style="display: flex; justify-content: end;">
+  <div style="display: flex; justify-content: end;">
 	<!-- <a href="http://localhost/customerportal/mf_dashboard.php"><button class="button button1 noPrint">Back to your partners</button></a> -->
 	<button id="download-pdf" class="button button2">Download PDF</button>
 	<button id="print-pdf" class="button button2">Print PDF</button>

@@ -367,6 +367,7 @@
 
                                     <?php foreach ($holdpro_dash_res_data['data'] as $record) { ?>
                                         <tr>
+                                            <td></td>
                                             <td><?php echo htmlspecialchars($record['Project_Number'] ?? "-"); ?></td>
                                             <?php $onHoldUrl = "http://localhost/customerportal/datapages/project_report.php?ID=" . htmlspecialchars($record['ID']); ?>
                                             <td><a href='<?php echo $onHoldUrl; ?>' target="_blank"><?php echo htmlspecialchars($record['Project_Title']  ?? "-"); ?></a></td>  

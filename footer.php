@@ -118,21 +118,6 @@ function showSection(sectionId, spanSelector) {
 </script>
 
 <script>
-    new DataTable('#example');
-    new DataTable('#proj_dash_data');
-    new DataTable('#invoice_data');
-    new DataTable('#proj_dash_data1');
-    new DataTable('#proj_dash_data2');
-    new DataTable('#proj_dash_data3');
-    new DataTable('#po_datatable');
-    new DataTable('#partnerf_datatable');
-    new DataTable('#costing_datatable'); 
-    new DataTable('#prtnr_datatable');  
-    new DataTable('#p_app');  
-    new DataTable('#d_sch');  
-    new DataTable('#qc_table');  
-
-
 
     //script for signature
     var canvas = document.getElementById('signature-canvas');
@@ -142,6 +127,8 @@ function showSection(sectionId, spanSelector) {
     clearButton.addEventListener('click', function() {
       signaturePad.clear();
     });
+
+    $.fn.dataTable.ext.errMode = 'none';
 
 </script>
 

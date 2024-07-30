@@ -34,6 +34,7 @@
         #profileSec li span:first-child {
             min-width: max-content;
         }
+        table { font-size:12px; }
 
     }
 

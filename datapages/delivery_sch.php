@@ -194,16 +194,16 @@
                           if (isset($record)) { ?>
                             <tr>
                               <td></td>
-                              <td><?php echo htmlspecialchars($record['Project_Number'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Customer_PO1']['PO_Number'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Delivery_Schedule_Type'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Part_Names']['Part_Name'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Item_Description_Item_Part_No'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Qty'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars(isset($record['Customer_Accepted_Quantity']) && !empty($record['Customer_Accepted_Quantity']) ? $record['Customer_Accepted_Quantity'] : "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Unit'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Delivery_Date'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Actual_Date_of_Delivery'] ?? "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Project_Number']) && !empty($record['Project_Number']) ? $record['Project_Number'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Customer_PO1']['PO_Number']) && !empty($record['Customer_PO1']['PO_Number']) ? $record['Customer_PO1']['PO_Number'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Delivery_Schedule_Type']) && !empty($record['Delivery_Schedule_Type']) ? $record['Delivery_Schedule_Type'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Part_Names']['Part_Name']) && !empty($record['Part_Names']['Part_Name']) ? $record['Part_Names']['Part_Name'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Item_Description_Item_Part_No']) && !empty($record['Item_Description_Item_Part_No']) ? $record['Item_Description_Item_Part_No'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Qty']) && !empty($record['Qty']) ? $record['Qty'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Customer_Accepted_Quantity']) && !empty($record['Customer_Accepted_Quantity']) ? $record['Customer_Accepted_Quantity'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Unit']) && !empty($record['Unit']) ? $record['Unit'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Delivery_Date']) && !empty($record['Delivery_Date']) ? $record['Delivery_Date'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Actual_Date_of_Delivery']) && !empty($record['Actual_Date_of_Delivery']) ? $record['Actual_Date_of_Delivery'] : "-"); ?></td>
                               <?php
                               $Customer__Acceptance_Rate = 0;
                               if ($record['Customer_Accepted_Quantity'] != "" && $record['Customer_Accepted_Quantity'] != null) {
@@ -227,8 +227,9 @@
                               <?php } else { ?>
                                 <td>-</td>
                               <?php } ?>
-                              <td><?php echo htmlspecialchars($record['Tracking_Number'] ?? "-"); ?></td>
-                              <td><?php echo htmlspecialchars($record['Delivery_Address']['zc_display_value'] ?? "-"); ?></td>
+                              
+                              <td><?php echo htmlspecialchars(isset($record['Tracking_Number']) && !empty($record['Tracking_Number']) ? $record['Tracking_Number'] : "-"); ?></td>
+                              <td><?php echo htmlspecialchars(isset($record['Delivery_Address']['zc_display_value']) && !empty($record['Delivery_Address']['zc_display_value']) ? $record['Delivery_Address']['zc_display_value'] : "-"); ?></td>
                             </tr>
                         <?php }
                         }
@@ -250,16 +251,17 @@
                         <?php foreach ($deliveryData['delivered']['data'] as $record) { ?>
                           <tr>
                             <td></td>
-                            <td><?php echo htmlspecialchars($record['Project_Number'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Customer_PO1']['PO_Number'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Delivery_Schedule_Type'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Part_Names']['Part_Name'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Item_Description_Item_Part_No'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Qty'] ?? "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Project_Number']) && !empty($record['Project_Number']) ? $record['Project_Number'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Customer_PO1']['PO_Number']) && !empty($record['Customer_PO1']['PO_Number']) ? $record['Customer_PO1']['PO_Number'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Delivery_Schedule_Type']) && !empty($record['Delivery_Schedule_Type']) ? $record['Delivery_Schedule_Type'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Part_Names']['Part_Name']) && !empty($record['Part_Names']['Part_Name']) ? $record['Part_Names']['Part_Name'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Item_Description_Item_Part_No']) && !empty($record['Item_Description_Item_Part_No']) ? $record['Item_Description_Item_Part_No'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Qty']) && !empty($record['Qty']) ? $record['Qty'] : "-"); ?></td>
                             <td><?php echo htmlspecialchars(isset($record['Customer_Accepted_Quantity']) && !empty($record['Customer_Accepted_Quantity']) ? $record['Customer_Accepted_Quantity'] : "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Unit'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Delivery_Date'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Actual_Date_of_Delivery'] ?? "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Unit']) && !empty($record['Unit']) ? $record['Unit'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Delivery_Date']) && !empty($record['Delivery_Date']) ? $record['Delivery_Date'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Actual_Date_of_Delivery']) && !empty($record['Actual_Date_of_Delivery']) ? $record['Actual_Date_of_Delivery'] : "-"); ?></td>
+
                             <?php
                             $Customer__Acceptance_Rate = 0;
                             if ($record['Customer_Accepted_Quantity'] != "" && $record['Customer_Accepted_Quantity'] != null) {
@@ -281,8 +283,8 @@
                             <?php } else { ?>
                               <td>-</td>
                             <?php } ?>
-                            <td><?php echo htmlspecialchars($record['Tracking_Number'] ?? "-"); ?></td>
-                            <td><?php echo htmlspecialchars($record['Delivery_Address']['zc_display_value'] ?? "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Tracking_Number']) && !empty($record['Tracking_Number']) ? $record['Tracking_Number'] : "-"); ?></td>
+                            <td><?php echo htmlspecialchars(isset($record['Delivery_Address']['zc_display_value']) && !empty($record['Delivery_Address']['zc_display_value']) ? $record['Delivery_Address']['zc_display_value'] : "-"); ?></td>
                           </tr>
                         <?php }
                       } else { ?>
@@ -361,4 +363,11 @@
       }
     });
   });
+
+$.fn.dataTable.ext.errMode = 'none';
+
+$('#d_sch_combined').on('error.dt', function(e, settings, techNote, message) {
+    console.log('An error has been reported by DataTables: ', message);
+}).DataTable();
+
 </script>
