@@ -67,7 +67,7 @@
 
 
                 <li class="nav-item">
-                    <a href="http://localhost/customerportal/mf_dashboard.php" class="nav-link sh" id="showdashboard">
+                    <a href="http://localhost/customerportal/datapages/customer_dash.php" class="nav-link sh" id="showdashboard">
                         <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span>
                     </a>
                 </li>
@@ -122,6 +122,9 @@
                 </li>
                 <li class="nav-item ">
                     <a href="http://localhost/customerportal/datapages/delivery_sch.php" class="nav-link sh" id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a href="http://localhost/customerportal/datapages/test_form_data.php" class="nav-link sh" id="showds"> <i class="fas fa-calendar-week"></i> <span> Test Form</span></a>
                 </li>
                 <li class="nav-item d-none">
                     <a class="nav-link d-block sh" id="showqc"> <i class="fas fa-check-square"></i> <span>Quality Control</span></a>

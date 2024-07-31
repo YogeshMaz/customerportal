@@ -1,4 +1,7 @@
 <?php
+include '../header.php';
+include '../nav.php';
+include '../footer.php';
 $project_dash_res_data = getOpenProjects();
 $completepro_dash_res_data = getCompletedProjects();
 $cancelledpro_dash_res_data = getCancelledProjects();
@@ -109,7 +112,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                               <?php
                               }
                               if (in_array("Fabrication Summary", $Category)) {
-                              ?> <span><?php echo $summaryDetails['data'][0]['Total_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabriction"; ?></span></span>
+                              ?> <span><?php echo $summaryDetails['data'][0]['Total_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
                               if (in_array("EMS Summary", $Category)) {
@@ -142,7 +145,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                               <?php
                               }
                               if (in_array("Fabrication Summary", $Category)) {
-                              ?> <span><?php echo $summaryDetails['data'][0]['Production_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabriction"; ?></span></span>
+                              ?> <span><?php echo $summaryDetails['data'][0]['Production_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
                               if (in_array("EMS Summary", $Category)) {
@@ -172,7 +175,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                               <?php
                               }
                               if (in_array("Fabrication Summary", $Category)) {
-                              ?> <span><?php echo $summaryDetails['data'][0]['Open_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabriction"; ?></span></span>
+                              ?> <span><?php echo $summaryDetails['data'][0]['Open_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
                               if (in_array("EMS Summary", $Category)) {
@@ -205,7 +208,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                               <?php
                               }
                               if (in_array("Fabrication Summary", $Category)) {
-                              ?> <span><?php echo $summaryDetails['data'][0]['Onhold_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabriction"; ?></span></span>
+                              ?> <span><?php echo $summaryDetails['data'][0]['Onhold_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
                               if (in_array("EMS Summary", $Category)) {
@@ -238,7 +241,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                               <?php
                               }
                               if (in_array("Fabrication Summary", $Category)) {
-                              ?> <span><?php echo $summaryDetails['data'][0]['Cancelled_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabriction"; ?></span></span>
+                              ?> <span><?php echo $summaryDetails['data'][0]['Cancelled_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
                               if (in_array("EMS Summary", $Category)) {
@@ -362,7 +365,6 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                   <div class="card-body bg-light pt-0 widgets_bg">
                     <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent d-flex justify-content-between">
                       <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
-                      <input id="map_table" type="text" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="width:250px;">
                     </div>
                     <br>
                     <div id="mapCanvas"></div>
@@ -555,20 +557,21 @@ if(isset($Partner_EMS_Details['data'])){
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
-      mapTypeId: 'terrain',
-      center: {
-        lat: 20,
-        lng: 77
-      }, // Centered on India
-      zoom: 3, // Initial zoom level (adjust as needed)
-      maxZoom: 5, // Maximum zoom level allowed (adjust as needed)
-      mapTypeId: 'terrain', // Map type (e.g., 'roadmap', 'satellite', 'terrain', 'hybrid')
-      disableDefaultUI: true, // Disable default UI controls
-      zoomControl: true, // Enable zoom control
-      zoomControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_BOTTOM // Position of zoom control
-      }
-    };
+                center: { lat: 20.5937, lng: 80.9629 }, // Centered on India
+                // // center: { lat: 10.0, lng: 80.0 },
+                // zoom: 4, // Initial zoom level to cover the whole country
+                // maxZoom: 14, // Maximum zoom level allowed
+                // minZoom: 4, // Minimum zoom level allowed
+                mapTypeId: 'roadmap', // Map type (e.g., 'roadmap', 'satellite', 'terrain', 'hybrid')
+                disableDefaultUI: true, // Disable default UI controls
+                zoomControl: true, // Enable zoom control
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM // Position of zoom control
+                },
+                // Optionally add other settings for better user experience
+                streetViewControl: true, // Disable Street View control if not needed
+                fullscreenControl: true, // Enable fullscreen control if needed
+            };
 
     // Display a map on the web page
     map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
@@ -609,9 +612,10 @@ if(isset($Partner_EMS_Details['data'])){
       // Prepare info window content for each partner at the same location
       if (!infoWindowContent[position.toString()]) {
         infoWindowContent[position.toString()] = '';
+        infoWindowContent[position.toString()] += '<input id="locationSearch" type="text" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="width:250px; margin: 10px;" />';
       }
 
-      infoWindowContent[position.toString()] += '<div class="info_content" id="map_table">' +
+      infoWindowContent[position.toString()] += '<div class="info_content" id="locationSearch">' +
         '<div id="results">' +
         '<div class="results">' +
         '<h6 style="color: #0070ba;">' + collectionPartner[i].partner_name + '</h6>' +
@@ -644,8 +648,8 @@ if(isset($Partner_EMS_Details['data'])){
     });
   }
 
-  $("#map_table").keyup(function() {
-
+  $("#locationSearch").keyup(function() {
+    console.log("map");
     // Retrieve the input field text and reset the count to zero
     var filter = $(this).val(),
       count = 0;
