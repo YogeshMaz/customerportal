@@ -22,7 +22,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'login') {
 
             if ($hashed_password === $hashed_user_password) {
                 $_SESSION['user'] = $email;
-                header("Location: mf_dashboard.php");
+                header("Location: customer_dash.php");
                 exit();
             } else {
                 echo "Password incorrect. Authentication failed.";

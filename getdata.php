@@ -303,7 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             getSummaryDetails();
 
-            header("Location: mf_dashboard.php");
+            header("Location: datapages/customer_dash.php");
             exit();
         } else {
             header("Location: index.php?error=invalid");

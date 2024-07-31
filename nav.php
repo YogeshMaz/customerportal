@@ -39,6 +39,7 @@
                                         </li>
                                     </ul>
                                 </div>
+
                             </li>
                         </ul>
 
@@ -63,6 +64,8 @@
 
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll">
+
+
                 <li class="nav-item">
                     <a href="http://localhost/customerportal/mf_dashboard.php" class="nav-link sh" id="showdashboard">
                         <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span>
@@ -100,6 +103,7 @@
                         <li><a href="http://localhost/customerportal/datapages/price_approve.php" class="dropdown-item sh" id="showpa"><i class="fas fa-hand-holding-usd"></i> Price Approval</a></li>
                         <li><a href="http://localhost/customerportal/datapages/invoice.php" class="dropdown-item sh" id="showInvoice"><i class="fas fa-file-invoice"></i> Invoice</a></li>
                         <li><a href="http://localhost/customerportal/datapages/po.php" class="dropdown-item sh" id="showpo"><i class="fas fa-money-check"></i> PO</a></li>
+
                     </ul>
                 </li>
 
@@ -116,11 +120,9 @@
                 <li class="nav-item ">
                     <a href="http://localhost/customerportal/datapages/your_prtnr.php" class="nav-link sh" id="showpartner"> <i class="fas fa-handshake"></i> <span>Your Partners</span> </a>
                 </li>
-
                 <li class="nav-item ">
                     <a href="http://localhost/customerportal/datapages/delivery_sch.php" class="nav-link sh" id="showds"> <i class="fas fa-calendar-week"></i> <span> Delivery Schedule</span></a>
                 </li>
-
                 <li class="nav-item d-none">
                     <a class="nav-link d-block sh" id="showqc"> <i class="fas fa-check-square"></i> <span>Quality Control</span></a>
                 </li>
@@ -144,33 +146,5 @@
         $('.navbar-toggler').click(function() {
             $('#navbarScroll').removeAttr('style');
         });
-
-            var deliverys = "Delivery Schedule";
-            var yourp = "Your Partner";
-            var deliveryt = "Analytics - Delivery Trends";
-            var po = "Purchase Order";
-            var invoice = "Show Invoice";
-            var pricea = "Price Approval";
-
-            $("#showds").click(function() {
-                console.log(deliverys);
-            });
-            $("#showpartner").click(function() {
-                console.log(yourp);
-            });
-            $("#showdt").click(function() {
-                console.log(yourp);
-            });
-            $("#showpo").click(function() {
-                console.log(po);
-            });
-            $("#showInvoice").click(function() {
-                console.log(invoice);
-            }); 
-            $("#showInvoice").click(function() {
-                console.log(invoice);
-            });
-            showpa
-            
     });
 </script>

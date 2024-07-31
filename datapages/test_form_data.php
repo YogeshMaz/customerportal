@@ -1,55 +1,54 @@
-<div class="row justify-content-center" style="display:none;" id="testform">
-    <div class="col-xl-6 col-lg-12 col-md-9 p-4 mb-2">
-        <form action="test_form_data.php" method="POST" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload File" name="submit">
-        </form>
-    </div>
-</div>
 <?php
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    // Check if file was uploaded without errors
-    if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] == 0) {
-        
-        $targetDir = "uploads/"; // Directory where you want to store uploaded files
-        $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]); // Path of the uploaded file
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($targetFile,PATHINFO_EXTENSION)); // File extension
+include '../header.php';
+include '../nav.php';
+include '../footer.php';
+?>
 
-        // Check if file already exists
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h2>File Upload Form</h2>
+    <form method="POST" action="test_form_data.php" enctype="multipart/form-data">
+        <label for="file">File name:</label>
+        <input type="file" name="uploadfile" />
+        <input type="submit" name="submit" value="Upload" />
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Define the target directory (ensure this path is correct)
+        $targetDir = "../"; // Directory where files will be saved
+
+        // Ensure the target directory exists
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true); // Create directory if it doesn't exist
+        }
+
+        // Get the target file path
+        $targetFile = $targetDir . basename($_FILES["uploadfile"]["name"]);
+
+        echo "<b>File to be uploaded: </b>" . htmlspecialchars($_FILES["uploadfile"]["name"]) . "<br>";
+        echo "<b>Type: </b>" . htmlspecialchars($_FILES["uploadfile"]["type"]) . "<br>";
+        echo "<b>File Size: </b>" . ($_FILES["uploadfile"]["size"] / 1024) . " KB<br>";
+        echo "<b>Store in: </b>" . htmlspecialchars($_FILES["uploadfile"]["tmp_name"]) . "<br>";
+
+        // Check if the file already exists
         if (file_exists($targetFile)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
-
-        // Check file size (optional)
-        if ($_FILES["fileToUpload"]["size"] > 500000) { // Adjust size as necessary
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
-
-        // Allow certain file formats (optional)
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif" ) { // Adjust formats as necessary
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
-
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            echo "<h3>The file already exists</h3>";
         } else {
-            // If everything is ok, try to upload file
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
-                echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+            // Attempt to move the uploaded file to the target directory
+            if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $targetFile)) {
+                echo "<h3>File Successfully Uploaded</h3>";
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                echo "<h3>Sorry, there was an error uploading your file.</h3>";
             }
         }
-    } else {
-        echo "No file uploaded or an error occurred.";
     }
-}
-?>
+    ?>
+</body>
+</html>
