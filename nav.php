@@ -147,4 +147,31 @@
             $('#navbarScroll').removeAttr('style');
         });
     });
+
+    var deliverys = "Delivery Schedule";
+            var yourp = "Your Partner";
+            var deliveryt = "Analytics - Delivery Trends";
+            var po = "Purchase Order";
+            var invoice = "Show Invoice";
+            var pricea = "Price Approval";
+
+            $("#showds").click(function() {
+                console.log(deliverys);
+            });
+            $("#showpartner").click(function() {
+                console.log(yourp);
+            });
+            $("#showdt").click(function() {
+                console.log(yourp);
+            });
+            $("#showpo").click(function() {
+                console.log(po);
+            });
+            $("#showInvoice").click(function() {
+                console.log(invoice);
+            }); 
+            $("#showInvoice").click(function() {
+                console.log(invoice);
+            });
+            showpa
 </script>
