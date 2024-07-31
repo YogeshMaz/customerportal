@@ -374,9 +374,9 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         'blue' => $url . 'blue-dot.png'
                       );
                       ?>
-                      <p><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A Partner</br>
-                      <img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication Partner</br>
-                      <img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS Partner</p>
+                      <p><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A Partner</p>
+                      <p><img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication Partner</p>
+                      <p><img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS Partner</p>
                       <input id="locationSearch" type="text" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="width:250px; display:none;" />
                     </div>
                     <br>
