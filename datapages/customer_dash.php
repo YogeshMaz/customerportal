@@ -68,7 +68,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
     border-right: 0px;
   }
 
-  .partnerLocationSearch{
+  .partnerLocationSearch {
     width: 300px;
     border-radius: 15px;
     padding: 2px 2px 2px 15px;
@@ -107,15 +107,15 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary">Total Projects</div>
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
-                              <?php if (in_array('M&F Summary', $Category)) {
+                              <?php if (in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Total_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
                               }
-                              if (in_array("Fabrication Summary", $Category)) {
+                              if (in_array("Fabrication Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Total_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
-                              if (in_array("EMS Summary", $Category)) {
+                              if (in_array("EMS Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Total_Projects_EMS'] ?? 0; ?> <br> <span class="fs12"><?php echo "EMS"; ?></span></span>
                               <?php
                               } ?>
@@ -140,15 +140,16 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                             <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary">Production Projects</div>
 
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
-                              <?php if (in_array('M&F Summary', $Category)) {
+                              <?php
+                              if (in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Production_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
                               }
-                              if (in_array("Fabrication Summary", $Category)) {
+                              if (in_array("Fabrication Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Production_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
-                              if (in_array("EMS Summary", $Category)) {
+                              if (in_array("EMS Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Production_Projects_EMS'] ?? 0; ?> <br> <span class="fs12"><?php echo "EMS"; ?></span></span>
                               <?php
                               } ?>
@@ -170,15 +171,15 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary"> Open Projects</div>
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
-                              <?php if (in_array('M&F Summary', $Category)) {
+                              <?php if (in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Open_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
                               }
-                              if (in_array("Fabrication Summary", $Category)) {
+                              if (in_array("Fabrication Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Open_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
-                              if (in_array("EMS Summary", $Category)) {
+                              if (in_array("EMS Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Open_Projects_EMS'] ?? 0; ?> <br> <span class="fs12"><?php echo "EMS"; ?></span></span>
                               <?php
                               } ?>
@@ -203,15 +204,15 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                             <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary">Onhold Projects</div>
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
                               <?php
-                              if (in_array('M&F Summary', $Category)) {
+                              if (in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Onhold_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
                               }
-                              if (in_array("Fabrication Summary", $Category)) {
+                              if (in_array("Fabrication Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Onhold_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
-                              if (in_array("EMS Summary", $Category)) {
+                              if (in_array("EMS Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Onhold_Projects_EMS'] ?? 0; ?> <br> <span class="fs12"><?php echo "EMS"; ?></span></span>
                               <?php
                               } ?>
@@ -236,15 +237,15 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                           <div class="col mr-2">
                             <div class="text-xs fw-bold text-center text-uppercase mb-1 text-secondary">Cancelled Projects</div>
                             <div class="h4 mb-0 fw-bold text-center justify-content-around d-flex text-dark">
-                              <?php if (in_array('M&F Summary', $Category)) {
+                              <?php if (in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Cancelled_Projects_PCndA'] ?? 0; ?> <br> <span class="fs12"><?php echo "PC&A"; ?></span></span>
                               <?php
                               }
-                              if (in_array("Fabrication Summary", $Category)) {
+                              if (in_array("Fabrication Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Cancelled_Projects_FAB'] ?? 0; ?> <br> <span class="fs12"><?php echo "Fabrication"; ?></span></span>
                               <?php
                               }
-                              if (in_array("EMS Summary", $Category)) {
+                              if (in_array("EMS Summary", $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0) {
                               ?> <span><?php echo $summaryDetails['data'][0]['Cancelled_Projects_EMS'] ?? 0; ?> <br> <span class="fs12"><?php echo "EMS"; ?></span></span>
                               <?php
                               } ?>
@@ -365,6 +366,18 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                   <div class="card-body bg-light pt-0 widgets_bg">
                     <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent d-flex justify-content-between">
                       <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
+                      <?php
+                      $url = 'https://maps.google.com/mapfiles/ms/micons/';
+                      $iconBase = array(
+                        'red' => $url . 'red-dot.png',
+                        'green' => $url . 'green-dot.png',
+                        'blue' => $url . 'blue-dot.png'
+                      );
+                      ?>
+                      <p><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A Partner</br>
+                      <img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication Partner</br>
+                      <img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS Partner</p>
+                      <input id="locationSearch" type="text" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="width:250px; display:none;" />
                     </div>
                     <br>
                     <div id="mapCanvas"></div>
@@ -530,20 +543,20 @@ $partnerCollection = []; // Initialize an empty array to store partner data
 
 
 /** To collect the Manufacturing partner location data */
-if(isset($Partner_PCndA_Details['data'])){
+if (isset($Partner_PCndA_Details['data'])) {
   foreach ($Partner_PCndA_Details['data'] as $eachMndFDetails) {
     $partnerCollection[] = $eachMndFDetails;
   }
 }
 
 /** To collect the Fabrication partner location data */
-if(isset($Partner_FAB_Details['data'])){
+if (isset($Partner_FAB_Details['data'])) {
   foreach ($Partner_FAB_Details['data'] as $eachFabDetails) {
     $partnerCollection[] = $eachFabDetails;
   }
 }
 /** To collect the EMS partner location data */
-if(isset($Partner_EMS_Details['data'])){
+if (isset($Partner_EMS_Details['data'])) {
   foreach ($Partner_EMS_Details['data'] as $eachEmsDetails) {
     $partnerCollection[] = $eachEmsDetails;
   }
@@ -557,21 +570,25 @@ if(isset($Partner_EMS_Details['data'])){
     var map;
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
-                center: { lat: 20.5937, lng: 80.9629 }, // Centered on India
-                // // center: { lat: 10.0, lng: 80.0 },
-                // zoom: 4, // Initial zoom level to cover the whole country
-                // maxZoom: 14, // Maximum zoom level allowed
-                // minZoom: 4, // Minimum zoom level allowed
-                mapTypeId: 'roadmap', // Map type (e.g., 'roadmap', 'satellite', 'terrain', 'hybrid')
-                disableDefaultUI: true, // Disable default UI controls
-                zoomControl: true, // Enable zoom control
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_BOTTOM // Position of zoom control
-                },
-                // Optionally add other settings for better user experience
-                streetViewControl: true, // Disable Street View control if not needed
-                fullscreenControl: true, // Enable fullscreen control if needed
-            };
+      center: {
+        lat: 17.7937,
+        lng: 80.9629
+      }, // Centered on India
+      // // center: { lat: 10.0, lng: 80.0 },
+      zoom: 3, // Initial zoom level to cover the whole country
+      minZoom: 4, // Minimum zoom level to keep India visible
+      maxZoom: 4, // Maximum zoom level for detailed view
+      mapTypeId: 'terrain', // Map type (e.g., 'roadmap', 'satellite', 'terrain', 'hybrid')
+      disableDefaultUI: true, // Disable default UI controls
+      overviewMapControl: true,
+      zoomControl: true, // Enable zoom control
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_BOTTOM // Position of zoom control
+      },
+      // Optionally add other settings for better user experience
+      streetViewControl: true, // Disable Street View control if not needed
+      fullscreenControl: true, // Enable fullscreen control if needed
+    };
 
     // Display a map on the web page
     map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
@@ -612,10 +629,9 @@ if(isset($Partner_EMS_Details['data'])){
       // Prepare info window content for each partner at the same location
       if (!infoWindowContent[position.toString()]) {
         infoWindowContent[position.toString()] = '';
-        infoWindowContent[position.toString()] += '<input id="locationSearch" type="text" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="width:250px; margin: 10px;" />';
       }
 
-      infoWindowContent[position.toString()] += '<div class="info_content" id="locationSearch">' +
+      infoWindowContent[position.toString()] += '<div class="info_content">' +
         '<div id="results">' +
         '<div class="results">' +
         '<h6 style="color: #0070ba;">' + collectionPartner[i].partner_name + '</h6>' +
@@ -629,6 +645,7 @@ if(isset($Partner_EMS_Details['data'])){
       // Add click event listener to marker
       google.maps.event.addListener(marker, 'click', (function(marker, content) {
         return function() {
+          document.getElementById("locationSearch").style.display = 'block';
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
         };
@@ -649,7 +666,7 @@ if(isset($Partner_EMS_Details['data'])){
   }
 
   $("#locationSearch").keyup(function() {
-    console.log("map");
+    // console.log("map");
     // Retrieve the input field text and reset the count to zero
     var filter = $(this).val(),
       count = 0;
@@ -670,5 +687,11 @@ if(isset($Partner_EMS_Details['data'])){
 
     });
 
+  });
+
+  $(document).on('click', '.gm-ui-hover-effect', function() {
+    // Perform action on click
+    // console.log("Element clicked:", $(this).text());
+    document.getElementById("locationSearch").style.display = 'none';
   });
 </script>

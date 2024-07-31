@@ -479,30 +479,30 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
     /** Summary title validations - start */
     
-    if (strpos($giveAccesTo, "M&F Summary") !== false) {
-        $summaryTitleArray[] = "PC&A Summary";
-        $summaryWidgetArray[] = "PC&A";
-        $summaryWidgetUnique = "PC&A";
-        $summaryTitleUnique = "PC&A Summary";
-    }
-    if (strpos($giveAccesTo, "Fabrication Summary") !== false) {
-        $summaryTitleArray[] = "Fabrication Summary";
-        $summaryWidgetArray[] = "Fabrication";
-        $summaryWidgetUnique  = "Fabrication";
-        $summaryTitleUnique = "Fabrication Summary";
-    }
-    if (strpos($giveAccesTo, "EMS Summary") !== false) {
-        $summaryTitleArray[] = "EMS Summary";
-        $summaryWidgetArray[] = "EMS";
-        $summaryWidgetUnique  = "EMS";
-        $summaryTitleUnique = "EMS Summary";
-    }
+    // if (strpos($giveAccesTo, "M&F Summary") !== false) {
+    //     $summaryTitleArray[] = "PC&A Summary";
+    //     $summaryWidgetArray[] = "PC&A";
+    //     $summaryWidgetUnique = "PC&A";
+    //     $summaryTitleUnique = "PC&A Summary";
+    // }
+    // if (strpos($giveAccesTo, "Fabrication Summary") !== false) {
+    //     $summaryTitleArray[] = "Fabrication Summary";
+    //     $summaryWidgetArray[] = "Fabrication";
+    //     $summaryWidgetUnique  = "Fabrication";
+    //     $summaryTitleUnique = "Fabrication Summary";
+    // }
+    // if (strpos($giveAccesTo, "EMS Summary") !== false) {
+    //     $summaryTitleArray[] = "EMS Summary";
+    //     $summaryWidgetArray[] = "EMS";
+    //     $summaryWidgetUnique  = "EMS";
+    //     $summaryTitleUnique = "EMS Summary";
+    // }
 
-    if (count($summaryTitleArray) > 1) {
-        $summaryTitle = "Summary";
-    } else {
-        $summaryTitle = $summaryTitleUnique;
-    }
+    // if (count($summaryTitleArray) > 1) {
+    //     $summaryTitle = "Summary";
+    // } else {
+    //     $summaryTitle = $summaryTitleUnique;
+    // }
 
     // if (count($summaryWidgetArray) > 1) {
     //     $summaryWidget = "Summary";
@@ -529,6 +529,30 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     }
 
     $Category = $summaryDetails['data'][0]['Category'];
+    $catCount = 0;
+    if(count($Category) == 1){
+        $summaryTitle = $Category[0];
+    } else{
+        if(in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0){
+            $summaryTitle = "PC&A Summary";
+            $catCount += 1;
+        }
+        if(in_array('Fabrication Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0){
+            $summaryTitle = "Fabrication Summary";
+            $catCount += 1;
+        }
+        if(in_array('EMS Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0){
+            $summaryTitle = "EMS Summary";
+            $catCount += 1;
+        } 
+        if($catCount == 1){
+            $summaryTitle = $summaryTitle;
+        } else{
+            $summaryTitle = "Summary";
+        }
+    }
+
+    // echo "cat " . json_encode(($Category));
     if(isset($summaryDetails['data'][0]['Partner_PCndA_Details'])){
         $Partner_PCndA_Details = $summaryDetails['data'][0]['Partner_PCndA_Details'];
         $Partner_PCndA_Details = json_decode($Partner_PCndA_Details, true);
