@@ -66,7 +66,7 @@
                                     <input required type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="togglePassword">
-                                            <i class="fas fa-eye"></i>
+                                            <i class="fas fa-eye-slash"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -93,16 +93,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 <!-- Custom JavaScript for password visibility toggle -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const togglePassword = document.getElementById('togglePassword');
-        const password = document.getElementById('pwd');
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('pwd');
 
-        togglePassword.addEventListener('click', function() {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            this.querySelector('i').classList.toggle('fa-eye-slash');
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+
+                const icon = this.querySelector('svg');
+                if (type === 'text') {
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                } else {
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                }
+            });
         });
-    });
+
 
     document.addEventListener('DOMContentLoaded', function() {
             const loginForm = document.getElementById('loginFormLoader');
