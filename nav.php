@@ -67,7 +67,7 @@
 
 
                 <li class="nav-item">
-                    <a href="http://localhost/customerportal/mf_dashboard.php" class="nav-link sh" id="showdashboard">
+                    <a href="http://localhost/customerportal/datapages/customer_dash.php" class="nav-link sh" id="showdashboard">
                         <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span>
                     </a>
                 </li>
