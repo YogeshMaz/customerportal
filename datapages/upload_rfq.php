@@ -50,7 +50,6 @@ include '../footer.php';
     li.nav-item a#yourrfq span {
         display: inline-block;
     }
-    li.nav-item a.nav-link span { display: none; }
 </style>
 <div id="rfqSec">
     <!------------Upload RFQ Sec------------->
