@@ -116,6 +116,10 @@ input:-internal-autofill-selected {
     z-index: 2;
 }
 
+.devenv{
+    text-align: center;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
