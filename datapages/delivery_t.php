@@ -1,3 +1,8 @@
+<style>
+    li.nav-item a#dt span {
+        display: inline-block;
+    }
+</style>
 
 <?php
   include '../header.php';

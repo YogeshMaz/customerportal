@@ -6,6 +6,9 @@
     .hidecolumn .dropdown-toggle::after {
       display: none;
     }
+    li.nav-item a#order_mng span {
+      display: inline-block;
+    }
 </style>
 <body>
     <div id="invoiceSec">

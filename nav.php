@@ -1,4 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
 <div id="navbar-wrapper">
     <nav class="navbar navbar-inverse p-0">
         <div class="w-100">
@@ -69,7 +68,7 @@
 
                 <li class="nav-item">
                     <a href="http://localhost/customerportal/datapages/customer_dash.php" class="nav-link sh" id="showdashboard">
-                        <i class="fas fa-home"></i> <span style="display:inline-block;"> <?php echo $summaryTitle ?> </span>
+                        <i class="fas fa-home"></i> <span> <?php echo $summaryTitle ?> </span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -148,109 +147,5 @@
             $('#navbarScroll').removeAttr('style');
         });
     });
-
-    // Defined all pages in an object
-    var logs = {
-        summary: "Summary",
-        createRfq: "Create RFQ",
-        rfqList: "RFQ List",
-        prodash: "Project Dashboard",
-        pricea: "Price Approval",
-        invoice: "Show Invoice",
-        po: "Purchase Order",
-        deliveryt: "Analytics - Delivery Trends",
-        yourp: "Your Partner",
-        deliverys: "Delivery Schedule"
-    };
-
-    // Define the logAction function
-    function logAction(action) {
-        $.ajax({
-            type: "POST",
-            url: "../logaction.php",
-            data: {
-                action: action
-            },
-            success: function(response) {
-                console.log("Log recorded:", response);
-            },
-            error: function(xhr, status, error) {
-                console.error("Log recording failed:", status, error);
-            }
-        });
-    }
-
-    // Add click event handlers
-    $("#showds").click(function() {
-        logactiontest();
-        logAction(logs.deliverys);
-        console.log(logs.deliverys);
-    });
-    $("#showpartner").click(function() {
-        logactiontest();
-        logAction(logs.yourp);
-        console.log(logs.yourp);
-    });
-    $("#showdt").click(function() {
-        logactiontest();
-        logAction(logs.deliveryt);
-        console.log(logs.deliveryt);
-    });
-    $("#showpo").click(function() {
-        logactiontest();
-        logAction(logs.po);
-        console.log(logs.po);
-    });
-    $("#showInvoice").click(function() {
-        logactiontest();
-        logAction(logs.invoice);
-        console.log(logs.invoice);
-        updateRecordJS();
-    });
-    $("#showpa").click(function() {
-        logactiontest();
-        logAction(logs.pricea);
-        console.log(logs.pricea);
-    });
-    $("#showProDash").click(function() {
-        logactiontest();
-        logAction(logs.prodash);
-        console.log(logs.prodash);
-    });
-
-    function logactiontest() {
-        console.log("test trigger");
-    }
-
-    function updateRecordJS() {
-        const axios = require('axios');
-        let data = JSON.stringify({
-            "data": {
-                "Page": "Test",
-                "Customer_Email": "ramasamy@saravanaenergy.com",
-                "Date_Time": "02-Aug-2024 09:50:00"
-            }
-        });
-
-        let config = {
-            method: 'post',
-            maxBodyLength: Infinity,
-            url: 'https://creator.zoho.in/api/v2.1/arun.ramu_machinemaze/machinemaze-project-management/form/Customer_Portal_Logs',
-            headers: {
-                'Authorization': 'Zoho-oauthtoken 1000.d02eedd3e94dfb68b23344066ed32f81.8a488de3e761bc18438faeb1d62b38f0',
-                'Content-Type': 'application/json',
-                'Cookie': 'ZCNEWLIVEUI=true; _zcsr_tmp=02d89144-7f7a-4bb3-b088-e8b7604d995e; zalb_f8176abf63=1920247976c316b14a7c52e70618ba1f; zccpn=02d89144-7f7a-4bb3-b088-e8b7604d995e'
-            },
-            data: data
-        };
-
-        axios.request(config)
-            .then((response) => {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-    }
+    
 </script>
