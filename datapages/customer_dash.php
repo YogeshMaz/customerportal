@@ -68,9 +68,6 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
     border-right: 0px;
   }
 
-  .partnerLocationSearch {
-    /* border-bottom: 10px; */
-  }
   li.nav-item a#showdashboard span {
       display: inline-block;
   }
