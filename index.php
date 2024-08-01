@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-    <title>Customer DASHBOARD</title>
+    <title>Customer Dashboard</title>
     <meta charset="utf-8">
     <link rel="icon" type="image/x-icon" href="images/logomm.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,7 @@
     <div id="wrapper">
 
         <div id="navbar-wrapper">
-            
+
             <nav class="navbar navbar-inverse p-0">
                 <div class="w-100">
                     <div class="navbar-header w-100 row" style="align-items: center;">
@@ -77,7 +77,7 @@
                             <input type="submit" class="btn btn-primary mt-3 mb-0" value="Login">
                         </form>
                         <!-- Loader element -->
-                        <div class="loader_box d-none" id="loader" >
+                        <div class="loader_box d-none" id="loader">
                             <div class="loader"></div>
                         </div>
                     </div>
@@ -86,6 +86,12 @@
                     </div>
                 </div>
             </div>
+            <!-- <div class="devenv">
+                <label class="container">Test Environment for Developers
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </div> -->
         </div>
 
     </div>
@@ -93,42 +99,42 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 <!-- Custom JavaScript for password visibility toggle -->
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.getElementById('togglePassword');
-            const password = document.getElementById('pwd');
+    document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('pwd');
 
-            togglePassword.addEventListener('click', function() {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
 
-                const icon = this.querySelector('svg');
-                if (type === 'text') {
-                    icon.classList.remove('fa-eye-slash');
-                    icon.classList.add('fa-eye');
-                } else {
-                    icon.classList.remove('fa-eye');
-                    icon.classList.add('fa-eye-slash');
-                }
-            });
+            const icon = this.querySelector('svg');
+            if (type === 'text') {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
         });
+    });
 
 
     document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginFormLoader');
-            const loader = document.getElementById('loader');
+        const loginForm = document.getElementById('loginFormLoader');
+        const loader = document.getElementById('loader');
 
-            loginForm.addEventListener('submit', function() {
+        loginForm.addEventListener('submit', function() {
 
-                // Display loader
-                loader.classList.remove('d-none');
-                
-                // Simulate AJAX request (replace with actual AJAX call)
-                setTimeout(function() {
-                    loader.classList.add('d-none');
-                    // window.location.href = 'mf_dashboard.php';
-                }, 15000); 
-            });
+            // Display loader
+            loader.classList.remove('d-none');
+
+            // Simulate AJAX request (replace with actual AJAX call)
+            setTimeout(function() {
+                loader.classList.add('d-none');
+                // window.location.href = 'mf_dashboard.php';
+            }, 15000);
         });
+    });
 </script>
 
 </html>
