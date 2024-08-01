@@ -50,7 +50,7 @@ function getAccessToken()
     //     $tokenData = [
     //         'expires_at' => date("d-M-Y H:i:s", $expirationTime)
     //     ];
-    
+
     //     // Write the token data back to the JSON file
     //     file_put_contents('logoutsession.json', json_encode($tokenData));
     //         // Handle case where modifytime is not set
@@ -228,6 +228,7 @@ function updateRecord($email, $reportname, $appname)
     return $response;
 }
 
+
 function simulateLogin($email, $inputPassword, $users)
 {
     foreach ($users as $user) {
@@ -243,31 +244,32 @@ function simulateLogin($email, $inputPassword, $users)
     return false;
 }
 
-function getSummaryDetails(){
+function getSummaryDetails()
+{
     $_SESSION['action_required'] = "";
-     // Fetch User Summary
-     $userSummary = fetchDataOfUsers('summary_dashboard_customer_portal_Report', 'machinemaze-project-management');
-     $userSummaryData = json_decode($userSummary, true);
-     if ($userSummaryData) {
-         $actionRequired = false;
-         $_SESSION['loggedin'] = true;
-         if ($userSummaryData['code'] == 3000) {
-             foreach ($userSummaryData['data'] as $eachSummaryUserData) {
-                 if ($eachSummaryUserData['Customer_Email'] == $_SESSION['email']) {
-                     $actionRequired = true;
-                     break;
-                 }
-             }
-             if ($actionRequired == true) {
-                 $_SESSION['action_required'] = "update";
-             } else {
-                 $_SESSION['action_required'] = "create";
-             }
-         } else {
-             $_SESSION['action_required'] = "no record";
-         }
-     }
-     return $_SESSION['action_required'];
+    // Fetch User Summary
+    $userSummary = fetchDataOfUsers('summary_dashboard_customer_portal_Report', 'machinemaze-project-management');
+    $userSummaryData = json_decode($userSummary, true);
+    if ($userSummaryData) {
+        $actionRequired = false;
+        $_SESSION['loggedin'] = true;
+        if ($userSummaryData['code'] == 3000) {
+            foreach ($userSummaryData['data'] as $eachSummaryUserData) {
+                if ($eachSummaryUserData['Customer_Email'] == $_SESSION['email']) {
+                    $actionRequired = true;
+                    break;
+                }
+            }
+            if ($actionRequired == true) {
+                $_SESSION['action_required'] = "update";
+            } else {
+                $_SESSION['action_required'] = "create";
+            }
+        } else {
+            $_SESSION['action_required'] = "no record";
+        }
+    }
+    return $_SESSION['action_required'];
 }
 
 // Check if form is submitted 
@@ -478,7 +480,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     // echo "Current time : " . $currentTime;
 
     /** Summary title validations - start */
-    
+
     // if (strpos($giveAccesTo, "M&F Summary") !== false) {
     //     $summaryTitleArray[] = "PC&A Summary";
     //     $summaryWidgetArray[] = "PC&A";
@@ -524,51 +526,51 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
     $summaryResponse = fetchDataFromZohoCreator('summary_dashboard_customer_portal_Report', 'machinemaze-project-management', $email, "Customer_Email", 200);
     $summaryDetails = json_decode($summaryResponse, true);
-    if(isset($summaryDetails['data'][0]['Modified_Time'])){
+    if (isset($summaryDetails['data'][0]['Modified_Time'])) {
         $_SESSION['modifytime'] = $summaryDetails['data'][0]['Modified_Time'];
     }
 
     $Category = $summaryDetails['data'][0]['Category'];
     $catCount = 0;
-    if(count($Category) == 1){
+    if (count($Category) == 1) {
         $summaryTitle = $Category[0];
-    } else{
-        if(in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0){
+    } else {
+        if (in_array('PC&A Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_PCndA'] != 0) {
             $summaryTitle = "PC&A Summary";
             $catCount += 1;
         }
-        if(in_array('Fabrication Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0){
+        if (in_array('Fabrication Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_FAB'] != 0) {
             $summaryTitle = "Fabrication Summary";
             $catCount += 1;
         }
-        if(in_array('EMS Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0){
+        if (in_array('EMS Summary', $Category) && $summaryDetails['data'][0]['Total_Projects_EMS'] != 0) {
             $summaryTitle = "EMS Summary";
             $catCount += 1;
-        } 
-        if($catCount == 1){
+        }
+        if ($catCount == 1) {
             $summaryTitle = $summaryTitle;
-        } else{
+        } else {
             $summaryTitle = "Summary";
         }
     }
 
     // echo "cat " . json_encode(($Category));
-    if(isset($summaryDetails['data'][0]['Partner_PCndA_Details'])){
+    if (isset($summaryDetails['data'][0]['Partner_PCndA_Details'])) {
         $Partner_PCndA_Details = $summaryDetails['data'][0]['Partner_PCndA_Details'];
         $Partner_PCndA_Details = json_decode($Partner_PCndA_Details, true);
     }
-    if(isset($summaryDetails['data'][0]['Partner_Fabrication_Details'])){
+    if (isset($summaryDetails['data'][0]['Partner_Fabrication_Details'])) {
         $Partner_Fabrication_Details = $summaryDetails['data'][0]['Partner_Fabrication_Details'];
         $Partner_FAB_Details = json_decode($Partner_Fabrication_Details, true);
     }
-    if(isset($summaryDetails['data'][0]['Partner_EMS_Details'])){
+    if (isset($summaryDetails['data'][0]['Partner_EMS_Details'])) {
         $Partner_EMS_Details = $summaryDetails['data'][0]['Partner_EMS_Details'];
         $Partner_EMS_Details = json_decode($Partner_EMS_Details, true);
     }
 
     /** To convert index array to associative array */
 
-   // echo "summaryData var " . json_encode($summaryData);
+    // echo "summaryData var " . json_encode($summaryData);
     // echo "summary details " . json_encode($summaryDetails);
 
     // $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $cancelledpro_dash_res_count + $holdpro_dash_res_count;
@@ -622,27 +624,28 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
 };
 
-    /** Delivery Schedule Fetch Data - start */
-    function getDeliveryScheduleData(){
-        $ds_res = fetchDataFromZohoCreator('Overall_Delivery_Schedule_Records', 'machinemaze-project-management', $_SESSION['email'], "Machine_Maze_Project_Tracking_ID.Customer_Email", 1000);
-        $ds_res_data = json_decode($ds_res, true);
-    
-        $deliveredRes = $notYetDeliveredRes = array();
-        if ($ds_res_data['code'] == 3000) {
-            foreach ($ds_res_data['data'] as $eachDsRec) {
-                if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Delivered") {
-                    $deliveredRes["data"][] = $eachDsRec;
-                } else if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Not Yet Delivered") {
-                    $notYetDeliveredRes["data"][] = $eachDsRec;
-                }
+/** Delivery Schedule Fetch Data - start */
+function getDeliveryScheduleData()
+{
+    $ds_res = fetchDataFromZohoCreator('Overall_Delivery_Schedule_Records', 'machinemaze-project-management', $_SESSION['email'], "Machine_Maze_Project_Tracking_ID.Customer_Email", 1000);
+    $ds_res_data = json_decode($ds_res, true);
+
+    $deliveredRes = $notYetDeliveredRes = array();
+    if ($ds_res_data['code'] == 3000) {
+        foreach ($ds_res_data['data'] as $eachDsRec) {
+            if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Delivered") {
+                $deliveredRes["data"][] = $eachDsRec;
+            } else if (isset($eachDsRec['Delivery_Status']) && $eachDsRec['Delivery_Status'] == "Not Yet Delivered") {
+                $notYetDeliveredRes["data"][] = $eachDsRec;
             }
         }
-        return array(
-            'delivered' => $deliveredRes,
-            'not_yet_delivered' => $notYetDeliveredRes
-        );
     }
-    /** Delivery Schedule Fetch Data - end */
+    return array(
+        'delivered' => $deliveredRes,
+        'not_yet_delivered' => $notYetDeliveredRes
+    );
+}
+/** Delivery Schedule Fetch Data - end */
 
 /** Your Partner Fetch Data - start */
 function getYourPartnerData()
@@ -684,24 +687,24 @@ function getYourPartnerData()
 
     if (count($uniquePCndA) > 0) {
         $partner_category[] = "Manufacturing Partner";
-        foreach($uniquePCndA as $recMFID){
-            if($recMFID != ""){
+        foreach ($uniquePCndA as $recMFID) {
+            if ($recMFID != "") {
                 $your_partner_res['data']['Manufacturing_Partner'][] = fetchDataFromZohoCreatorByID($recMFID, 'MF_Partner_Report_For_Customer_Portal', 'request-for-quote');
             }
         }
     }
     if (count($uniqueFabrication) > 0) {
         $partner_category[] = "Fabrication Partner";
-        foreach($uniqueFabrication as $recFABID){
-            if($recFABID != ""){
+        foreach ($uniqueFabrication as $recFABID) {
+            if ($recFABID != "") {
                 $your_partner_res['data']['Fabrication_Partner'][] = fetchDataFromZohoCreatorByID($recFABID, 'Fabrication_Partner_Report_For_Portal', 'request-for-quote');
             }
         }
     }
     if (count($uniqueEMS) > 0) {
         $partner_category[] = "EMS Partner";
-        foreach($uniqueEMS as $recEMSID){
-            if($recEMSID != ""){
+        foreach ($uniqueEMS as $recEMSID) {
+            if ($recEMSID != "") {
                 $your_partner_res['data']['EMS_Partner'][] = fetchDataFromZohoCreatorByID($recEMSID, 'EMS_Partner_Report_For_Portal', 'request-for-quote');
             }
         }
@@ -814,7 +817,8 @@ function getinvoiceData()
 /** invoice fetch data  - end */
 
 /** price approval fetch data - start */
-function priceApprovalData(){
+function priceApprovalData()
+{
     $pa_res = fetchDataFromZohoCreator('Price_Approval_from_Customers_Report', 'machinemaze-project-management', $_SESSION['email'], "Customer_Email", 1000);
     $pa_res_data = json_decode($pa_res, true);
     // $pa_res_count = getCountFromResponse($pa_res);
@@ -825,7 +829,8 @@ function priceApprovalData(){
 
 
 /** partner financial fetch data - start */
-function partnerFinancial(){
+function partnerFinancial()
+{
     $partner_f_res = fetchDataFromZohoCreator('All_Invoices', 'purchase-application', $_SESSION['email'], "Customer_Organisation", 1000);
     $partner_f_res_data = json_decode($partner_f_res, true);
     // $partner_f_res_count = getCountFromResponse($partner_f_res);
