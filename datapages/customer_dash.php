@@ -69,7 +69,8 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
   }
 
   li.nav-item a#showdashboard span {
-    display: inline-block;
+    color: #0070ba;
+    font-weight: 600;
   }
 </style>
 

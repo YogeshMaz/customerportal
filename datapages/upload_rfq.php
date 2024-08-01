@@ -48,7 +48,8 @@ include '../footer.php';
         display: block;
     }
     li.nav-item a#yourrfq span {
-        display: inline-block;
+        color: #0070ba;
+        font-weight: 600;
     }
 </style>
 <div id="rfqSec">

@@ -22,7 +22,8 @@
     color: #ffffff;
   }
   li.nav-item a#showpartner span {
-    display: inline-block;
+    color: #0070ba;
+    font-weight: 600;
   }
 </style>
 <div id="mpSec">

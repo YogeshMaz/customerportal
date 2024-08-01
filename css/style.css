@@ -903,12 +903,13 @@ span.badge {
 }
 
 li.nav-item a.nav-link span {
-    display: none;
-}
-
-li.nav-item:hover a.nav-link span {
     display: inline-block;
 }
+
+
+/* li.nav-item:hover a.nav-link span {
+    display: inline-block;
+} */
 
 .dropdown-toggle::after {
     content: "\f078";

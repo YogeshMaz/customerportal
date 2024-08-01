@@ -7,7 +7,8 @@
       display: none;
     }
     li.nav-item a#order_mng span {
-      display: inline-block;
+      color: #0070ba;
+      font-weight: 600;
     }
 </style>
 <body>

@@ -29,7 +29,8 @@
     padding-left: 10px;
   }
   li.nav-item a#showds span {
-    display: inline-block;
+    color: #0070ba;
+    font-weight: 600;
   }
 </style>
 

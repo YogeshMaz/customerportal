@@ -6,7 +6,8 @@ include '../footer.php';
 
 <style>
   li.nav-item a#yourrfq span {
-      display: inline-block;
+    color: #0070ba;
+    font-weight: 600;
   }
 </style>
 

@@ -1,6 +1,7 @@
 <style>
     li.nav-item a#dt span {
-        display: inline-block;
+        color: #0070ba;
+        font-weight: 600;
     }
 </style>
 
