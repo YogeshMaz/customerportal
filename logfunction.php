@@ -41,6 +41,39 @@ function updateLogRecord($reportName, $formName, $json_data)
     return $response;
 }
 
+function fetchDataOfUsersLogs($reportname, $appname)
+{
+    $access_token = getAccessToken();
+    if (!$access_token) {
+        echo "Failed to get access token.";
+        exit;
+    }
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://creator.zoho.in/api/v2.1/arun.ramu_machinemaze/" . urlencode($appname) . "/report/" . $reportname,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+            "Authorization: Zoho-oauthtoken $access_token",
+            'Content-Type: application/x-www-form-urlencoded',
+            'Cookie: ZCNEWLIVEUI=true; _zcsr_tmp=b451eca6-6321-4a12-b81e-b9d87897881f; f8176abf63=ac0bf5971029d5628fd013d3a9099af0; zccpn=b451eca6-6321-4a12-b81e-b9d87897881f'
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+    // echo json_encode($response);
+    return $response;
+}
+
+
 function getAccessToken()
 {
     $tokenData = json_decode(@file_get_contents('token.json'), true);

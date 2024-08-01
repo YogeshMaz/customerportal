@@ -69,7 +69,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
   }
 
   li.nav-item a#showdashboard span {
-      display: inline-block;
+    display: inline-block;
   }
 </style>
 
@@ -364,25 +364,25 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                   <div class="card-body bg-light pt-0 widgets_bg">
 
                     <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent ">
-                        <div class="d-flex justify-content-between">
-                          <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
-                          <?php
-                          $url = 'https://maps.google.com/mapfiles/ms/micons/';
-                          $iconBase = array(
-                            'red' => $url . 'red-dot.png',
-                            'green' => $url . 'green-dot.png',
-                            'blue' => $url . 'blue-dot.png'
-                          );
-                          ?>
-                          <div class="d-flex">
-                            <p class="px-2"><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A</p>
-                            <p class="px-2"><img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication</p>
-                            <p class="px-2"><img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS</p>
-                          </div>
+                      <div class="d-flex justify-content-between">
+                        <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
+                        <?php
+                        $url = 'https://maps.google.com/mapfiles/ms/micons/';
+                        $iconBase = array(
+                          'red' => $url . 'red-dot.png',
+                          'green' => $url . 'green-dot.png',
+                          'blue' => $url . 'blue-dot.png'
+                        );
+                        ?>
+                        <div class="d-flex">
+                          <p class="px-2"><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A</p>
+                          <p class="px-2"><img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication</p>
+                          <p class="px-2"><img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS</p>
                         </div>
-                        <div>
-                          <input id="locationSearch" type="search" placeholder="Search Your Partner " class="form-control" style="display:none;" />
-                        </div>
+                      </div>
+                      <div>
+                        <input id="locationSearch" type="search" placeholder="Search Your Partner " class="form-control" style="display:none;" />
+                      </div>
                     </div>
                     <div id="mapCanvas"></div>
                   </div>
@@ -647,16 +647,38 @@ if (isset($Partner_EMS_Details['data'])) {
 
 
       // Add click event listener to marker
-      google.maps.event.addListener(marker, 'click', (function(marker, content) {
+      var currentlyOpenInfoWindow = null;
+      google.maps.event.addListener(marker, 'mouseover', (function(marker, content) {
         return function() {
-          document.getElementById("locationSearch").style.display = 'block';
-          infoWindow.setContent(content);
-          infoWindow.open(map, marker);
+          if (currentlyOpenInfoWindow === null) {
+            document.getElementById("locationSearch").style.display = 'block';
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker);
+          }
         };
       })(marker, infoWindowContent[position.toString()]));
 
+      // Add mouseout event listener to close the infoWindow
+      // google.maps.event.addListener(marker, 'mouseout', function() {
+      //   if (currentlyOpenInfoWindow === null) {
+      //     infoWindow.close();
+      //   }
+      // });
+      // Add click event listener to marker
+      // google.maps.event.addListener(marker, 'click', (function(marker, content) {
+      //   return function() {
+      //     if (currentlyOpenInfoWindow !== null) {
+      //       currentlyOpenInfoWindow.close();
+      //     }
+      //     document.getElementById("locationSearch").style.display = 'block';
+      //     infoWindow.setContent(content);
+      //     infoWindow.open(map, marker);
+      //   };
+      // })(marker, infoWindowContent[position.toString()]));
+
       // Extend the bounds to include each marker's position
       bounds.extend(marker.getPosition());
+
     }
 
     // Center the map to fit all markers when they are added

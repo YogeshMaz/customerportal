@@ -184,37 +184,41 @@
         logAction(logs.summary);
         console.log(logs.summary);
     });
-    $("#showdashboard").click(function() {
-        logAction(logs.summary);
-        console.log(logs.summary);
+    $("#uploadRfq").click(function() {
+        logAction(logs.createRfq);
+        console.log(logs.createRfq);
     });
-    $("#showds").click(function() {
-        logAction(logs.deliverys);
-        console.log(logs.deliverys);
+    $("#showrfqlist").click(function() {
+        logAction(logs.rfqList);
+        console.log(logs.rfqList);
     });
-    $("#showpartner").click(function() {
-        logAction(logs.yourp);
-        console.log(logs.yourp);
-    });
-    $("#showdt").click(function() {
-        logAction(logs.deliveryt);
-        console.log(logs.deliveryt);
-    });
-    $("#showpo").click(function() {
-        logAction(logs.po);
-        console.log(logs.po);
-    });
-    $("#showInvoice").click(function() {
-        logAction(logs.invoice);
-        console.log(logs.invoice);
-        updateRecordJS();
+    $("#showProDash").click(function() {
+        logAction(logs.prodash);
+        console.log(logs.prodash);
     });
     $("#showpa").click(function() {
         logAction(logs.pricea);
         console.log(logs.pricea);
     });
-    $("#showProDash").click(function() {
-        logAction(logs.prodash);
-        console.log(logs.prodash);
+    $("#showInvoice").click(function() {
+        logAction(logs.invoice);
+        console.log(logs.invoice);
+
+    });
+    $("#showpo").click(function() {
+        logAction(logs.po);
+        console.log(logs.po);
+    });
+    $("#showdt").click(function() {
+        logAction(logs.deliveryt);
+        console.log(logs.deliveryt);
+    });
+    $("#showpartner").click(function() {
+        logAction(logs.yourp);
+        console.log(logs.yourp);
+    });
+    $("#showds").click(function() {
+        logAction(logs.deliverys);
+        console.log(logs.deliverys);
     });
 </script>

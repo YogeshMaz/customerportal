@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Kolkata');
 include 'logfunction.php'; // Include the log function
 
 if (isset($_SESSION['email']) && isset($_POST['action'])) {
@@ -17,6 +18,7 @@ if (isset($_SESSION['email']) && isset($_POST['action'])) {
         )
     );
     $json_data = json_encode($addData);
+    // $fetchUserLog = fetchDataOfUsersLogs("All_Customer_Portal_Logs", "machinemaze-project-management");
     updateLogRecord($reportName, $formName, $json_data);
     echo json_encode(['status' => 'success']);
 } else {
