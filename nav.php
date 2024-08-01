@@ -147,5 +147,66 @@
             $('#navbarScroll').removeAttr('style');
         });
     });
-    
+
+    // Defined all pages in an object
+    var logs = {
+        summary: "Summary",
+        createRfq: "Create RFQ",
+        rfqList: "RFQ List",
+        prodash: "Project Dashboard",
+        pricea: "Price Approval",
+        invoice: "Show Invoice",
+        po: "Purchase Order",
+        deliveryt: "Analytics - Delivery Trends",
+        yourp: "Your Partner",
+        deliverys: "Delivery Schedule"
+    };
+
+    // Define the logAction function
+    function logAction(action) {
+        $.ajax({
+            type: "POST",
+            url: "../logaction.php",
+            data: {
+                action: action
+            },
+            success: function(response) {
+                console.log("Log recorded:", response);
+            },
+            error: function(xhr, status, error) {
+                console.error("Log recording failed:", status, error);
+            }
+        });
+    }
+
+    // Add click event handlers
+    $("#showds").click(function() {
+        logAction(logs.deliverys);
+        console.log(logs.deliverys);
+    });
+    $("#showpartner").click(function() {
+        logAction(logs.yourp);
+        console.log(logs.yourp);
+    });
+    $("#showdt").click(function() {
+        logAction(logs.deliveryt);
+        console.log(logs.deliveryt);
+    });
+    $("#showpo").click(function() {
+        logAction(logs.po);
+        console.log(logs.po);
+    });
+    $("#showInvoice").click(function() {
+        logAction(logs.invoice);
+        console.log(logs.invoice);
+        updateRecordJS();
+    });
+    $("#showpa").click(function() {
+        logAction(logs.pricea);
+        console.log(logs.pricea);
+    });
+    $("#showProDash").click(function() {
+        logAction(logs.prodash);
+        console.log(logs.prodash);
+    });
 </script>
