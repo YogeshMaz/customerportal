@@ -1,3 +1,8 @@
+<style>
+    li.nav-item a#order_mng span {
+      display: inline-block;
+    }
+</style>
 <div id="paSec">
   <!------------Price Approval Sec------------->
   <?php 

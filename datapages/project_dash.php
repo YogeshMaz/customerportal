@@ -2,6 +2,12 @@
   include '../header.php';
   include '../nav.php';
   include '../footer.php'; ?>
+<style>
+    li.nav-item a#yourpro span {
+      display: inline-block;
+    }
+</style>
+
 <div id="pro_dash" >
     <?php
     $project_dash_res_data = getOpenProjects();

@@ -21,6 +21,9 @@
     right: 0;
     color: #ffffff;
   }
+  li.nav-item a#showpartner span {
+    display: inline-block;
+  }
 </style>
 <div id="mpSec">
   <!------------Manufacturing Partner Sec------------->

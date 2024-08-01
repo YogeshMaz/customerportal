@@ -3,6 +3,13 @@ include '../header.php';
 include '../nav.php';
 include '../footer.php';
 ?>
+
+<style>
+  li.nav-item a#yourrfq span {
+      display: inline-block;
+  }
+</style>
+
 <div id="rfqlistsec">
   <!------------Rfq List Sec------------->
   <?php

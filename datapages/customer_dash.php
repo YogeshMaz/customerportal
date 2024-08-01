@@ -69,12 +69,13 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
   }
 
   .partnerLocationSearch {
-    width: 300px;
-    border-radius: 15px;
-    padding: 2px 2px 2px 15px;
     /* border-bottom: 10px; */
   }
+  li.nav-item a#showdashboard span {
+      display: inline-block;
+  }
 </style>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvBZcW9MkLM0NMPG_lNqVbTyzEQQ6chUA&libraries=places&callback=initMap" defer></script>
 
 <div class="container-fluid p-0">
@@ -364,22 +365,28 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                 <div class="card shadow h-100 border-primary mt-0">
 
                   <div class="card-body bg-light pt-0 widgets_bg">
-                    <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent d-flex justify-content-between">
-                      <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
-                      <?php
-                      $url = 'https://maps.google.com/mapfiles/ms/micons/';
-                      $iconBase = array(
-                        'red' => $url . 'red-dot.png',
-                        'green' => $url . 'green-dot.png',
-                        'blue' => $url . 'blue-dot.png'
-                      );
-                      ?>
-                      <p><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A Partner</p>
-                      <p><img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication Partner</p>
-                      <p><img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS Partner</p>
-                      <input id="locationSearch" type="text" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="width:250px; display:none;" />
+
+                    <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent ">
+                        <div class="d-flex justify-content-between">
+                          <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
+                          <?php
+                          $url = 'https://maps.google.com/mapfiles/ms/micons/';
+                          $iconBase = array(
+                            'red' => $url . 'red-dot.png',
+                            'green' => $url . 'green-dot.png',
+                            'blue' => $url . 'blue-dot.png'
+                          );
+                          ?>
+                          <div class="d-flex">
+                            <p class="px-2"><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A</p>
+                            <p class="px-2"><img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication</p>
+                            <p class="px-2"><img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS</p>
+                          </div>
+                        </div>
+                        <div>
+                          <input id="locationSearch" type="search" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="display:none;" />
+                        </div>
                     </div>
-                    <br>
                     <div id="mapCanvas"></div>
                   </div>
                 </div>

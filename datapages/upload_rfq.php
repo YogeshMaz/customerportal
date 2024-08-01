@@ -47,6 +47,10 @@ include '../footer.php';
     .was-validated .form-select:invalid~.errortxt {
         display: block;
     }
+    li.nav-item a#yourrfq span {
+        display: inline-block;
+    }
+    li.nav-item a.nav-link span { display: none; }
 </style>
 <div id="rfqSec">
     <!------------Upload RFQ Sec------------->

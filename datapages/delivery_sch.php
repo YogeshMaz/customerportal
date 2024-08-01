@@ -28,6 +28,9 @@
   .pd_lft {
     padding-left: 10px;
   }
+  li.nav-item a#showds span {
+    display: inline-block;
+  }
 </style>
 
 <div id="dsSec">
