@@ -180,6 +180,14 @@
     }
 
     // Add click event handlers
+    $("#showdashboard").click(function() {
+        logAction(logs.summary);
+        console.log(logs.summary);
+    });
+    $("#showdashboard").click(function() {
+        logAction(logs.summary);
+        console.log(logs.summary);
+    });
     $("#showds").click(function() {
         logAction(logs.deliverys);
         console.log(logs.deliverys);

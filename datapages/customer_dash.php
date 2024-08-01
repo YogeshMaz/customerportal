@@ -381,7 +381,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                           </div>
                         </div>
                         <div>
-                          <input id="locationSearch" type="search" placeholder="Search Your Partner " class="partnerLocationSearch form-control" style="display:none;" />
+                          <input id="locationSearch" type="search" placeholder="Search Your Partner " class="form-control" style="display:none;" />
                         </div>
                     </div>
                     <div id="mapCanvas"></div>
