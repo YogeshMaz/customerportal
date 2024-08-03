@@ -37,7 +37,6 @@
   li:has(> a#showds) {
     background: #0070ba;
   }
- 
 </style>
 
 <div id="dsSec">
