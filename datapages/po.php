@@ -1,7 +1,18 @@
 <style>
-    li.nav-item a#order_mng span {
-      color: #0070ba;
-      font-weight: 600;
+    a#order_mng span {
+      color: #fff;
+    }
+    a#order_mng i {
+      color: #fff;
+    }
+    li:has(> a#order_mng) {
+      background: #0070ba;
+    }
+    a#order_mng.dropdown-toggle::after {
+        color: #fff !important;
+    }
+    a#order_mng.dropdown-toggle::after {
+        color: #fff !important;
     }
 </style>
 <div id="poSec">

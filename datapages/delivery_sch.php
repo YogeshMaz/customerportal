@@ -28,10 +28,16 @@
   .pd_lft {
     padding-left: 10px;
   }
-  li.nav-item a#showds span {
-    color: #0070ba;
-    font-weight: 600;
+  a#showds span {
+    color: #fff;
   }
+  a#showds i {
+    color: #fff;
+  }
+  li:has(> a#showds) {
+    background: #0070ba;
+  }
+ 
 </style>
 
 <div id="dsSec">

@@ -21,9 +21,14 @@
     right: 0;
     color: #ffffff;
   }
-  li.nav-item a#showpartner span {
-    color: #0070ba;
-    font-weight: 600;
+  a#showpartner span {
+    color: #fff;
+  }
+  a#showpartner i {
+    color: #fff;
+  }
+  li:has(> a#showpartner) {
+    background: #0070ba;
   }
 </style>
 <div id="mpSec">

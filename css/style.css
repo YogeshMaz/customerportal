@@ -618,7 +618,7 @@ li.nav-item {
     width: 30px;
     height: 30px;
     border-radius: 5px;
-    box-shadow: 0 0px 4px 0 #c5c5c5;
+    /* box-shadow: 0 0px 4px 0 #c5c5c5; */
     margin-right: 2px;
 }
 

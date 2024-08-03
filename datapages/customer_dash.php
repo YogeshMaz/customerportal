@@ -68,10 +68,16 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
     border-right: 0px;
   }
 
-  li.nav-item a#showdashboard span {
-    color: #0070ba;
-    font-weight: 600;
+  a#showdashboard span {
+    color: #fff;
   }
+  a#showdashboard i {
+    color: #fff;
+  }
+  li:has(> a#showdashboard) {
+      background: #0070ba;
+  }
+  
 </style>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvBZcW9MkLM0NMPG_lNqVbTyzEQQ6chUA&libraries=places&callback=initMap" defer></script>

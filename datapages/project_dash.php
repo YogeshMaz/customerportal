@@ -3,9 +3,17 @@
   include '../nav.php';
   include '../footer.php'; ?>
 <style>
-    li.nav-item a#yourpro span {
-        color: #0070ba;
-        font-weight: 600;
+    a#yourpro span {
+      color: #fff;
+    }
+    a#yourpro i {
+      color: #fff;
+    }
+    li:has(> a#yourpro) {
+      background: #0070ba;
+    }
+    a#yourpro.dropdown-toggle::after {
+        color: #fff !important;
     }
 </style>
 

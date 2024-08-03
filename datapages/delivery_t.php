@@ -1,8 +1,16 @@
 <style>
-    li.nav-item a#dt span {
-        color: #0070ba;
-        font-weight: 600;
-    }
+  a#dt span {
+    color: #fff;
+  }
+  a#dt i {
+    color: #fff;
+  }
+  li:has(> a#dt) {
+    background: #0070ba;
+  }
+  a#dt.dropdown-toggle::after {
+    color: #fff !important;
+  }
 </style>
 
 <?php

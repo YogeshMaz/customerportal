@@ -5,9 +5,17 @@ include '../footer.php';
 ?>
 
 <style>
-  li.nav-item a#yourrfq span {
-    color: #0070ba;
-    font-weight: 600;
+  a#yourrfq span {
+    color: #fff;
+  }
+  a#yourrfq i {
+    color: #fff;
+  }
+  li:has(> a#yourrfq) {
+    background: #0070ba;
+  }
+  a#yourrfq.dropdown-toggle::after {
+    color: #fff !important;
   }
 </style>
 
