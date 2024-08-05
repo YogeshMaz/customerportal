@@ -128,7 +128,7 @@
                                         <th>Project Tracker</th>
                                         <th>Project Phase </th>
                                         <th>Total Cost (INR) </th>
-                                        <th>Project Collateral</th> 
+                                        <th>Partner Organisation </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -141,7 +141,15 @@
                                             <td><?php echo htmlspecialchars_decode($record['Project_Tracker'] ?? "-"); ?></td>
                                             <td><?php echo htmlspecialchars($record['Project_Phase_New'] ?? "-"); ?></td>
                                             <td><?php echo htmlspecialchars($record['Total_Cost_INR'] ?? "-"); ?></td>
-                                            <td>--</td>
+                                            <?php if ($record['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner'] != "" && $record['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner'] != null) { ?>
+                                                <td><?php echo htmlspecialchars($record['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner']['Name_of_the_Organisation'] ?? "-"); ?></td>
+                                            <?php } elseif ($record['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner'] != "" && $record['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner'] != null) { ?>
+                                                <td><?php echo htmlspecialchars($record['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner']['Name_of_the_Organisation'] ?? "-"); ?></td>
+                                            <?php } elseif ($record['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor'] != "" && $record['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor'] != null) { ?>
+                                                <td><?php echo htmlspecialchars($record['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor']['Name_Of_Organisation'] ?? "-"); ?></td>
+                                            <?php } else {
+                                                ?> <td>-</td> <?php
+                                            } ?>                                       
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -210,7 +218,7 @@
                                         <th>Project Tracker</th>
                                         <th>Project Phase</th>
                                         <th>Total Cost (INR) </th>
-                                        <th>Project Collateral</th>
+                                        <th>Partner Organisation</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -223,7 +231,15 @@
                                             <td><a href='<?php echo $completeUrl; ?>' target="_blank"><?php echo htmlspecialchars($record['Link_Field']['value']  ?? "-"); ?></a></td>                                            <td><?php echo htmlspecialchars_decode($record['Project_Tracker']  ?? "-"); ?></td>
                                             <td><?php echo htmlspecialchars($record['Project_Phase_New']  ?? "-"); ?></td>
                                             <td><?php echo htmlspecialchars($record['Total_Cost_INR']  ?? "-"); ?></td>
-                                            <td>--</td>
+                                            <?php if ($record['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner'] != "" && $record['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner'] != null) { ?>
+                                                <td><?php echo htmlspecialchars($record['Project_Execution_Detail'][0]['Production_Allocation_to_M_F_Partner']['Name_of_the_Organisation'] ?? "-"); ?></td>
+                                            <?php } elseif ($record['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner'] != "" && $record['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner'] != null) { ?>
+                                                <td><?php echo htmlspecialchars($record['Project_Execution_Detail'][0]['Allocate_to_EMS_PArtner']['Name_of_the_Organisation'] ?? "-"); ?></td>
+                                            <?php } elseif ($record['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor'] != "" && $record['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor'] != null) { ?>
+                                                <td><?php echo htmlspecialchars($record['Project_Execution_Detail'][0]['Production_Allocation_to_Fabrication_Vendor']['Name_Of_Organisation'] ?? "-"); ?></td>
+                                            <?php } else {
+                                                ?> <td>-</td> <?php
+                                            } ?>   
                                         </tr>
                                     <?php } ?>
                                 </tbody>

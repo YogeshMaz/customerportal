@@ -77,7 +77,6 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
   li:has(> a#showdashboard) {
       background: #0070ba;
   }
-  
 </style>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvBZcW9MkLM0NMPG_lNqVbTyzEQQ6chUA&libraries=places&callback=initMap" defer></script>
@@ -91,7 +90,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 
         <div class="row my-2 mdrow1">
           <div class="col-md-6">
-            <h2 class="text-dark mb-2"> <?php echo $summaryTitle ?> </h2>
+            <h5 class="my-1 fw-bold text-primary"> <?php echo $summaryTitle ?> </h5>
           </div>
           <!-- <h2 class="text-dark mb-2 ">Manufacturing Dashboard</h2> -->
 
@@ -372,7 +371,7 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
 
                     <div class="card-header border-0 mt-3 p-0 pb-1 bg-transparent ">
                       <div class="d-flex justify-content-between">
-                        <h5 class="text-dark mb-2"> <?php echo "Partner Location" ?> </h5>
+                        <h5 class="text-dark mb-2"> <?php echo "Manufacturing Location" ?> </h5>
                         <?php
                         $url = 'https://maps.google.com/mapfiles/ms/micons/';
                         $iconBase = array(
@@ -382,13 +381,19 @@ $total_project_count = $project_dash_res_count + $completepro_dash_res_count + $
                         );
                         ?>
                         <div class="d-flex">
+                          <?php if (isset($Partner_PCndA_Details['data'])) : ?>
                           <p class="px-2"><img src="<?php echo $iconBase['red']; ?>" alt="Red Dot" width="20" height="20"> PC&A</p>
+                          <?php endif; ?>
+                          <?php if (isset($Partner_FAB_Details['data'])) : ?>
                           <p class="px-2"><img src="<?php echo $iconBase['green']; ?>" alt="Green Dot" width="20" height="20">Fabrication</p>
+                          <?php endif; ?>
+                          <?php if (isset($Partner_EMS_Details['data'])) : ?>
                           <p class="px-2"><img src="<?php echo $iconBase['blue']; ?>" alt="Blue Dot" width="20" height="20">EMS</p>
+                          <?php endif; ?>
                         </div>
                       </div>
                       <div>
-                        <input id="locationSearch" type="search" placeholder="Search Your Partner " class="form-control" style="display:none;" />
+                        <input id="locationSearch" type="search" placeholder="Search Your Partner " oninput="callLocationFunction()" class="form-control" style="display:none;" />
                       </div>
                     </div>
                     <div id="mapCanvas"></div>
@@ -576,6 +581,9 @@ if (isset($Partner_EMS_Details['data'])) {
 ?>
 
 <script>
+  function callLocationFunction(){
+    document.getElementById("locationSearch").style.display = 'block';
+  }
   // Initialize and add the map
   function initMap() {
     var map;
