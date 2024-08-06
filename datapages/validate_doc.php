@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Example usage
             $repoOwner = 'YogeshMaz'; // Replace with your GitHub username or organization
             $repoName = 'customerportal'; // Replace with your repository name
-            $filePath = 'media/open_projects.json'; // Path to the file in the repository
+            $filePath = 'media/' . $_FILES['myfile']['name']; // Path to the file in the repository
 
             $fileContent = fetchFileFromGitHub($repoOwner, $repoName, $filePath);
 
