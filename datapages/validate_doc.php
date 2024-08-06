@@ -15,6 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Attempt to move the uploaded file
         if (move_uploaded_file($_FILES['myfile']['tmp_name'], $uploadFile)) {
             echo "<p>File successfully uploaded to " . htmlspecialchars($uploadFile) . "</p>";
+            // Example usage
+            $repoOwner = 'YogeshMaz'; // Replace with your GitHub username or organization
+            $repoName = 'customerportal'; // Replace with your repository name
+            $filePath = 'media/open_projects.json'; // Path to the file in the repository
+
+            $fileContent = fetchFileFromGitHub($repoOwner, $repoName, $filePath);
+
+            // Output the file content (for demonstration purposes)
+            echo "<pre>$fileContent</pre>";
         } else {
             echo "<p>Error moving the uploaded file.</p>";
         }
@@ -52,6 +61,7 @@ function fetchFileFromGitHub($repoOwner, $repoName, $filePath, $branch = 'main')
 
     return $fileContent;
 }
+
 
 
 
