@@ -73,6 +73,42 @@ function fetchDataOfUsersLogs($reportname, $appname)
     return $response;
 }
 
+function uploadFiles($reportName, $formName, $json_data)
+{
+    $access_token = getAccessToken();
+    if (!$access_token) {
+        echo "Failed to get access token.";
+        exit;
+    }
+    $curl = curl_init();
+
+    // $reportName = 'machinemaze-project-management';
+    // $formName = 'create_rfq_test_form';
+
+    curl_setopt_array($curl, array(
+    CURLOPT_URL => "https://creator.zoho.in/api/v2.1/arun.ramu_machinemaze/" . $reportName . "/form/" .$formName,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_ENCODING => '',
+    CURLOPT_MAXREDIRS => 10,
+    CURLOPT_TIMEOUT => 0,
+    CURLOPT_FOLLOWLOCATION => true,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => 'POST',
+    CURLOPT_POSTFIELDS => $json_data,
+    CURLOPT_HTTPHEADER => array(
+        "Authorization: Zoho-oauthtoken $access_token",
+        'Content-Type: application/json',
+        'Cookie: ZCNEWLIVEUI=true; _zcsr_tmp=89c5fd60-6a3f-49a7-90fb-4691878af05c; zalb_f8176abf63=1920247976c316b14a7c52e70618ba1f; zccpn=89c5fd60-6a3f-49a7-90fb-4691878af05c'
+    ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    echo $response;
+    return $response;
+}
+
 
 function getAccessToken()
 {

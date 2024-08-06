@@ -38,22 +38,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 function fetchFileFromGitHub($repoOwner, $repoName, $filePath, $branch = 'main') {
+    // Construct the URL to the raw file content
     $url = "https://raw.githubusercontent.com/$repoOwner/$repoName/$branch/$filePath";
     
-    // Use file_get_contents to fetch the file contents
+    // Fetch the file content
     $fileContent = file_get_contents($url);
     
     if ($fileContent === FALSE) {
         die('Error fetching file from GitHub');
     }
 
+    echo "file upload url " . $url; 
+
     return $fileContent;
 }
 
-// Example usage
-$repoOwner = 'YogeshMaz'; // Replace with your GitHub username or organization
-$repoName = 'customerportal';       // Replace with your repository name
-$filePath = 'path/to/your/file.txt'; // Path to the file in the repository
 
-$fileContent = fetchFileFromGitHub($repoOwner, $repoName, $filePath);
+
+
 ?>
